@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const AboutPage = () => {
-  const [list, setList] = useState(aboutList);
+  // const [list, setList] = useState(aboutList);
   return (
     <div id="about">
-      <PageHero title="about" />
+      {/* <PageHero title="about" />
       <div className="contentAbout">
         {list.map((item, idx) => (
           <article key={idx}>
@@ -18,6 +18,8 @@ const AboutPage = () => {
           </article>
         ))}
       </div>
+      <Footer /> */}
+      AboutPage
     </div>
   );
 };
