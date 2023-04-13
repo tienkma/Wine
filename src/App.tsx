@@ -19,6 +19,7 @@ import { RouterName } from "./routers";
 import { Footer, ResponsiveAppBar } from "./components";
 
 export const routers = [
+  
   { path: RouterName.HOME, component: <HomePage /> },
   { path: RouterName.PRODUCTS, component: <ProductsPage /> },
   { path: RouterName.PRODUCT_CREATE, component: <CreateProduct /> },

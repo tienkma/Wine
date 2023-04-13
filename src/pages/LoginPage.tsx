@@ -22,7 +22,7 @@ const LoginPage = () => {
           <SignUp setDisplayLogin={setDisplayLogin} />
         )}
       </div>
-      <Link to="/" className="backHome">
+      <Link to="/" className="backHome fixed bottom-4 right-4 w-10 h-10 flex justify-center items-center bg-red-400 rounded-full">
         <AiFillHome size="18" />
       </Link>
     </main>
@@ -116,7 +116,6 @@ const SignIn = ({ setDisplayLogin }: any) => {
           </a>
         </p>
       </div>
-      <button onClick={() => setDisplayLogin(false)}>Register</button>
     </form>
   );
 };
