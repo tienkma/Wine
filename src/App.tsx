@@ -16,7 +16,7 @@ import AdminPage from "./pages/AdminPage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
 import { RouterName } from "./routers";
-import ResponsiveAppBar from "./components/navBar";
+import ResponsiveAppBar from "./components/common/navBar";
 import { Footer } from "./components";
 
 export const routers = [
