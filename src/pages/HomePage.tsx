@@ -1,9 +1,12 @@
+import { Video, Featured, Shopify, Commit, Footer } from "../components";
 
 export const HomePage = () => {
   return (
     <main>
-      HOME
+      <Video />
+      <Featured />
+      <Shopify />
+      <Commit />
     </main>
   );
 };
-
