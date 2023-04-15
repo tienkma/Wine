@@ -1,23 +1,22 @@
 import React from "react";
-import { useFilterContext } from "../context/FilterContext";
 
 const Sort = () => {
-  const {
-    state: { filterProduct, sort },
-    changeSort,
-  } = useFilterContext();
+  // const {
+  //   state: { filterProduct, sort },
+  //   changeSort,
+  // } = useFilterContext();
   return (
-    <section id="sortContent">
-      <p>{filterProduct.length} Products Found</p>
-      <hr />
+    <section id="sortContent " className="flex justify-between relative items-center">
+      <p className="text-background capitalize">{[].length} Products Found</p>
+      <hr className="flex-1 border-x-none border-b-none border border-solid border-background" />
       <form>
-        <label htmlFor="sort">Sort By</label>
+        <label htmlFor="sort" className="text-base text-black capitalize">Sort By</label>
         <select
           name="sort"
           id="sort"
-          value={sort}
-          className="sort-input"
-          onChange={(e) => changeSort(e.target.value)}
+          className="sort-input border-transparent text-base capitalize py-2 px-1"
+          // onChange={(e) => changeSort(e.target.value)}
+          // value={sort}
         >
           <option value="priceLowest">price (lowest)</option>
           <option value="priceHighest">price (highest)</option>

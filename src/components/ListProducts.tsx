@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useFilterContext } from "../context/FilterContext";
 import { arrayFormList } from "../utils/ArrayForm";
 import CartItem from "./CartItem";
-import Loadding from "./Loadding";
 import Sort from "./Sort";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
-import { useHomeContact } from "../context/HomeContext";
+import { getDataAPI } from "../utils/api";
 
 const ListProducts = () => {
-  const {
-    state: { defaultList, filterProduct },
-  } = useFilterContext();
-  const {state:{home_loading}} = useHomeContact();
-  let newFilterList = arrayFormList(filterProduct);
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    (async() => {
+      try {
+        const result: any = await getDataAPI()
+        setData(result)
+      } catch (error) {
+        
+      }
+
+    })()
+  }, [])
+  // const {
+  //   state: { defaultList, filterProduct },
+  // } = useFilterContext();
+  let newFilterList = arrayFormList(data);
 
   const [index, setIndex] = useState(0);
 
@@ -29,7 +39,7 @@ const ListProducts = () => {
     }
   };
   return (
-    <section id="product_content">
+    <section id="product_content " className="flex flex-1 flex-col">
       <Sort />
       {newFilterList.length < 1 ? (
         <h2 style={{ marginTop: "20px" }}>No products</h2>
@@ -38,7 +48,7 @@ const ListProducts = () => {
           {!newFilterList[index] ? (
             setIndex(0)
           ) : (
-            <div className="listProduct">
+            <div className="listProduct grid gap-6 mt-7" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))'}}>
               {newFilterList[index].map((item, idx) => (
                 <CartItem key={idx} {...item} />
               ))}
@@ -74,7 +84,7 @@ const ListProducts = () => {
                 );
               }
             )}
-            {index < newFilterList.length - 1 ? (
+            {index < newFilterList.length - 1 ? ( 
               <button
                 className="btn_page btn_change-index"
                 onClick={() => {

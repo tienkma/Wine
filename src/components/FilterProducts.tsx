@@ -1,21 +1,26 @@
 import React, { useLayoutEffect } from "react";
 
 const FilterProducts = () => {
-
-  const listWinery: any[] = []
+  const listWinery: any[] = [];
   return (
-    <section id="filterProduct">
+    <section
+      id="filterProduct"
+      style={{ width: 250 }}
+      className="flex-shrink-0"
+    >
       <div>
         <input
           type="text"
           placeholder="search"
-          className="search"
+          className="search w-full p-1 text-background border border-solid border-background rounded placeholder:capitalize placeholder:text-background"
           // value={search}
           // onChange={(e) => changeFilter(e.target.value, "search")}
         />
-        <div className="winery">
-          <h3>winery</h3>
-          <div className="listWinery">
+        <div className="winery mb-5">
+          <h3 className="text-background capitalize text-2xl mt-5 mb-2">
+            winery
+          </h3>
+          <div className="listWinery flex flex-col">
             {listWinery.map((item) => {
               return (
                 <button
@@ -24,7 +29,7 @@ const FilterProducts = () => {
                     // item.toLowerCase() === winery.toLowerCase()
                     //   ? "activeWinery"
                     //   : null
-                  `}
+                  mt-1 text-base block mr-auto bg-transparent text-background/70 font-bold capitalize `}
                   value={item}
                   // onClick={(e) =>
                   //   changeFilter((e.target as HTMLInputElement).value, "winery")
@@ -38,13 +43,16 @@ const FilterProducts = () => {
         </div>
         <div className="rating">
           <form>
-            <h3>rating</h3>
-            <div className="listRadio">
+            <h3 className="text-background capitalize text-2xl mt-5 mb-2">
+              rating
+            </h3>
+            <div className="listRadio flex items-center mb-1">
               <div>
                 <input
                   type="radio"
                   id="rating1"
                   value="4.2"
+                  className="absolute invisible cursor-pointer mr-2"
                   // checked={rating === "4.2" ? true : false}
                   // onChange={(e) =>
                   //   changeFilter((e.target as HTMLInputElement).value, "rating")
@@ -56,19 +64,23 @@ const FilterProducts = () => {
                       <img src={item} alt='ratingGreat' key={idx} />
                     ))} */}
                   </div>
-                  <span>4.2+</span>
+                  <span className="text-background/70 font-bold ml-2">4.2+</span>
                 </label>
-                <label htmlFor="rating1" className="check"></label>
+                <label
+                  htmlFor="rating1"
+                  className="check block absolute border border-solid border-background rounded-full h-5 w-5 transition-colors cursor-pointer"
+                ></label>
               </div>
               <div>
                 <input
                   type="radio"
+                  className="absolute invisible cursor-pointer mr-2"
                   id="rating2"
                   value="3.8"
                   // checked={rating === "3.8" ? true : false}
                   // onChange={(e) =>
                   //   changeFilter((e.target as HTMLInputElement).value, "rating")
-                  // } 
+                  // }
                 />
                 <label htmlFor="rating2" className="flex">
                   <div className="ratingImgae">
@@ -76,13 +88,17 @@ const FilterProducts = () => {
                       <img src={item} alt="ratingGood" key={idx} />
                     ))} */}
                   </div>
-                  <span>3.8+</span>
+                  <span className="text-background/70 font-bold ml-2">3.8+</span>
                 </label>
-                <label htmlFor="rating2" className="check"></label>
+                <label
+                  htmlFor="rating2"
+                  className="check block absolute border border-solid border-background rounded-full h-5 w-5 transition-colors cursor-pointer"
+                ></label>
               </div>
               <div>
                 <input
                   type="radio"
+                  className="absolute invisible cursor-pointer mr-2"
                   id="rating3"
                   value="3.6"
                   // checked={rating === "3.6" ? true : false}
@@ -96,13 +112,17 @@ const FilterProducts = () => {
                       <img src={item} alt="ratingNormal" key={idx} />
                     ))} */}
                   </div>
-                  <span>3.6+</span>
+                  <span className="text-background/70 font-bold ml-2">3.6+</span>
                 </label>
-                <label htmlFor="rating3" className="check"></label>
+                <label
+                  htmlFor="rating3"
+                  className="check block absolute border border-solid border-background rounded-full h-5 w-5 transition-colors cursor-pointer"
+                ></label>
               </div>
               <div>
                 <input
                   type="radio"
+                  className="absolute invisible cursor-pointer mr-2"
                   id="rating4"
                   value="all"
                   // checked={rating === "all" ? true : false}
@@ -111,16 +131,21 @@ const FilterProducts = () => {
                   // }
                 />
                 <label htmlFor="rating4" className="flex">
-                  <p>Toutes les notes</p>
+                  <p className="font-bold text-background/70 capitalize">Toutes les notes</p>
                 </label>
-                <label htmlFor="rating4" className="check"></label>
+                <label
+                  htmlFor="rating4"
+                  className="check block absolute border border-solid border-background rounded-full h-5 w-5 transition-colors cursor-pointer"
+                ></label>
               </div>
             </div>
           </form>
         </div>
         <div className="price">
-          <h3>Price</h3>
-          <p>$ {6}</p>
+          <h3 className="text-background capitalize text-2xl mt-5 mb-2">
+            Price
+          </h3>
+          <p className="text-lg font-bold text-background/70">$ {6}</p>
           <input
             type="range"
             value={7}
@@ -130,15 +155,10 @@ const FilterProducts = () => {
           />
         </div>
 
-        <button className="btn clearFilter" >
-          Clear All
-        </button>
+        <button className="btn clearFilter">Clear All</button>
       </div>
     </section>
   );
 };
 
-
-export default FilterProducts
-
-
+export default FilterProducts;
