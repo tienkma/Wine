@@ -5,11 +5,9 @@ import { Link } from "react-router-dom";
 import { Toasts } from "../utils/notification";
 import { isEmpty } from "lodash";
 import { Button } from "@mui/material";
-import { useForm, Controller } from "react-hook-form"
-import {Labels} from "../commons/labels";
-import { yupResolver } from '@hookform/resolvers/yup';
-
-
+import { useForm, Controller } from "react-hook-form";
+import { Labels } from "../commons/labels";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const LoginPage = () => {
   const [displayLogin, setDisplayLogin] = useState(true);
@@ -22,7 +20,10 @@ const LoginPage = () => {
           <SignUp setDisplayLogin={setDisplayLogin} />
         )}
       </div>
-      <Link to="/" className="backHome fixed bottom-4 right-4 w-10 h-10 flex justify-center items-center bg-red-400 rounded-full">
+      <Link
+        to="/"
+        className="backHome fixed bottom-4 right-4 w-10 h-10 flex justify-center items-center bg-red-400 rounded-full"
+      >
         <AiFillHome size="18" />
       </Link>
     </main>
@@ -36,21 +37,16 @@ const SignIn = ({ setDisplayLogin }: any) => {
   // const { setUsers } = UseUserContext();
   // const { getListCart } = useCartContext();
 
-  const {
-    register,
-    handleSubmit,
-    formState,
-    control,
-  } = useForm({
-    resolver: yupResolver(Yup.object({
-      email: Yup.string()
-        .email("Email must be a valid email")
-        .required("Please enter the value Email"),
-      password: Yup.string().required().min(8, "Your password is too short."),
-    })
+  const { register, handleSubmit, formState, control } = useForm({
+    resolver: yupResolver(
+      Yup.object({
+        email: Yup.string()
+          .email("Email must be a valid email")
+          .required("Please enter the value Email"),
+        password: Yup.string().required().min(8, "Your password is too short."),
+      })
     ),
-  })
-
+  });
 
   // TODO user
   const onSubmit = async (value: any) => {
@@ -61,16 +57,9 @@ const SignIn = ({ setDisplayLogin }: any) => {
   };
 
   return (
-    <form
-      className="signIn"
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      autoComplete="off"
-      method="POST"
-    >
-      <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-rose-600/40 ring-2 ring-purple-600 lg:max-w-xl">
-        <h1 className="text-3xl font-semibold text-center text-purple-700 underline uppercase decoration-wavy">
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+      <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-rose-600/40 ring  ring-purple-600 lg:max-w-xl">
+        <h1 className="text-3xl font-semibold text-center text-background underline uppercase decoration-wavy">
           Sign in
         </h1>
         <form className="mt-6">
@@ -83,7 +72,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
             </label>
             <input
               type="email"
-              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2 border-solid border-black text-background bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mb-2">
@@ -95,7 +84,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
             </label>
             <input
               type="password"
-              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2 border-solid border-black text-background bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <a href="#" className="text-xs text-purple-600 hover:underline">
@@ -116,7 +105,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
           </a>
         </p>
       </div>
-    </form>
+    </div>
   );
 };
 

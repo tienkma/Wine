@@ -1,25 +1,25 @@
-import "../css/header.css";
 import { AiOutlineMenu } from "react-icons/ai";
-import logo from "../images/logo.png";
+import logo from "../assets/home/logo.png";
 import CartButton from "./CartButton";
 import HeaderLink from "./HeaderLink";
 import { Link } from "react-router-dom";
-import { useHomeContact } from "../context/HomeContext";
 
 const Header = () => {
-  const { openSidebar } = useHomeContact();
   return (
-    <header>
-      <Link to="/" className="logo">
-        <img src={logo} alt="logo" />
+    <header className=" fixed w-full bg-background z-10" style={{height: 100}}>
+      <div className="container mx-auto flex justify-between items-center h-full">
+
+      <Link to="/" className="logo h-full">
+        <img className="h-full" src={logo} alt="logo" />
       </Link>
 
-      <button onClick={openSidebar}>
+      {/* <button className="text-3xl border-none outline-none cursor-pointer font-bold text-white bg-slate-600 ">
         <AiOutlineMenu />
-      </button>
+      </button> */}
 
       <HeaderLink />
       <CartButton />
+      </div>
     </header>
   );
 };

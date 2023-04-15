@@ -1,47 +1,46 @@
 import React, { useEffect } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import "../css/headerBtn.css";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FiUserPlus, FiUserMinus } from "react-icons/fi";
-import { Link, useHistory } from "react-router-dom";
-import { useCartContext } from "../context/CartContext";
-import { useHomeContact } from "../context/HomeContext";
-import { getLocal, UseUserContext } from "../context/UserContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
-  const {
-    state: { isLogin },
-    setIsLogin,
-  } = useHomeContact();
-  const {
-    state: { listCart },
-  } = useCartContext();
-  const {
-    state: { role, users },
-    setLogoutUser,
-  } = UseUserContext();
-  const jsonUser = JSON.stringify(users);
-  useEffect(() => {
-    if (Object.keys(users).length === 0) {
-      setIsLogin(false);
-    }
-  }, [jsonUser]);
-  const history = useHistory();
+  // const {
+  //   state: { isLogin },
+  //   setIsLogin,
+  // } = useHomeContact();
+  // const {
+  //   state: { listCart },
+  // } = useCartContext();
+  // const {
+  //   state: { role, users },
+  //   setLogoutUser,
+  // } = UseUserContext();
+  // const jsonUser = JSON.stringify(users);
+  // useEffect(() => {
+  //   if (Object.keys(users).length === 0) {
+  //     setIsLogin(false);
+  //   }
+  // }, [jsonUser]);
+  const isLogin = true
+  const role = 'user'
+  const navigation = useNavigate();
+  const users = {name: "tien"}
   return (
-    <div className="header_info">
+    <div className="header_info flex">
       <div className="header_info-item">
-        <p className="header-icon">
+        <p className="header-icon text-white">
           <BsFillTelephoneFill />
         </p>
         <div className="header-sp">
           <div className="header-sp_top">
             <a href="tel:+18006012">support</a>
           </div>
-          <p className="header-sp_bottom">1800 6012</p>
+          <p className="header-sp_bottom text-white">1800 6012</p>
         </div>
       </div>
       <div className="header_info-item">
-        <p className="header-icon">
+        <p className="header-icon text-white">
           {!isLogin ? <FiUserPlus /> : <FiUserMinus />}
         </p>
         <div className="header-sp">
@@ -53,8 +52,8 @@ const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
                 props.closeSidebar && props.closeSidebar();
                 if (isLogin) {
                   e.preventDefault();
-                  history.replace("/");
-                  setLogoutUser();
+                  navigation("/", {replace: true});
+                  // setLogoutUser();
                 }
               }}
             >
@@ -79,11 +78,11 @@ const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
         >
           <AiOutlineShoppingCart />
         </Link>
-        {getLocal("users") ? (
+        {/* {getLocal("users") ? (
           <p className="header-count-cart">{listCart.length}</p>
         ) : (
           <></>
-        )}
+        )} */}
       </div>
     </div>
   );

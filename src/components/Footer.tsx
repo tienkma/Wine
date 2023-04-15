@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col bg-indigo-950 p-5">
+    <footer className="flex flex-col bg-background p-5">
       <div className="container mx-auto">
         <div className="footerTitle">
           <ul className="mb-8 flex justify-center">
             <li className="mx-2.5">
               <Link
-                className="flex justify-center items-center rounded-full bg-slate-100 text-2xl"
+                className="flex justify-center items-center rounded-full bg-slate-100 text-background text-2xl hover:bg-color"
                 style={{ width: 44, height: 44, transition: "0.3s linear" }}
                 to="/"
               >
@@ -24,7 +24,7 @@ const Footer = () => {
             </li>
             <li className="mx-2.5">
               <Link
-                className="flex justify-center items-center rounded-full bg-slate-100 text-2xl"
+                className="flex justify-center items-center rounded-full bg-slate-100 text-background text-2xl hover:bg-color"
                 style={{ width: 44, height: 44, transition: "0.3s linear" }}
                 to="/"
               >
@@ -33,7 +33,7 @@ const Footer = () => {
             </li>
             <li className="mx-2.5">
               <Link
-                className="flex justify-center items-center rounded-full bg-slate-100 text-2xl"
+                className="flex justify-center items-center rounded-full bg-slate-100 text-background text-2xl hover:bg-color"
                 style={{ width: 44, height: 44, transition: "0.3s linear" }}
                 to="/"
               >
@@ -42,7 +42,7 @@ const Footer = () => {
             </li>
             <li className="mx-2.5">
               <Link
-                className="flex justify-center items-center rounded-full bg-slate-100 text-2xl"
+                className="flex justify-center items-center rounded-full bg-slate-100 text-background text-2xl hover:bg-color"
                 style={{ width: 44, height: 44, transition: "0.3s linear" }}
                 to="/"
               >
@@ -51,7 +51,7 @@ const Footer = () => {
             </li>
             <li className="mx-2.5">
               <Link
-                className="flex justify-center items-center rounded-full bg-slate-100 text-2xl"
+                className="flex justify-center items-center rounded-full bg-slate-100 text-background text-2xl hover:bg-color"
                 style={{ width: 44, height: 44, transition: "0.3s linear" }}
                 to="/"
               >
@@ -64,7 +64,7 @@ const Footer = () => {
           <ul>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Home
@@ -72,7 +72,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 shop
@@ -80,7 +80,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 My account
@@ -88,7 +88,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Wine Investment
@@ -98,7 +98,7 @@ const Footer = () => {
           <ul>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Wine Storage
@@ -106,7 +106,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Meet the Team
@@ -114,7 +114,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Careers at Cru Wine
@@ -122,7 +122,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Information
@@ -132,7 +132,7 @@ const Footer = () => {
           <ul>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 Cellar Valuation
@@ -140,7 +140,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 news
@@ -148,7 +148,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 recruit
@@ -156,7 +156,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="p-1.5 text-white inline-block hover:text-purple-700"
+                className="p-1.5 text-white inline-block hover:text-color transition-colors"
                 to="/"
               >
                 contact

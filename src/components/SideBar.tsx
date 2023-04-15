@@ -1,24 +1,20 @@
 import { Link } from "react-router-dom";
-import { headerLink } from "../utils/headerLink";
 import logo from "../images/logo.png";
-import { useHomeContact } from "../context/HomeContext";
 import "../css/SideBar.css";
 import { FaTimes } from "react-icons/fa";
 import CartButton from "./CartButton";
+import { headerLink } from "../utils/headerLink";
 
 const SideBar = () => {
-  const {
-    state: { home_navbar },
-    closeSidebar,
-  } = useHomeContact();
+
   return (
-    <nav id="sideBar" className={`${home_navbar ? "sideBarActive" : null}`}>
+    <nav id="sideBar" >
       <div className="nav-center">
         <div className="nav-header">
-          <Link to="/" onClick={closeSidebar}>
+          <Link to="/" >
             <img src={logo} alt="logo" />
           </Link>
-          <button type="button" className="nav-toggle" onClick={closeSidebar}>
+          <button type="button" className="nav-toggle">
             <FaTimes />
           </button>
         </div>
@@ -26,7 +22,7 @@ const SideBar = () => {
           {headerLink.map((link, idx) => {
             const { text, url } = link;
             return (
-              <li key={idx} onClick={closeSidebar}>
+              <li key={idx} >
                 <Link to={url} onClick={() => window.scrollTo(0, 0)}>
                   {text}
                 </Link>
@@ -34,7 +30,7 @@ const SideBar = () => {
             );
           })}
         </ul>
-        <CartButton closeSidebar={closeSidebar} />
+        <CartButton  />
       </div>
     </nav>
   );

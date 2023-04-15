@@ -9,7 +9,7 @@ const AboutPage = () => {
       <PageHero title="about" />
       <div className="contentAbout">
         {list.map((item, idx) => (
-          <article key={idx} className={`flex ${(idx + 1) % 2 ===0 ? "flex-row-reverse text-white bg-slate-500" : ""}`}>
+          <article key={idx} className={`flex ${(idx + 1) % 2 ===0 ? "flex-row-reverse text-white bg-background" : ""}`}>
             <div className="aboutImage w-1/2">
               <img src={item.image} alt="image" />
             </div>
