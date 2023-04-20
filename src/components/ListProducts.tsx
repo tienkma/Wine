@@ -4,17 +4,22 @@ import CartItem from "./CartItem";
 import Sort from "./Sort";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { getDataAPI } from "../utils/api";
+import Loading from "./Loadding";
 
 const ListProducts = () => {
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     (async() => {
+      setLoading(true)
       try {
         const result: any = await getDataAPI()
         setData(result)
       } catch (error) {
         
+      } finally {
+        setLoading(false)
       }
 
     })()
@@ -38,6 +43,11 @@ const ListProducts = () => {
       });
     }
   };
+
+  if(loading){
+    return <Loading className="flex-1 mt-5" />
+  }
+
   return (
     <section id="product_content " className="flex flex-1 flex-col">
       <Sort />
@@ -48,7 +58,7 @@ const ListProducts = () => {
           {!newFilterList[index] ? (
             setIndex(0)
           ) : (
-            <div className="listProduct grid gap-6 mt-7" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))'}}>
+            <div className="listProduct grid gap-3 mt-7" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))'}}>
               {newFilterList[index].map((item, idx) => (
                 <CartItem key={idx} {...item} />
               ))}

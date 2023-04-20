@@ -4,12 +4,12 @@ import { Toasts } from "../utils/notification";
 import Quantity from "./Quantity";
 
 interface ProductItemProps {
-  wine?: any
-id?: any
-image?: any
-price?: any
-available?: any
-amount?: any
+  wine?: any;
+  id?: any;
+  image?: any;
+  price?: any;
+  available?: any;
+  amount?: any;
 }
 
 const ProductItem = (props: ProductItemProps) => {
