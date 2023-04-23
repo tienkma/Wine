@@ -28,19 +28,19 @@ const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
   const users = {name: "tien"}
   return (
     <div className="header_info flex">
-      <div className="header_info-item">
-        <p className="header-icon text-white">
+      <div className="header_info-item items-center px-5 py-1.5 flex">
+        <p className="header-icon text-white cursor-pointer text-2xl mr-2.5">
           <BsFillTelephoneFill />
         </p>
         <div className="header-sp">
           <div className="header-sp_top">
             <a href="tel:+18006012">support</a>
           </div>
-          <p className="header-sp_bottom text-white">1800 6012</p>
+          <p className="header-sp_bottom text-white text-xl font-bold">1800 6012</p>
         </div>
       </div>
-      <div className="header_info-item">
-        <p className="header-icon text-white">
+      <div className="header_info-item items-center px-5 py-1.5 flex">
+        <p className="header-icon text-white cursor-pointer text-2xl mr-2.5">
           {!isLogin ? <FiUserPlus /> : <FiUserMinus />}
         </p>
         <div className="header-sp">
@@ -70,10 +70,10 @@ const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
           )}
         </div>
       </div>
-      <div className="header_info-item">
+      <div className="header_info-item items-center px-5 py-1.5 flex">
         <Link
           to="/cart"
-          className="header-cart_icon"
+          className="header-cart_icon text-white cursor-pointer font-bold text-4xl"
           onClick={props.closeSidebar}
         >
           <AiOutlineShoppingCart />

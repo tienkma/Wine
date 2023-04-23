@@ -1,4 +1,4 @@
-import {HomePage} from "../pages/HomePage";
+import { HomePage } from "../pages/HomePage";
 import ProductsPage from "../pages/ProductsPage";
 import CreateProduct from "../pages/CreateProduct";
 import CreateUser from "../pages/CreateUser";
@@ -9,6 +9,8 @@ import LoginPage from "../pages/LoginPage";
 import AdminPage from "../pages/AdminPage";
 import UserPage from "../pages/UserPage";
 import ErrorPage from "../pages/ErrorPage";
+import HelpPage from "../pages/HelpPage";
+
 export const RouterName = {
   HOME: "/",
   PRODUCTS: "/products",
@@ -20,23 +22,28 @@ export const RouterName = {
   LOGIN: "/login",
   ADMIN: "/admin",
   USER: "/user",
-  ERROR: '/*',
+  HELP: "/help",
+  CONTACT: "/contact",
+  ERROR: "/*",
 };
 
-
-
 export const routers = [
-  
   { path: RouterName.HOME, component: <HomePage /> },
   { path: RouterName.PRODUCTS, component: <ProductsPage /> },
   { path: RouterName.PRODUCT_CREATE, component: <CreateProduct /> },
   { path: RouterName.USER_CREATE, component: <CreateUser /> },
+  { path: RouterName.HELP, component: <HelpPage /> },
   { path: RouterName.PRODUCT_DETAIL, component: <WineItemPage /> },
   { path: RouterName.CART, component: <CartPage /> },
   { path: RouterName.ABOUT, component: <AboutPage /> },
-  { path: RouterName.LOGIN, component: <LoginPage /> },
-  { path: RouterName.ADMIN, component: <AdminPage /> },
   { path: RouterName.USER, component: <UserPage /> },
-  { path: RouterName.ERROR, component: <ErrorPage /> },
 ];
 
+export const routersNoLayout = [
+  { path: RouterName.ERROR, component: <ErrorPage /> },
+  { path: RouterName.LOGIN, component: <LoginPage /> },
+];
+
+export const routerAdmin = [
+  { path: RouterName.ADMIN, component: <AdminPage /> },
+];

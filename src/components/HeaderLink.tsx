@@ -7,7 +7,7 @@ const HeaderLink = () => {
     <ul className="header_link flex ">
       {headerLink.map((item, idx) => (
         <li key={idx} className="">
-          <Link to={item.url} className="text-lg text-white hover:text-color mx-2 capitalize transition-colors" onClick={() => window.scrollTo(0, 0)}>
+          <Link to={item.url} className="text-lg text-white hover:text-color mx-4 capitalize transition-colors" onClick={() => window.scrollTo(0, 0)}>
             {item.text}
           </Link>
         </li>
