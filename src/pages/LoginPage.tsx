@@ -6,7 +6,7 @@ import { Toasts } from "../utils/notification";
 import { isEmpty } from "lodash";
 import { Button } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
-import { Labels } from "../commons/labels";
+import { Labels } from "../common/labels";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const LoginPage = () => {

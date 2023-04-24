@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="pt-24">
+      <div className="pt-20">
         <Routes>
           {routers.map((router) => {
             return (
