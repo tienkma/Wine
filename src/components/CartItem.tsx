@@ -4,10 +4,10 @@ import { Toasts } from "../utils/notification";
 
 interface CartItemProps {
   id?: string;
-  price?: string;
+  price?: string | number;
   wine?: string;
   image?: string;
-  available?: string;
+  available?: string | number;
 }
 
 const CartItem = (props: CartItemProps) => {

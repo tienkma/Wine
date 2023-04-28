@@ -10,6 +10,8 @@ import AdminPage from "../pages/AdminPage";
 import UserPage from "../pages/UserPage";
 import ErrorPage from "../pages/ErrorPage";
 import HelpPage from "../pages/HelpPage";
+import { ContactPage } from "../pages/ContactPage";
+import { AdminInboxPage } from "../pages/AdminInboxPage";
 
 export const RouterName = {
   HOME: "/",
@@ -20,10 +22,13 @@ export const RouterName = {
   CART: "/cart",
   ABOUT: "/about",
   LOGIN: "/login",
-  ADMIN: "/admin",
   USER: "/user",
   HELP: "/help",
   CONTACT: "/contact",
+  ADMIN: "/admin",
+  ADMIN_ORDERS: "/admin/order",
+  ADMIN_USERS: "/admin/users",
+  ADMIN_INBOX: "/admin/inbox",
   ERROR: "/*",
 };
 
@@ -37,6 +42,7 @@ export const routers = [
   { path: RouterName.CART, component: <CartPage /> },
   { path: RouterName.ABOUT, component: <AboutPage /> },
   { path: RouterName.USER, component: <UserPage /> },
+  { path: RouterName.CONTACT, component: <ContactPage /> },
 ];
 
 export const routersNoLayout = [
@@ -46,4 +52,7 @@ export const routersNoLayout = [
 
 export const routerAdmin = [
   { path: RouterName.ADMIN, component: <AdminPage /> },
+  { path: RouterName.ADMIN_ORDERS, component: <AdminPage /> },
+  { path: RouterName.ADMIN_USERS, component: <AdminPage /> },
+  { path: RouterName.ADMIN_INBOX, component: <AdminInboxPage /> },
 ];
