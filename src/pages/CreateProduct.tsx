@@ -1,4 +1,3 @@
-// import { useFormik } from "formik";
 // import { isEmpty, omit } from "lodash";
 // import React, { useEffect, useState } from "react";
 // import { useHistory } from "react-router-dom";
@@ -60,35 +59,32 @@ const CreateProduct = () => {
   return (
     <>
       <main id="createPage">
-        {/* <section className="content container">
+        <section className="content container">
             <div className="inputLine flex">
               <div className="lineLeft">
-                {validation.values.image ? (
+                {/* {validation.values.image ? (
                   <img src={validation.values.image} alt="Product" />
                 ) : (
                   <p>Image Product</p>
-                )}
+                )} */}
               </div>
               <div className="lineRight">
                 <p>Image</p>
                 <input
                   type="text"
-                  value={validation.values.image}
                   onChange={(e) => {
-                    validation.setFieldValue("image", e.target.value);
                   }}
                 />
                 <input
                   type="file"
                   id="image"
-                  onChange={handleUpload}
+                  // onChange={handleUpload}
                   accept="image/*"
                   className="ps-0"
                 />
               </div>
             </div>
-        </section> */}
-        CreateProduct
+        </section>
       </main>
     </>
   

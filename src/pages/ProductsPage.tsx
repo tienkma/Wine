@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import FilterProducts from "../components/FilterProducts";
-import ListProducts from "../components/ListProducts";
+import FilterProducts from "../components/pages/products/FilterProducts";
+import ListProducts from "../components/pages/products/ListProducts";
 
 const ProductsPage = () => {
 

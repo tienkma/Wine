@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import "../css/SideBar.css";
 import { FaTimes } from "react-icons/fa";
-import CartButton from "./CartButton";
-import { headerLink } from "../utils/headerLink";
+import CartButton from "./pages/cart/CartButton";
+import { headerLink } from "../utils/listLink";
 
 const SideBar = () => {
 

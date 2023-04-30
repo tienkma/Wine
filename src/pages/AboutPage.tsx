@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageHero from "../components/PageHero";
+import PageHero from "../components/common/PageHero";
 import { aboutList } from "../utils/about";
 
 const AboutPage = () => {
