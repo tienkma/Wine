@@ -9,12 +9,14 @@ import Header from "./components/common/Header";
 import { routerAdmin, routers, routersNoLayout } from "./routers";
 import { Grid } from "@mui/material";
 import { SideBarAdmin } from "./components/pages/admin/SideBarAdmin";
+import ScrollToTop from "./utils/model/scrollTop";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+        <ScrollToTop />
       <Routes>
         {routers.map((router) => {
           return (
@@ -68,7 +70,6 @@ const LayoutPage = (props: LayoutPageProps) => {
     <>
       <Header />
       <div className="pt-20">{props.children}</div>
-      <Footer />
     </>
   );
 };

@@ -1,12 +1,25 @@
 import React from "react";
-import "../css/loadding.css";
+import Footer from "./Footer";
+import Loading from "./Loading";
 
-const LoaddingPage = () => {
+interface LoadingPageProps{
+  loading: boolean;
+  children: JSX.Element
+  className?: string;
+}
+
+const LoadingPage = (props:LoadingPageProps) => {
+  const {loading, className} = props;
+  if(loading) {
+    return <Loading loading={true} className={className} />
+  }
+
   return (
-    <div id="loaddingPage">
-      <h2>Loading...</h2>
-    </div>
+    <>
+    {props.children}
+    <Footer />
+    </>
   );
 };
 
-export default LoaddingPage;
+export default LoadingPage;

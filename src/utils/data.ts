@@ -1,3 +1,4 @@
+// https://sampleapis.com/api-list/wines
 const randomPrice = () => {
   return Math.floor(Math.random() * 900) + 100;
 };
@@ -14,10 +15,11 @@ const randomaVailable = () => {
 export const data = [
   {
     winery: "Petrus",
+    discount: "10",
     wine: "Amarone della Valpolicella Riserva N.V.",
     rating: {
       average: randomRating(),
-      reviews: "75 ratings",
+      reviews: 75,
     },
 
     image:
@@ -33,7 +35,7 @@ export const data = [
     wine: "Pera-Manca Tinto 1990",
     rating: {
       average: randomRating(),
-      reviews: "72 ratings",
+      reviews: 72,
     },
 
     image:
@@ -49,8 +51,9 @@ export const data = [
     wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2015",
     rating: {
       average: randomRating(),
-      reviews: "72 ratings",
+      reviews: 72,
     },
+    discount: "20",
 
     image:
       "https://images.vivino.com/thumbs/GpcSXs2ERS6niDxoAsvESA_pb_x300.png",
@@ -65,7 +68,7 @@ export const data = [
     wine: "Wraith Cabernet Sauvignon 2013",
     rating: {
       average: randomRating(),
-      reviews: "68 ratings",
+      reviews: 68,
     },
 
     image:
@@ -81,8 +84,9 @@ export const data = [
     wine: "Ratsel Syrah N.V.",
     rating: {
       average: randomRating(),
-      reviews: "68 ratings",
+      reviews: 68,
     },
+    discount: "22",
 
     image:
       "https://images.vivino.com/thumbs/ZzMKzqFqRO-6oI3ys3gGgQ_pb_x300.png",
@@ -97,7 +101,7 @@ export const data = [
     wine: "The Beast Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "60 ratings",
+      reviews: 60,
     },
 
     image:
@@ -113,8 +117,9 @@ export const data = [
     wine: "Darius II Cabernet Sauvignon 2016",
     rating: {
       average: randomRating(),
-      reviews: "59 ratings",
+      reviews: 59,
     },
+    discount: "12",
 
     image:
       "https://images.vivino.com/thumbs/U19RXtSdRMmoAesl2CBygA_pb_x300.png",
@@ -129,7 +134,7 @@ export const data = [
     wine: "Hurlo 2009",
     rating: {
       average: randomRating(),
-      reviews: "55 ratings",
+      reviews: 55,
     },
 
     image:
@@ -142,10 +147,12 @@ export const data = [
   },
   {
     winery: "Garbole",
+    discount: "30",
+
     wine: "Cabernet Sauvignon 2016",
     rating: {
       average: randomRating(),
-      reviews: "54 ratings",
+      reviews: 54,
     },
 
     image:
@@ -161,8 +168,9 @@ export const data = [
     wine: "Cote-Rotie La Mouline 1990",
     rating: {
       average: randomRating(),
-      reviews: "54 ratings",
+      reviews: 54,
     },
+    discount: "32",
 
     image:
       "https://images.vivino.com/thumbs/HYVZMFigQ5qXxni7s9SpWw_pb_x300.png",
@@ -177,8 +185,9 @@ export const data = [
     wine: "Chambertin Grand Cru 1993",
     rating: {
       average: randomRating(),
-      reviews: "45 ratings",
+      reviews: 45,
     },
+    discount: "18",
 
     image:
       "https://images.vivino.com/thumbs/1XYwrN2-SQqqJlCMSUp3tA_pb_x300.png",
@@ -193,8 +202,9 @@ export const data = [
     wine: "Estiba Reservada 1994",
     rating: {
       average: randomRating(),
-      reviews: "44 ratings",
+      reviews: 44,
     },
+    discount: "40",
 
     image:
       "https://images.vivino.com/thumbs/Yt464jw0QS-ugF7ZQEbE2Q_pb_x300.png",
@@ -209,8 +219,9 @@ export const data = [
     wine: "Ribera Del Duero Gran Reserva 12 Anos 1999",
     rating: {
       average: randomRating(),
-      reviews: "44 ratings",
+      reviews: 44,
     },
+    discount: "50",
 
     image:
       "https://images.vivino.com/thumbs/5kJTu3dMQUCEtBy3zIhrKA_pb_x300.png",
@@ -225,8 +236,9 @@ export const data = [
     wine: "G Major Seven Study Cabernet Sauvignon 2015",
     rating: {
       average: randomRating(),
-      reviews: "44 ratings",
+      reviews: 44,
     },
+    discount: "28",
 
     image:
       "https://images.vivino.com/thumbs/Q8MlhaRDTbaYh6Ydnr__iQ_pb_x300.png",
@@ -241,8 +253,9 @@ export const data = [
     wine: "Barolo Riserva Monfortino 1985",
     rating: {
       average: randomRating(),
-      reviews: "44 ratings",
+      reviews: 44,
     },
+    discount: "23",
 
     image:
       "https://images.vivino.com/thumbs/ElcyI1YpRSes_LvNodMeSQ_pb_x300.png",
@@ -257,8 +270,9 @@ export const data = [
     wine: "Echion Cabernet Sauvignon 2014",
     rating: {
       average: randomRating(),
-      reviews: "43 ratings",
+      reviews: 43,
     },
+    discount: "12",
 
     image:
       "https://images.vivino.com/thumbs/0667TG7qS2KsRLsShMTjAw_pb_x300.png",
@@ -273,8 +287,9 @@ export const data = [
     wine: "Book 17 XVII 2016",
     rating: {
       average: randomRating(),
-      reviews: "43 ratings",
+      reviews: 43,
     },
+    discount: "16",
 
     image:
       "https://images.vivino.com/thumbs/43se9NpdSPKkbPdGMbRV6Q_pb_x300.png",
@@ -289,7 +304,7 @@ export const data = [
     wine: "Rainin Vineyard 2013",
     rating: {
       average: randomRating(),
-      reviews: "41 ratings",
+      reviews: 41,
     },
 
     image:
@@ -305,7 +320,7 @@ export const data = [
     wine: "67 Imizuzu 2014",
     rating: {
       average: randomRating(),
-      reviews: "42 ratings",
+      reviews: 42,
     },
 
     image:
@@ -321,7 +336,7 @@ export const data = [
     wine: "Helms Vineyard Cabernet Sauvignon 2008",
     rating: {
       average: randomRating(),
-      reviews: "40 ratings",
+      reviews: 40,
     },
 
     image:
@@ -337,7 +352,7 @@ export const data = [
     wine: "Cabernet Sauvignon CCS Beckstoffer To Kalon Vineyard 2009",
     rating: {
       average: randomRating(),
-      reviews: "39 ratings",
+      reviews: 39,
     },
 
     image:
@@ -353,7 +368,7 @@ export const data = [
     wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2006",
     rating: {
       average: randomRating(),
-      reviews: "38 ratings",
+      reviews: 38,
     },
 
     image:
@@ -369,7 +384,7 @@ export const data = [
     wine: "True Vineyard Cabernet Sauvignon 2014",
     rating: {
       average: randomRating(),
-      reviews: "38 ratings",
+      reviews: 38,
     },
 
     image:
@@ -385,7 +400,7 @@ export const data = [
     wine: "Musigny Grand Cru 1999",
     rating: {
       average: randomRating(),
-      reviews: "38 ratings",
+      reviews: 38,
     },
 
     image:
@@ -401,7 +416,7 @@ export const data = [
     wine: "Tinto 2013",
     rating: {
       average: randomRating(),
-      reviews: "36 ratings",
+      reviews: 36,
     },
 
     image:
@@ -417,7 +432,7 @@ export const data = [
     wine: "Songbook Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "35 ratings",
+      reviews: 35,
     },
 
     image:
@@ -433,7 +448,7 @@ export const data = [
     wine: "Kayli Morgan Vineyard Cabernet Sauvignon 2015",
     rating: {
       average: randomRating(),
-      reviews: "35 ratings",
+      reviews: 35,
     },
 
     image:
@@ -449,7 +464,7 @@ export const data = [
     wine: "Madrona Ranch Cabernet Sauvignon 2002",
     rating: {
       average: randomRating(),
-      reviews: "34 ratings",
+      reviews: 34,
     },
 
     image:
@@ -465,7 +480,7 @@ export const data = [
     wine: "Rattrapante Grenache 2012",
     rating: {
       average: randomRating(),
-      reviews: "34 ratings",
+      reviews: 34,
     },
 
     image:
@@ -481,7 +496,7 @@ export const data = [
     wine: "Beckstoffer Dr. Crane Vineyard 2015",
     rating: {
       average: randomRating(),
-      reviews: "33 ratings",
+      reviews: 33,
     },
 
     image:
@@ -497,7 +512,7 @@ export const data = [
     wine: "Romanee-Saint-Vivant Grand Cru (Marey-Monge) 2015",
     rating: {
       average: randomRating(),
-      reviews: "33 ratings",
+      reviews: 33,
     },
 
     image:
@@ -513,7 +528,7 @@ export const data = [
     wine: "Cabernet Sauvignon Proprietor Grown 2002",
     rating: {
       average: randomRating(),
-      reviews: "33 ratings",
+      reviews: 33,
     },
 
     image:
@@ -529,7 +544,7 @@ export const data = [
     wine: "Duck Muck 2007",
     rating: {
       average: randomRating(),
-      reviews: "32 ratings",
+      reviews: 32,
     },
 
     image:
@@ -545,7 +560,7 @@ export const data = [
     wine: "Beckstoffer Dr. Crane Vineyard 2012",
     rating: {
       average: randomRating(),
-      reviews: "32 ratings",
+      reviews: 32,
     },
 
     image:
@@ -561,7 +576,7 @@ export const data = [
     wine: "La Fabriseria Amarone della Valpolicella Classico 2003",
     rating: {
       average: randomRating(),
-      reviews: "32 ratings",
+      reviews: 32,
     },
 
     image:
@@ -577,7 +592,7 @@ export const data = [
     wine: "Romanee-Saint-Vivant Grand Cru (Marey-Monge) 1983",
     rating: {
       average: randomRating(),
-      reviews: "31 ratings",
+      reviews: 31,
     },
 
     image:
@@ -593,7 +608,7 @@ export const data = [
     wine: "echezeaux Grand Cru 1986",
     rating: {
       average: randomRating(),
-      reviews: "30 ratings",
+      reviews: 30,
     },
 
     image:
@@ -609,7 +624,7 @@ export const data = [
     wine: "Barolo Lazzarito 2000",
     rating: {
       average: randomRating(),
-      reviews: "30 ratings",
+      reviews: 30,
     },
 
     image:
@@ -625,7 +640,7 @@ export const data = [
     wine: "Henley Shiraz 2004",
     rating: {
       average: randomRating(),
-      reviews: "30 ratings",
+      reviews: 30,
     },
 
     image:
@@ -641,7 +656,7 @@ export const data = [
     wine: "Napa Valley Cabernet Sauvignon 2008",
     rating: {
       average: randomRating(),
-      reviews: "30 ratings",
+      reviews: 30,
     },
 
     image:
@@ -657,7 +672,7 @@ export const data = [
     wine: "Cabernet Sauvignon Beckstoffer To Kalon Vineyard 2012",
     rating: {
       average: randomRating(),
-      reviews: "29 ratings",
+      reviews: 29,
     },
 
     image:
@@ -673,7 +688,7 @@ export const data = [
     wine: "Thorevilos Cabernet Sauvignon 2010",
     rating: {
       average: randomRating(),
-      reviews: "29 ratings",
+      reviews: 29,
     },
 
     image:
@@ -689,7 +704,7 @@ export const data = [
     wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2003",
     rating: {
       average: randomRating(),
-      reviews: "29 ratings",
+      reviews: 29,
     },
 
     image:
@@ -705,7 +720,7 @@ export const data = [
     wine: "Beckstoffer Dr. Crane Vineyard Cabernet Sauvignon 2013",
     rating: {
       average: randomRating(),
-      reviews: "28 ratings",
+      reviews: 28,
     },
 
     image:
@@ -721,7 +736,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2010",
     rating: {
       average: randomRating(),
-      reviews: "28 ratings",
+      reviews: 28,
     },
 
     image:
@@ -737,7 +752,7 @@ export const data = [
     wine: "Barolo Riserva Bussia 90 Di 1978",
     rating: {
       average: randomRating(),
-      reviews: "27 ratings",
+      reviews: 27,
     },
 
     image:
@@ -753,7 +768,7 @@ export const data = [
     wine: "Bucephalus Red Blend 2009",
     rating: {
       average: randomRating(),
-      reviews: "27 ratings",
+      reviews: 27,
     },
 
     image:
@@ -769,7 +784,7 @@ export const data = [
     wine: "Pomerol 2002",
     rating: {
       average: randomRating(),
-      reviews: "27 ratings",
+      reviews: 27,
     },
 
     image:
@@ -785,7 +800,7 @@ export const data = [
     wine: "echezeaux Grand Cru 1994",
     rating: {
       average: randomRating(),
-      reviews: "26 ratings",
+      reviews: 26,
     },
 
     image:
@@ -801,7 +816,7 @@ export const data = [
     wine: "Red 2015",
     rating: {
       average: randomRating(),
-      reviews: "25 ratings",
+      reviews: 25,
     },
 
     image:
@@ -817,7 +832,7 @@ export const data = [
     wine: "Basaltico Amarone della Valpolicella 2004",
     rating: {
       average: randomRating(),
-      reviews: "25 ratings",
+      reviews: 25,
     },
 
     image:
@@ -833,7 +848,7 @@ export const data = [
     wine: "Barolo Riserva Monfortino 1974",
     rating: {
       average: randomRating(),
-      reviews: "25 ratings",
+      reviews: 25,
     },
 
     image:
@@ -849,7 +864,7 @@ export const data = [
     wine: "Barca Velha Douro 2000",
     rating: {
       average: randomRating(),
-      reviews: "1489 ratings",
+      reviews: 1489,
     },
 
     image:
@@ -865,7 +880,7 @@ export const data = [
     wine: "Barca Velha Douro 1999",
     rating: {
       average: randomRating(),
-      reviews: "1170 ratings",
+      reviews: 1170,
     },
 
     image:
@@ -881,7 +896,7 @@ export const data = [
     wine: "Unico 1996",
     rating: {
       average: randomRating(),
-      reviews: "999 ratings",
+      reviews: 999,
     },
 
     image:
@@ -897,7 +912,7 @@ export const data = [
     wine: "Grand Vin Pauillac (Premier Grand Cru Classe) 1982",
     rating: {
       average: randomRating(),
-      reviews: "977 ratings",
+      reviews: 977,
     },
 
     image:
@@ -913,7 +928,7 @@ export const data = [
     wine: "Unico 1998",
     rating: {
       average: randomRating(),
-      reviews: "968 ratings",
+      reviews: 968,
     },
 
     image:
@@ -929,7 +944,7 @@ export const data = [
     wine: "Benziger (Premier Grand Cru Classe) 2000",
     rating: {
       average: randomRating(),
-      reviews: "820 ratings",
+      reviews: 820,
     },
 
     image:
@@ -945,7 +960,7 @@ export const data = [
     wine: "Pomerol 1989",
     rating: {
       average: randomRating(),
-      reviews: "744 ratings",
+      reviews: 744,
     },
 
     image:
@@ -961,7 +976,7 @@ export const data = [
     wine: "Unico 1995",
     rating: {
       average: randomRating(),
-      reviews: "712 ratings",
+      reviews: 712,
     },
 
     image:
@@ -977,7 +992,7 @@ export const data = [
     wine: "Amarone della Valpolicella Classico 2003",
     rating: {
       average: randomRating(),
-      reviews: "657 ratings",
+      reviews: 657,
     },
 
     image:
@@ -993,7 +1008,7 @@ export const data = [
     wine: "Pauillac (Premier Grand Cru Classe) 2003",
     rating: {
       average: randomRating(),
-      reviews: "631 ratings",
+      reviews: 631,
     },
 
     image:
@@ -1009,7 +1024,7 @@ export const data = [
     wine: "Grand Vin Pauillac (Premier Grand Cru Classe) 2003",
     rating: {
       average: randomRating(),
-      reviews: "586 ratings",
+      reviews: 586,
     },
 
     image:
@@ -1025,7 +1040,7 @@ export const data = [
     wine: "Toscana 2006",
     rating: {
       average: randomRating(),
-      reviews: "550 ratings",
+      reviews: 550,
     },
 
     image:
@@ -1041,7 +1056,7 @@ export const data = [
     wine: "Cobos Volturno 2013",
     rating: {
       average: randomRating(),
-      reviews: "540 ratings",
+      reviews: 540,
     },
 
     image:
@@ -1057,7 +1072,7 @@ export const data = [
     wine: "Toscana 2005",
     rating: {
       average: randomRating(),
-      reviews: "534 ratings",
+      reviews: 534,
     },
 
     image:
@@ -1073,7 +1088,7 @@ export const data = [
     wine: "Cobos Marchiori Vineyard Malbec 2015",
     rating: {
       average: randomRating(),
-      reviews: "522 ratings",
+      reviews: 522,
     },
 
     image:
@@ -1089,7 +1104,7 @@ export const data = [
     wine: "Saint-emilion Grand Cru (Premier Grand Cru Classe) 1990",
     rating: {
       average: randomRating(),
-      reviews: "516 ratings",
+      reviews: 516,
     },
 
     image:
@@ -1106,7 +1121,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 2015",
     rating: {
       average: randomRating(),
-      reviews: "505 ratings",
+      reviews: 505,
     },
 
     image:
@@ -1122,7 +1137,7 @@ export const data = [
     wine: "Sassicaia 1985",
     rating: {
       average: randomRating(),
-      reviews: "498 ratings",
+      reviews: 498,
     },
 
     image:
@@ -1138,7 +1153,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 1998",
     rating: {
       average: randomRating(),
-      reviews: "483 ratings",
+      reviews: 483,
     },
 
     image:
@@ -1154,7 +1169,7 @@ export const data = [
     wine: "Dancing Bear Ranch 2012",
     rating: {
       average: randomRating(),
-      reviews: "462 ratings",
+      reviews: 462,
     },
 
     image:
@@ -1170,7 +1185,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 2016",
     rating: {
       average: randomRating(),
-      reviews: "451 ratings",
+      reviews: 451,
     },
 
     image:
@@ -1186,7 +1201,7 @@ export const data = [
     wine: "Cobos Volturno 2010",
     rating: {
       average: randomRating(),
-      reviews: "431 ratings",
+      reviews: 431,
     },
 
     image:
@@ -1202,7 +1217,7 @@ export const data = [
     wine: "Barca Velha Douro 1982",
     rating: {
       average: randomRating(),
-      reviews: "422 ratings",
+      reviews: 422,
     },
 
     image:
@@ -1218,7 +1233,7 @@ export const data = [
     wine: "Abacus Cabernet Sauvignon N.V.",
     rating: {
       average: randomRating(),
-      reviews: "412 ratings",
+      reviews: 412,
     },
 
     image:
@@ -1234,7 +1249,7 @@ export const data = [
     wine: "Ark Vineyard Cabernet Sauvignon 2009",
     rating: {
       average: randomRating(),
-      reviews: "410 ratings",
+      reviews: 410,
     },
 
     image:
@@ -1250,7 +1265,7 @@ export const data = [
     wine: "Patriarch N.V.",
     rating: {
       average: randomRating(),
-      reviews: "405 ratings",
+      reviews: 405,
     },
 
     image:
@@ -1266,7 +1281,7 @@ export const data = [
     wine: "La Tache Grand Cru 2007",
     rating: {
       average: randomRating(),
-      reviews: "341 ratings",
+      reviews: 341,
     },
 
     image:
@@ -1282,7 +1297,7 @@ export const data = [
     wine: "The Beast Cabernet Sauvignon N.V.",
     rating: {
       average: randomRating(),
-      reviews: "344 ratings",
+      reviews: 344,
     },
 
     image:
@@ -1298,7 +1313,7 @@ export const data = [
     wine: "Unico 1970",
     rating: {
       average: randomRating(),
-      reviews: "331 ratings",
+      reviews: 331,
     },
 
     image:
@@ -1314,7 +1329,7 @@ export const data = [
     wine: "Cobos Chanares Vineyard Malbec 2015",
     rating: {
       average: randomRating(),
-      reviews: "328 ratings",
+      reviews: 328,
     },
 
     image:
@@ -1330,7 +1345,7 @@ export const data = [
     wine: "Pera-Manca Tinto 1997",
     rating: {
       average: randomRating(),
-      reviews: "321 ratings",
+      reviews: 321,
     },
 
     image:
@@ -1346,7 +1361,7 @@ export const data = [
     wine: "Cabernet Sauvignon Old Sparky Beckstoffer To Kalon N.V.",
     rating: {
       average: randomRating(),
-      reviews: "299 ratings",
+      reviews: 299,
     },
 
     image:
@@ -1362,7 +1377,7 @@ export const data = [
     wine: "Grange 1991",
     rating: {
       average: randomRating(),
-      reviews: "283 ratings",
+      reviews: 283,
     },
 
     image:
@@ -1378,7 +1393,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 2014",
     rating: {
       average: randomRating(),
-      reviews: "276 ratings",
+      reviews: 276,
     },
 
     image:
@@ -1394,7 +1409,7 @@ export const data = [
     wine: "Conterno Red 2005",
     rating: {
       average: randomRating(),
-      reviews: "274 ratings",
+      reviews: 274,
     },
 
     image:
@@ -1410,7 +1425,7 @@ export const data = [
     wine: "Barca Velha Douro 1966",
     rating: {
       average: randomRating(),
-      reviews: "272 ratings",
+      reviews: 272,
     },
 
     image:
@@ -1427,7 +1442,7 @@ export const data = [
     wine: "La Tache Grand Cru 2004",
     rating: {
       average: randomRating(),
-      reviews: "255 ratings",
+      reviews: 255,
     },
 
     image:
@@ -1443,7 +1458,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 1990",
     rating: {
       average: randomRating(),
-      reviews: "242 ratings",
+      reviews: 242,
     },
 
     image:
@@ -1459,7 +1474,7 @@ export const data = [
     wine: "Ark Vineyard Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "242 ratings",
+      reviews: 242,
     },
 
     image:
@@ -1475,7 +1490,7 @@ export const data = [
     wine: "Unico 1986",
     rating: {
       average: randomRating(),
-      reviews: "238 ratings",
+      reviews: 238,
     },
 
     image:
@@ -1491,7 +1506,7 @@ export const data = [
     wine: "La Tache Grand Cru 1990",
     rating: {
       average: randomRating(),
-      reviews: "238 ratings",
+      reviews: 238,
     },
 
     image:
@@ -1507,7 +1522,7 @@ export const data = [
     wine: "Cabernet Sauvignon N.V.",
     rating: {
       average: randomRating(),
-      reviews: "236 ratings",
+      reviews: 236,
     },
 
     image:
@@ -1523,7 +1538,7 @@ export const data = [
     wine: "Cobos Marchiori Vineyard Malbec 2016",
     rating: {
       average: randomRating(),
-      reviews: "232 ratings",
+      reviews: 232,
     },
 
     image:
@@ -1539,7 +1554,7 @@ export const data = [
     wine: "Ark Vineyard Cabernet Sauvignon 2008",
     rating: {
       average: randomRating(),
-      reviews: "218 ratings",
+      reviews: 218,
     },
 
     image:
@@ -1555,7 +1570,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 2018",
     rating: {
       average: randomRating(),
-      reviews: "208 ratings",
+      reviews: 208,
     },
 
     image:
@@ -1571,7 +1586,7 @@ export const data = [
     wine: "Taita Marchigüe Vineyard Cabernet Sauvignon 2009",
     rating: {
       average: randomRating(),
-      reviews: "206 ratings",
+      reviews: 206,
     },
 
     image:
@@ -1587,7 +1602,7 @@ export const data = [
     wine: "Mount Veeder Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "204 ratings",
+      reviews: 204,
     },
 
     image:
@@ -1603,7 +1618,7 @@ export const data = [
     wine: "Conterno Red 1997",
     rating: {
       average: randomRating(),
-      reviews: "202 ratings",
+      reviews: 202,
     },
 
     image:
@@ -1619,7 +1634,7 @@ export const data = [
     wine: "La Tache Grand Cru 2009",
     rating: {
       average: randomRating(),
-      reviews: "201 ratings",
+      reviews: 201,
     },
 
     image:
@@ -1635,7 +1650,7 @@ export const data = [
     wine: "La Tache Grand Cru 1999",
     rating: {
       average: randomRating(),
-      reviews: "198 ratings",
+      reviews: 198,
     },
 
     image:
@@ -1651,7 +1666,7 @@ export const data = [
     wine: "Unico 1962",
     rating: {
       average: randomRating(),
-      reviews: "195 ratings",
+      reviews: 195,
     },
 
     image:
@@ -1667,7 +1682,7 @@ export const data = [
     wine: "Cabernet Sauvignon Vineyard 887 2012",
     rating: {
       average: randomRating(),
-      reviews: "194 ratings",
+      reviews: 194,
     },
 
     image:
@@ -1683,7 +1698,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "190 ratings",
+      reviews: 190,
     },
 
     image:
@@ -1699,7 +1714,7 @@ export const data = [
     wine: "Pera-Manca Tinto 1995",
     rating: {
       average: randomRating(),
-      reviews: "177 ratings",
+      reviews: 177,
     },
 
     image:
@@ -1715,7 +1730,7 @@ export const data = [
     wine: "Romanee-Saint-Vivant Grand Cru (Marey-Monge) 2005",
     rating: {
       average: randomRating(),
-      reviews: "174 ratings",
+      reviews: 174,
     },
 
     image:
@@ -1731,7 +1746,7 @@ export const data = [
     wine: "Lindaflor La Violeta Malbec 2010",
     rating: {
       average: randomRating(),
-      reviews: "169 ratings",
+      reviews: 169,
     },
 
     image:
@@ -1747,7 +1762,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2010",
     rating: {
       average: randomRating(),
-      reviews: "167 ratings",
+      reviews: 167,
     },
 
     image:
@@ -1763,7 +1778,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2013",
     rating: {
       average: randomRating(),
-      reviews: "167 ratings",
+      reviews: 167,
     },
 
     image:
@@ -1779,7 +1794,7 @@ export const data = [
     wine: "Hillside Select Cabernet Sauvignon 2001",
     rating: {
       average: randomRating(),
-      reviews: "164 ratings",
+      reviews: 164,
     },
 
     image:
@@ -1795,7 +1810,7 @@ export const data = [
     wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2009",
     rating: {
       average: randomRating(),
-      reviews: "162 ratings",
+      reviews: 162,
     },
 
     image:
@@ -1811,7 +1826,7 @@ export const data = [
     wine: "Barca Velha Douro 1964",
     rating: {
       average: randomRating(),
-      reviews: "161 ratings",
+      reviews: 161,
     },
 
     image:
@@ -1827,7 +1842,7 @@ export const data = [
     wine: "Romanee-Saint-Vivant Grand Cru (Marey-Monge) 2008",
     rating: {
       average: randomRating(),
-      reviews: "159 ratings",
+      reviews: 159,
     },
 
     image:
@@ -1843,7 +1858,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2015",
     rating: {
       average: randomRating(),
-      reviews: "155 ratings",
+      reviews: 155,
     },
 
     image:
@@ -1859,7 +1874,7 @@ export const data = [
     wine: "Patriarch 2013",
     rating: {
       average: randomRating(),
-      reviews: "154 ratings",
+      reviews: 154,
     },
 
     image:
@@ -1875,7 +1890,7 @@ export const data = [
     wine: "Winston Hill 2010",
     rating: {
       average: randomRating(),
-      reviews: "152 ratings",
+      reviews: 152,
     },
 
     image:
@@ -1891,7 +1906,7 @@ export const data = [
     wine: "Conterno Red 2010",
     rating: {
       average: randomRating(),
-      reviews: "151 ratings",
+      reviews: 151,
     },
 
     image:
@@ -1907,7 +1922,7 @@ export const data = [
     wine: "Basaltico Amarone della Valpolicella N.V.",
     rating: {
       average: randomRating(),
-      reviews: "155 ratings",
+      reviews: 155,
     },
 
     image:
@@ -1923,7 +1938,7 @@ export const data = [
     wine: "Pera-Manca Tinto 2016",
     rating: {
       average: randomRating(),
-      reviews: "151 ratings",
+      reviews: 151,
     },
 
     image:
@@ -1939,7 +1954,7 @@ export const data = [
     wine: "Kayli Morgan Vineyard Cabernet Sauvignon 2013",
     rating: {
       average: randomRating(),
-      reviews: "150 ratings",
+      reviews: 150,
     },
 
     image:
@@ -1955,7 +1970,7 @@ export const data = [
     wine: "Batonnage (Red Scorpion) 2011",
     rating: {
       average: randomRating(),
-      reviews: "148 ratings",
+      reviews: 148,
     },
 
     image:
@@ -1971,7 +1986,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2007",
     rating: {
       average: randomRating(),
-      reviews: "146 ratings",
+      reviews: 146,
     },
 
     image:
@@ -1987,7 +2002,7 @@ export const data = [
     wine: "Cobos Volturno 2016",
     rating: {
       average: randomRating(),
-      reviews: "145 ratings",
+      reviews: 145,
     },
 
     image:
@@ -2003,7 +2018,7 @@ export const data = [
     wine: "La Tache Grand Cru 1989",
     rating: {
       average: randomRating(),
-      reviews: "145 ratings",
+      reviews: 145,
     },
 
     image:
@@ -2019,7 +2034,7 @@ export const data = [
     wine: "Red Blend 2012",
     rating: {
       average: randomRating(),
-      reviews: "145 ratings",
+      reviews: 145,
     },
 
     image:
@@ -2035,7 +2050,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 2013",
     rating: {
       average: randomRating(),
-      reviews: "144 ratings",
+      reviews: 144,
     },
 
     image:
@@ -2051,7 +2066,7 @@ export const data = [
     wine: "La Tache Grand Cru 2008",
     rating: {
       average: randomRating(),
-      reviews: "139 ratings",
+      reviews: 139,
     },
 
     image:
@@ -2067,7 +2082,7 @@ export const data = [
     wine: "Grands-echezeaux Grand Cru 2010",
     rating: {
       average: randomRating(),
-      reviews: "139 ratings",
+      reviews: 139,
     },
 
     image:
@@ -2083,7 +2098,7 @@ export const data = [
     wine: "Richebourg Grand Cru 2011",
     rating: {
       average: randomRating(),
-      reviews: "138 ratings",
+      reviews: 138,
     },
 
     image:
@@ -2099,7 +2114,7 @@ export const data = [
     wine: "IX Estate Red 2010",
     rating: {
       average: randomRating(),
-      reviews: "138 ratings",
+      reviews: 138,
     },
 
     image:
@@ -2115,7 +2130,7 @@ export const data = [
     wine: "Ark Vineyard Cabernet Sauvignon 2007",
     rating: {
       average: randomRating(),
-      reviews: "134 ratings",
+      reviews: 134,
     },
 
     image:
@@ -2131,7 +2146,7 @@ export const data = [
     wine: "La Mattonara Amarone della Valpolicella Classico Riserva 2003",
     rating: {
       average: randomRating(),
-      reviews: "133 ratings",
+      reviews: 133,
     },
 
     image:
@@ -2147,7 +2162,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2014",
     rating: {
       average: randomRating(),
-      reviews: "132 ratings",
+      reviews: 132,
     },
 
     image:
@@ -2163,7 +2178,7 @@ export const data = [
     wine: "Grands-echezeaux Grand Cru 2001",
     rating: {
       average: randomRating(),
-      reviews: "131 ratings",
+      reviews: 131,
     },
 
     image:
@@ -2179,7 +2194,7 @@ export const data = [
     wine: "IX Estate Red 2012",
     rating: {
       average: randomRating(),
-      reviews: "130 ratings",
+      reviews: 130,
     },
 
     image:
@@ -2195,7 +2210,7 @@ export const data = [
     wine: "La Tache Grand Cru 2012",
     rating: {
       average: randomRating(),
-      reviews: "130 ratings",
+      reviews: 130,
     },
 
     image:
@@ -2211,7 +2226,7 @@ export const data = [
     wine: "Barolo Riserva Monfortino 1997",
     rating: {
       average: randomRating(),
-      reviews: "128 ratings",
+      reviews: 128,
     },
 
     image:
@@ -2227,7 +2242,7 @@ export const data = [
     wine: "Pauillac (Premier Grand Cru Classe) 1959",
     rating: {
       average: randomRating(),
-      reviews: "127 ratings",
+      reviews: 127,
     },
 
     image:
@@ -2243,7 +2258,7 @@ export const data = [
     wine: "Adrianna Vineyard River Stones Malbec 2015",
     rating: {
       average: randomRating(),
-      reviews: "126 ratings",
+      reviews: 126,
     },
 
     image:
@@ -2259,7 +2274,7 @@ export const data = [
     wine: "Amarone della Valpolicella Classico Superiore 1995",
     rating: {
       average: randomRating(),
-      reviews: "123 ratings",
+      reviews: 123,
     },
 
     image:
@@ -2275,7 +2290,7 @@ export const data = [
     wine: "Grand Vin Pauillac (Premier Grand Cru Classe) 1959",
     rating: {
       average: randomRating(),
-      reviews: "119 ratings",
+      reviews: 119,
     },
 
     image:
@@ -2291,7 +2306,7 @@ export const data = [
     wine: "Amarone della Valpolicella Classico Riserva 2003",
     rating: {
       average: randomRating(),
-      reviews: "118 ratings",
+      reviews: 118,
     },
 
     image:
@@ -2307,7 +2322,7 @@ export const data = [
     wine: "La Tache Grand Cru 2014",
     rating: {
       average: randomRating(),
-      reviews: "117 ratings",
+      reviews: 117,
     },
 
     image:
@@ -2323,7 +2338,7 @@ export const data = [
     wine: "Pauillac (Premier Grand Cru Classe) 1961",
     rating: {
       average: randomRating(),
-      reviews: "116 ratings",
+      reviews: 116,
     },
 
     image:
@@ -2339,7 +2354,7 @@ export const data = [
     wine: "Promontory 2009",
     rating: {
       average: randomRating(),
-      reviews: "115 ratings",
+      reviews: 115,
     },
 
     image:
@@ -2355,7 +2370,7 @@ export const data = [
     wine: "The Absurd N.V.",
     rating: {
       average: randomRating(),
-      reviews: "112 ratings",
+      reviews: 112,
     },
 
     image:
@@ -2371,7 +2386,7 @@ export const data = [
     wine: "Hurlo N.V.",
     rating: {
       average: randomRating(),
-      reviews: "113 ratings",
+      reviews: 113,
     },
 
     image:
@@ -2387,7 +2402,7 @@ export const data = [
     wine: "Romanee-Conti Grand Cru 1978",
     rating: {
       average: randomRating(),
-      reviews: "111 ratings",
+      reviews: 111,
     },
 
     image:
@@ -2403,7 +2418,7 @@ export const data = [
     wine: "Sori Tildin (Barbaresco) Langhe 1997",
     rating: {
       average: randomRating(),
-      reviews: "109 ratings",
+      reviews: 109,
     },
 
     image:
@@ -2419,7 +2434,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2015",
     rating: {
       average: randomRating(),
-      reviews: "109 ratings",
+      reviews: 109,
     },
 
     image:
@@ -2435,7 +2450,7 @@ export const data = [
     wine: "Pomerol 1967",
     rating: {
       average: randomRating(),
-      reviews: "108 ratings",
+      reviews: 108,
     },
 
     image:
@@ -2451,7 +2466,7 @@ export const data = [
     wine: "Backus Vineyard Cabernet Sauvignon 2013",
     rating: {
       average: randomRating(),
-      reviews: "107 ratings",
+      reviews: 107,
     },
 
     image:
@@ -2467,7 +2482,7 @@ export const data = [
     wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2010",
     rating: {
       average: randomRating(),
-      reviews: "107 ratings",
+      reviews: 107,
     },
 
     image:
@@ -2483,7 +2498,7 @@ export const data = [
     wine: "Cote-Rotie La Mouline 2002",
     rating: {
       average: randomRating(),
-      reviews: "104 ratings",
+      reviews: 104,
     },
 
     image:
@@ -2499,7 +2514,7 @@ export const data = [
     wine: "Red Blend 2010",
     rating: {
       average: randomRating(),
-      reviews: "104 ratings",
+      reviews: 104,
     },
 
     image:
@@ -2515,7 +2530,7 @@ export const data = [
     wine: "Rinaldi Maior Amarone della Valpolicella 2000",
     rating: {
       average: randomRating(),
-      reviews: "101 ratings",
+      reviews: 101,
     },
 
     image:
@@ -2531,7 +2546,7 @@ export const data = [
     wine: "Petrus",
     rating: {
       average: randomRating(),
-      reviews: "100 ratings",
+      reviews: 100,
     },
 
     image:
@@ -2547,7 +2562,7 @@ export const data = [
     wine: "Hill of Grace 2001",
     rating: {
       average: randomRating(),
-      reviews: "100 ratings",
+      reviews: 100,
     },
 
     image:
@@ -2563,7 +2578,7 @@ export const data = [
     wine: "Chateauneuf-du-Pape Reserve des Celestins 2000",
     rating: {
       average: randomRating(),
-      reviews: "99 ratings",
+      reviews: 99,
     },
 
     image:
@@ -2579,7 +2594,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2006",
     rating: {
       average: randomRating(),
-      reviews: "99 ratings",
+      reviews: 99,
     },
 
     image:
@@ -2595,7 +2610,7 @@ export const data = [
     wine: "Poetry Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "99 ratings",
+      reviews: 99,
     },
 
     image:
@@ -2611,7 +2626,7 @@ export const data = [
     wine: "Amarone della Valpolicella Monte Lodoletta 1998",
     rating: {
       average: randomRating(),
-      reviews: "99 ratings",
+      reviews: 99,
     },
 
     image:
@@ -2627,7 +2642,7 @@ export const data = [
     wine: "Ark Vineyard Cabernet Sauvignon 2005",
     rating: {
       average: randomRating(),
-      reviews: "97 ratings",
+      reviews: 97,
     },
 
     image:
@@ -2643,7 +2658,7 @@ export const data = [
     wine: "Kayli Morgan Vineyard Cabernet Sauvignon 2014",
     rating: {
       average: randomRating(),
-      reviews: "96 ratings",
+      reviews: 96,
     },
 
     image:
@@ -2659,7 +2674,7 @@ export const data = [
     wine: "Pluribus 2012",
     rating: {
       average: randomRating(),
-      reviews: "93 ratings",
+      reviews: 93,
     },
 
     image:
@@ -2675,7 +2690,7 @@ export const data = [
     wine: "Fitz Poker Face 2004",
     rating: {
       average: randomRating(),
-      reviews: "93 ratings",
+      reviews: 93,
     },
 
     image:
@@ -2691,7 +2706,7 @@ export const data = [
     wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2014",
     rating: {
       average: randomRating(),
-      reviews: "93 ratings",
+      reviews: 93,
     },
 
     image:
@@ -2707,7 +2722,7 @@ export const data = [
     wine: "Sperss Langhe 1988",
     rating: {
       average: randomRating(),
-      reviews: "92 ratings",
+      reviews: 92,
     },
 
     image:
@@ -2723,7 +2738,7 @@ export const data = [
     wine: "Saint-emilion Grand Cru (Premier Grand Cru Classe) 2003",
     rating: {
       average: randomRating(),
-      reviews: "92 ratings",
+      reviews: 92,
     },
 
     image:
@@ -2739,7 +2754,7 @@ export const data = [
     wine: "Backus Vineyard Cabernet Sauvignon 2014",
     rating: {
       average: randomRating(),
-      reviews: "92 ratings",
+      reviews: 92,
     },
 
     image:
@@ -2755,7 +2770,7 @@ export const data = [
     wine: "St. Eden 2011",
     rating: {
       average: randomRating(),
-      reviews: "89 ratings",
+      reviews: 89,
     },
 
     image:
@@ -2771,7 +2786,7 @@ export const data = [
     wine: "Sugarloaf Mountain Vineyard Proprietary Red 2013",
     rating: {
       average: randomRating(),
-      reviews: "88 ratings",
+      reviews: 88,
     },
 
     image:
@@ -2787,7 +2802,7 @@ export const data = [
     wine: "Vecina 2005",
     rating: {
       average: randomRating(),
-      reviews: "88 ratings",
+      reviews: 88,
     },
 
     image:
@@ -2803,7 +2818,7 @@ export const data = [
     wine: "Contador Rioja 2005",
     rating: {
       average: randomRating(),
-      reviews: "88 ratings",
+      reviews: 88,
     },
 
     image:
@@ -2819,7 +2834,7 @@ export const data = [
     wine: "Cote-Rotie La Mouline 2009",
     rating: {
       average: randomRating(),
-      reviews: "87 ratings",
+      reviews: 87,
     },
 
     image:
@@ -2835,7 +2850,7 @@ export const data = [
     wine: "Conterno Red 1998",
     rating: {
       average: randomRating(),
-      reviews: "87 ratings",
+      reviews: 87,
     },
 
     image:
@@ -2851,7 +2866,7 @@ export const data = [
     wine: "Amarone della Valpolicella Monte Lodoletta 1996",
     rating: {
       average: randomRating(),
-      reviews: "86 ratings",
+      reviews: 86,
     },
 
     image:
@@ -2867,7 +2882,7 @@ export const data = [
     wine: "Treehouse Pinot Noir 2015",
     rating: {
       average: randomRating(),
-      reviews: "86 ratings",
+      reviews: 86,
     },
 
     image:
@@ -2883,7 +2898,7 @@ export const data = [
     wine: "Chambertin Grand Cru 1996",
     rating: {
       average: randomRating(),
-      reviews: "85 ratings",
+      reviews: 85,
     },
 
     image:
@@ -2899,7 +2914,7 @@ export const data = [
     wine: "Amarone della Valpolicella Monte Lodoletta 1997",
     rating: {
       average: randomRating(),
-      reviews: "85 ratings",
+      reviews: 85,
     },
 
     image:
@@ -2915,7 +2930,7 @@ export const data = [
     wine: "Fortis Cabernet Sauvignon 2010",
     rating: {
       average: randomRating(),
-      reviews: "85 ratings",
+      reviews: 85,
     },
 
     image:
@@ -2931,7 +2946,7 @@ export const data = [
     wine: "The Maiden 2007",
     rating: {
       average: randomRating(),
-      reviews: "83 ratings",
+      reviews: 83,
     },
 
     image:
@@ -2947,7 +2962,7 @@ export const data = [
     wine: "Unico 1979",
     rating: {
       average: randomRating(),
-      reviews: "82 ratings",
+      reviews: 82,
     },
 
     image:
@@ -2963,7 +2978,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "80 ratings",
+      reviews: 80,
     },
 
     image:
@@ -2979,7 +2994,7 @@ export const data = [
     wine: "Promontory 2008",
     rating: {
       average: randomRating(),
-      reviews: "79 ratings",
+      reviews: 79,
     },
 
     image:
@@ -2995,7 +3010,7 @@ export const data = [
     wine: "Richebourg Grand Cru 2003",
     rating: {
       average: randomRating(),
-      reviews: "78 ratings",
+      reviews: 78,
     },
 
     image:
@@ -3011,7 +3026,7 @@ export const data = [
     wine: "Materium Cabernet Sauvignon 2013",
     rating: {
       average: randomRating(),
-      reviews: "76 ratings",
+      reviews: 76,
     },
 
     image:
@@ -3027,7 +3042,7 @@ export const data = [
     wine: "Grands-echezeaux Grand Cru 2015",
     rating: {
       average: randomRating(),
-      reviews: "76 ratings",
+      reviews: 76,
     },
 
     image:
@@ -3043,7 +3058,7 @@ export const data = [
     wine: "La Mattonara Amarone della Valpolicella Classico Riserva 2001",
     rating: {
       average: randomRating(),
-      reviews: "75 ratings",
+      reviews: 75,
     },
 
     image:
@@ -3059,7 +3074,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "75 ratings",
+      reviews: 75,
     },
 
     image:
@@ -3075,7 +3090,7 @@ export const data = [
     wine: "Oakville Estate Red 2008",
     rating: {
       average: randomRating(),
-      reviews: "74 ratings",
+      reviews: 74,
     },
 
     image:
@@ -3091,7 +3106,7 @@ export const data = [
     wine: "Kashmir Cuvee 2012",
     rating: {
       average: randomRating(),
-      reviews: "77 ratings",
+      reviews: 77,
     },
 
     image:
@@ -3107,7 +3122,7 @@ export const data = [
     wine: "Cote-Rotie La Mouline 1995",
     rating: {
       average: randomRating(),
-      reviews: "74 ratings",
+      reviews: 74,
     },
 
     image:
@@ -3123,7 +3138,7 @@ export const data = [
     wine: "Avo Sabica 2008",
     rating: {
       average: randomRating(),
-      reviews: "73 ratings",
+      reviews: 73,
     },
 
     image:
@@ -3139,7 +3154,7 @@ export const data = [
     wine: "Brunello di Montalcino Riserva 1994",
     rating: {
       average: randomRating(),
-      reviews: "73 ratings",
+      reviews: 73,
     },
 
     image:
@@ -3155,7 +3170,7 @@ export const data = [
     wine: "Cabernet Sauvignon Proprietor Grown 2005",
     rating: {
       average: randomRating(),
-      reviews: "72 ratings",
+      reviews: 72,
     },
 
     image:
@@ -3171,7 +3186,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 2005",
     rating: {
       average: randomRating(),
-      reviews: "72 ratings",
+      reviews: 72,
     },
 
     image:
@@ -3187,7 +3202,7 @@ export const data = [
     wine: "Richebourg Grand Cru 2012",
     rating: {
       average: randomRating(),
-      reviews: "72 ratings",
+      reviews: 72,
     },
 
     image:
@@ -3203,7 +3218,7 @@ export const data = [
     wine: "Papa Syrah 2003",
     rating: {
       average: randomRating(),
-      reviews: "71 ratings",
+      reviews: 71,
     },
 
     image:
@@ -3219,7 +3234,7 @@ export const data = [
     wine: "Cabernet Sauvignon 2003",
     rating: {
       average: randomRating(),
-      reviews: "71 ratings",
+      reviews: 71,
     },
 
     image:
@@ -3235,7 +3250,7 @@ export const data = [
     wine: "Brunello di Montalcino Riserva 2008",
     rating: {
       average: randomRating(),
-      reviews: "70 ratings",
+      reviews: 70,
     },
 
     image:
@@ -3251,7 +3266,7 @@ export const data = [
     wine: "Cobos Chanares Vineyard Malbec 2016",
     rating: {
       average: randomRating(),
-      reviews: "70 ratings",
+      reviews: 70,
     },
 
     image:
@@ -3267,7 +3282,7 @@ export const data = [
     wine: "Vinha do Rio Douro Tinto 2016",
     rating: {
       average: randomRating(),
-      reviews: "70 ratings",
+      reviews: 70,
     },
 
     image:
@@ -3283,7 +3298,7 @@ export const data = [
     wine: "Bootlegger's Hill Pinot Noir 2014",
     rating: {
       average: randomRating(),
-      reviews: "70 ratings",
+      reviews: 70,
     },
 
     image:
@@ -3299,7 +3314,7 @@ export const data = [
     wine: "Chambertin Grand Cru 2010",
     rating: {
       average: randomRating(),
-      reviews: "69 ratings",
+      reviews: 69,
     },
 
     image:
@@ -3315,7 +3330,7 @@ export const data = [
     wine: "Touche N.V.",
     rating: {
       average: randomRating(),
-      reviews: "69 ratings",
+      reviews: 69,
     },
 
     image:
@@ -3331,7 +3346,7 @@ export const data = [
     wine: "Richebourg Grand Cru 2014",
     rating: {
       average: randomRating(),
-      reviews: "69 ratings",
+      reviews: 69,
     },
 
     image:
@@ -3347,7 +3362,7 @@ export const data = [
     wine: "Velvet Glove Shiraz 2017",
     rating: {
       average: randomRating(),
-      reviews: "69 ratings",
+      reviews: 69,
     },
 
     image:
@@ -3363,7 +3378,7 @@ export const data = [
     wine: "Musigny Grand Cru (Cuvee Vieilles Vignes) 2009",
     rating: {
       average: randomRating(),
-      reviews: "68 ratings",
+      reviews: 68,
     },
 
     image:
@@ -3379,7 +3394,7 @@ export const data = [
     wine: "Gaston Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "68 ratings",
+      reviews: 68,
     },
 
     image:
@@ -3395,7 +3410,7 @@ export const data = [
     wine: "Book 17 XVII 2014",
     rating: {
       average: randomRating(),
-      reviews: "68 ratings",
+      reviews: 68,
     },
 
     image:
@@ -3411,7 +3426,7 @@ export const data = [
     wine: "Fortis Cabernet Sauvignon 2014",
     rating: {
       average: randomRating(),
-      reviews: "68 ratings",
+      reviews: 68,
     },
 
     image:
@@ -3427,7 +3442,7 @@ export const data = [
     wine: "Amarone della Valpolicella 2006",
     rating: {
       average: randomRating(),
-      reviews: "67 ratings",
+      reviews: 67,
     },
 
     image:
@@ -3443,7 +3458,7 @@ export const data = [
     wine: "Chateauneuf-du-Pape 1990",
     rating: {
       average: randomRating(),
-      reviews: "67 ratings",
+      reviews: 67,
     },
 
     image:
@@ -3459,7 +3474,7 @@ export const data = [
     wine: "A Shot In The Dark 2006",
     rating: {
       average: randomRating(),
-      reviews: "66 ratings",
+      reviews: 66,
     },
 
     image:
@@ -3475,7 +3490,7 @@ export const data = [
     wine: "Midnight N.V.",
     rating: {
       average: randomRating(),
-      reviews: "66 ratings",
+      reviews: 66,
     },
 
     image:
@@ -3491,7 +3506,7 @@ export const data = [
     wine: "Melbury 2008",
     rating: {
       average: randomRating(),
-      reviews: "66 ratings",
+      reviews: 66,
     },
 
     image:
@@ -3507,7 +3522,7 @@ export const data = [
     wine: "Bettina Proprietary Red 2009",
     rating: {
       average: randomRating(),
-      reviews: "65 ratings",
+      reviews: 65,
     },
 
     image:
@@ -3523,7 +3538,7 @@ export const data = [
     wine: "Cor Leonis 2012",
     rating: {
       average: randomRating(),
-      reviews: "65 ratings",
+      reviews: 65,
     },
 
     image:
@@ -3539,7 +3554,7 @@ export const data = [
     wine: "Ontogeny Red 2009",
     rating: {
       average: randomRating(),
-      reviews: "65 ratings",
+      reviews: 65,
     },
 
     image:
@@ -3555,7 +3570,7 @@ export const data = [
     wine: "Pomerol 1990",
     rating: {
       average: randomRating(),
-      reviews: "64 ratings",
+      reviews: 64,
     },
 
     image:
@@ -3571,7 +3586,7 @@ export const data = [
     wine: "Touche 2012",
     rating: {
       average: randomRating(),
-      reviews: "64 ratings",
+      reviews: 64,
     },
 
     image:
@@ -3588,7 +3603,7 @@ export const data = [
     wine: "Reserve Cabernet Sauvignon 2015",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3604,7 +3619,7 @@ export const data = [
     wine: "echezeaux Grand Cru 1995",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3620,7 +3635,7 @@ export const data = [
     wine: "La Tache Grand Cru 1978",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3636,7 +3651,7 @@ export const data = [
     wine: "Unico Reserva Especial Edicion 1985",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3652,7 +3667,7 @@ export const data = [
     wine: "St. Eden 2004",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3668,7 +3683,7 @@ export const data = [
     wine: "The Beast Cabernet Sauvignon 2015",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3684,7 +3699,7 @@ export const data = [
     wine: "Kayli Morgan Vineyard Cabernet Sauvignon 2009",
     rating: {
       average: randomRating(),
-      reviews: "63 ratings",
+      reviews: 63,
     },
 
     image:
@@ -3700,7 +3715,7 @@ export const data = [
     wine: "Cerro Sur 2012",
     rating: {
       average: randomRating(),
-      reviews: "62 ratings",
+      reviews: 62,
     },
 
     image:
@@ -3716,7 +3731,7 @@ export const data = [
     wine: "Pictures 2007",
     rating: {
       average: randomRating(),
-      reviews: "62 ratings",
+      reviews: 62,
     },
 
     image:
@@ -3732,7 +3747,7 @@ export const data = [
     wine: "Five Shooter Syrah 2010",
     rating: {
       average: randomRating(),
-      reviews: "62 ratings",
+      reviews: 62,
     },
 
     image:
@@ -3748,7 +3763,7 @@ export const data = [
     wine: "Vecina 2013",
     rating: {
       average: randomRating(),
-      reviews: "62 ratings",
+      reviews: 62,
     },
 
     image:
@@ -3764,7 +3779,7 @@ export const data = [
     wine: "Chambertin Grand Cru 2014",
     rating: {
       average: randomRating(),
-      reviews: "62 ratings",
+      reviews: 62,
     },
 
     image:
@@ -3780,7 +3795,7 @@ export const data = [
     wine: "Les Pavots 2002",
     rating: {
       average: randomRating(),
-      reviews: "62 ratings",
+      reviews: 62,
     },
 
     image:
@@ -3796,7 +3811,7 @@ export const data = [
     wine: "Amarone della Valpolicella Monte Lodoletta 1995",
     rating: {
       average: randomRating(),
-      reviews: "61 ratings",
+      reviews: 61,
     },
 
     image:
@@ -3812,7 +3827,7 @@ export const data = [
     wine: "Howell Mountain Cabernet Sauvignon 2012",
     rating: {
       average: randomRating(),
-      reviews: "61 ratings",
+      reviews: 61,
     },
 
     image:
@@ -3828,7 +3843,7 @@ export const data = [
     wine: "Romanee-Conti Grand Cru 1972",
     rating: {
       average: randomRating(),
-      reviews: "61 ratings",
+      reviews: 61,
     },
 
     image:
@@ -3844,7 +3859,7 @@ export const data = [
     wine: "St. Eden 2002",
     rating: {
       average: randomRating(),
-      reviews: "60 ratings",
+      reviews: 60,
     },
 
     image:

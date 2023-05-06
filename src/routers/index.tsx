@@ -7,7 +7,6 @@ import CartPage from "../pages/CartPage";
 import AboutPage from "../pages/AboutPage";
 import LoginPage from "../pages/LoginPage";
 import AdminPage from "../pages/AdminPage";
-import UserPage from "../pages/UserPage";
 import ErrorPage from "../pages/ErrorPage";
 import HelpPage from "../pages/HelpPage";
 import { ContactPage } from "../pages/ContactPage";

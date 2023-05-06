@@ -22,9 +22,10 @@ export default {
 
       },
       fontSize: {
-        "font-13": "13px" 
+        "font-13": "13px",
+        "font-15": "15px",
       }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

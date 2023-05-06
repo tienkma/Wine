@@ -38,7 +38,7 @@ export const Comments = (props: CommentsProps) => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+                className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-background rounded-lg focus:ring-4  hover:bg-color"
               >
                 Post comment
               </button>
@@ -48,7 +48,7 @@ export const Comments = (props: CommentsProps) => {
           {listComment.map((comment) => {
             return (
               <article
-                className="p-6 text-base bg-white rounded-lg dark:bg-gray-900"
+                className="py-6 text-base bg-white rounded-lg dark:bg-gray-900"
                 key={comment.id}
               >
                 <footer className="flex justify-between items-center mb-2">

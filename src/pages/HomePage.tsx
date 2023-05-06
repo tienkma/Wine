@@ -7,6 +7,7 @@ export const HomePage = () => {
       <Featured />
       <Shopify />
       <Commit />
+      <Footer />
     </main>
   );
 };

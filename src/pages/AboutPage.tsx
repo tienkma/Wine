@@ -1,10 +1,12 @@
 import { useState } from "react";
 import PageHero from "../components/common/PageHero";
 import { aboutList } from "../utils/about";
+import { Footer } from "../components";
 
 const AboutPage = () => {
   const [list, setList] = useState(aboutList);
   return (
+    <>
     <div id="about">
       <PageHero title="about" />
       <div className="contentAbout">
@@ -21,6 +23,8 @@ const AboutPage = () => {
         ))}
       </div>
     </div>
+          <Footer />
+        </>
   );
 };
 

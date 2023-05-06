@@ -7,14 +7,9 @@ import ProductItem from "../components/pages/products/ProductItem";
 import { FaTrash } from "react-icons/fa";
 import Quantity from "../components/Quantity";
 import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  Box,
 } from "@mui/material";
+import { RouterName } from "../routers/RouterName";
 
 const CartPage = () => {
   const params = useParams();
@@ -65,200 +60,136 @@ const CartPage = () => {
             </Link>
           </div>
         ) : (
-          <div className="cartContent mt-10">
-            <div className="listCart mb--10">
-              {/* <div className="cartColumn ">
-                <div
-                  className="content grid items-center gap-4"
-                  style={{ gridTemplateColumns: "316px 1fr 1fr 1fr auto" }}
-                >
-                  <h5 className="font-normal text-lg text-slate-500">item</h5>
-                  <h5 className="font-normal text-lg text-slate-500">price</h5>
-                  <h5 className="font-normal text-lg text-slate-500">
-                    quantity
-                  </h5>
-                  <h5 className="font-normal text-lg text-slate-500">
-                    subtotal
-                  </h5>
-                  <span className="w-0.5 h-0.5"></span>
+          <div className="container mx-auto mt-10">
+            <div className="flex my-10 items-baseline  gap-10">
+              <div className="flex-1 bg-white">
+                <div className="flex justify-between border-b pb-8">
+                  <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+                  <h2 className="font-semibold text-2xl">3 Items</h2>
                 </div>
-                <hr className="mt-2 mb-12" />
-              </div> */}
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className="font-normal text-lg text-slate-500">
-                        item
-                      </TableCell>
-                      <TableCell className="font-normal text-lg text-slate-500">
-                        price
-                      </TableCell>
-                      <TableCell className="font-normal text-lg text-slate-500">
-                        quantity
-                      </TableCell>
-                      <TableCell className="font-normal text-lg text-slate-500">
-                        subtotal
-                      </TableCell>
-                      <TableCell></TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {listCart.map((item) => (
-                      <TableRow
-                        key={item.id}
-                        className="h-20"
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
+                <div className="flex mt-10 mb-5">
+                  <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5 ml-3">
+                    Product Details
+                  </h3>
+                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                    Quantity
+                  </h3>
+                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                    Price
+                  </h3>
+                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                    Total
+                  </h3>
+                </div>
+                <div className="flex items-center hover:bg-gray-100   py-5">
+                  <div className="flex w-2/5 ml-3">
+                    <div className="w-20">
+                      <img
+                        className="h-24"
+                        src="https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z"
+                        alt=""
+                      />
+                    </div>
+                    <div className="flex flex-col justify-between ml-4 flex-grow">
+                      <span className="font-bold text-sm">Iphone 6S</span>
+                      <span className="text-red-500 text-xs">Apple</span>
+                      <a
+                        href="#"
+                        className="font-semibold hover:text-red-500 text-gray-500 text-xs"
                       >
-                        <TableCell component="th" scope="row">
-                          <div className="title flex h-full">
-                            <img
-                              className="h-full max-h-24 object-contain block w-24"
-                              src={item.image}
-                              alt={item.wine}
-                            />
-                            <div className="text-left flex flex-col justify-center">
-                              <h5 className="name text-sm text-black font-medium">
-                                {item.wine}
-                              </h5>
-                              <h5 className="price-small hidden">
-                                {item.price}
-                              </h5>
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell>{item.price}</TableCell>
-                        <TableCell>
-                          {" "}
-                          <Quantity
-                            count={item.amount}
-                            decreAmount={() => {}}
-                            increAmuont={() => {}}
-                            id={(item.id as string) || ""}
-                          />
-                        </TableCell>
-                        <TableCell>${item.price * item.amount}</TableCell>
-                        <TableCell>
-                          <button className="remove-btn">
-                            <FaTrash className="text-red-600" />
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <hr className="mb-5" />
-              <div className="link-container">
-                <Link className="btn" to="/products">
-                  continue shopping
-                </Link>
-                <button
-                  type="button"
-                  className="btn"
-                  // onClick={() => {
-                  //   clearCart();
-                  // }}
-                >
-                  clear shopping cart
-                </button>
-              </div>
-            </div>
-            <section className="totalCart w-full flex justify-end">
-                <article className="p-12 border border-solid border-background rounded-lg w-96">
-                  <h5
-                    className="grid capitalize text-lg"
-                    style={{ gridTemplateColumns: "200px 1fr" }}
-                  >
-                    subtotal :<span>${"totalCart"}</span>
-                  </h5>
-                  <p
-                    className="grid capitalize text-lg"
-                    style={{ gridTemplateColumns: "200px 1fr" }}
-                  >
-                    shipping fee :<span>${"shippingFee"}</span>
-                  </p>
-
-                  <hr className="my-5" />
-                  <div className="coupon flex justify-center items-center mb-2">
-                    <IoIosPricetags />
-                    <span className="flex-1 ml-2">apply coupon</span>
+                        Remove
+                      </a>
+                    </div>
                   </div>
-                  <form className="flex items-center mb-2">
-                    <input
-                      type="text"
-                      className="flex-1 p-3 outline-none border border-background border-solid"
-                      value={valueInput}
-                      onChange={(e) => setValueInput(e.target.value)}
-                      placeholder="Enter Coupon"
-                    />
-                    <button
-                      type="button"
-                      className="px-3 py-4 bg-background text-white"
-                      onClick={() => setCoupon(valueInput)}
+                  <div className="flex justify-center w-1/5">
+                    <svg
+                      className="fill-current text-gray-600 w-3"
+                      viewBox="0 0 448 512"
                     >
-                      Apply
-                    </button>
-                  </form>
-                  <hr className="my-5" />
-                  <h4
-                    className="grid capitalize text-lg"
-                    style={{ gridTemplateColumns: "200px 1fr" }}
+                      <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                    </svg>
+
+                    <input
+                      className="mx-2 border text-center w-8"
+                      type="text"
+                      value="1"
+                    />
+
+                    <svg
+                      className="fill-current text-gray-600 w-3"
+                      viewBox="0 0 448 512"
+                    >
+                      <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                    </svg>
+                  </div>
+                  <span className="text-center w-1/5 font-semibold text-sm">
+                    $400.00
+                  </span>
+                  <span className="text-center w-1/5 font-semibold text-sm">
+                    $400.00
+                  </span>
+                </div>
+
+                
+
+                <Link
+                  to={RouterName.PRODUCTS}
+                  className="flex font-semibold text-blue-600 text-sm mt-10"
+                >
+                  <svg
+                    className="fill-current mr-2 text-blue-600 w-4"
+                    viewBox="0 0 448 512"
                   >
-                    order total :
-                    {coupon == "TWINE50" ? (
-                      <p className="d-flex font-16 align_items justify-content-end">
-                        <span className="couponTotal align_items d-flex ">
-                          ${"totalCart + shippingFee"}
-                        </span>{" "}
-                        ${7 / 2}
-                      </p>
-                    ) : (
-                      <span className="d-flex align_items justify-content-end">
-                        ${"totalCart + shippingFee"}
-                      </span>
-                    )}
-                  </h4>
-                  <Link
-                    to="#"
-                    className="checkOut btn"
-                    // onClick={async () => {
-                    //   if(getLocal("users").roles != "user"){
-                    //     return;
-                    //   }
-                    //   if(!(getLocal("users").address && getLocal("users").numberPhone)){
-                    //       Toasts.error("Please enter more information")
-                    //       return  history.push('/user')
+                    <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+                  </svg>
+                  Continue Shopping
+                </Link>
+              </div>
 
-                    //   }
+              <Box  className=" p-4 md:p-6 lg:p-8 min-w-[400px]  rounded-lg" sx={{background: '#f4f4f5'}}>
+                <h2 className="font-medium text-lg  mb-3">
+                  Order Summary
+                </h2>
+                <div className="divide-y">
+                  <div className="flex justify-between">
+                    <span className="text-sm text-slate-500 my-3">
+                    Subtotal
+                    </span>
+                    <span className="text-sm my-3 font-medium">
+                      $129.4
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm text-slate-500 my-3">
+                    Shipping estimate
+                    </span>
+                    <span className="text-sm my-3 font-medium">
+                      $129.4
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm text-slate-500 my-3">
+                    Tax estimate
+                    </span>
+                    <span className="text-sm my-3 font-medium">
+                      $129.4
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base text-black my-3 font-medium">
+                    Order total
+                    </span>
+                    <span className="text-base my-3 font-medium">
+                      $129.4
+                    </span>
 
-                    //   try {
-                    //     const data = await Requests.post(
-                    //       `${URL_REQUEST}/api/v1/order/user`,
-                    //       {
-                    //         total: (coupon == "TWINE50" ) ? (totalCart + shippingFee) / 2 : totalCart + shippingFee,
-                    //         cart: JSON.stringify(listCart),
-                    //         email: getLocal("users").email,
-                    //       }
-                    //       );
-                    //       if(data.order){
-                    //         // Toasts.success("")
-                    //         clearCart(false)
-                    //         history.push('/user', "order")
-                    //       }
-                    //     } catch (error: any) {
-                    //       Toasts.error(error?.message)
-                    //     }
-
-                    // }}
-                  >
-                    {/* {isLogin ? getLocal("users").roles != "user" ? getLocal("users").roles :  "proceed to checkout" : "Login"} */}
-                    login
-                  </Link>
-                </article>
-            </section>
+                  </div> 
+                </div>
+                  <button className="bg-background font-semibold hover:bg-color transition-colors py-3 text-sm text-white uppercase w-full rounded-md">
+                    Checkout
+                  </button>
+              </Box>
+            </div>
           </div>
         )}
       </div>

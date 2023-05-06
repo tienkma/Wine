@@ -4,7 +4,7 @@ import video from "../../../assets/home/video.mp4"
 
 const Video = () => {
   return (
-    <div id="video" className="relative" style={{height: "calc(100vh - 90px)"}} >
+    <div id="video" className="relative min-h-[500px]" style={{height: "calc(100vh - 90px)"}} >
       <video width="100%" height="100%" className="object-cover h-full" loop autoPlay muted>
         <source
           type="video/mp4"

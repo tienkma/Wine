@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className=" fixed w-full bg-background z-10" style={{height: 80}}>
+    <header className=" fixed w-full bg-background z-[1070] h-20" >
       <div className="container mx-auto flex justify-between items-center h-full">
       <Link to="/" className="logo h-full">
         <img className="h-full" src={logo} alt="logo" />

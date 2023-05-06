@@ -4,9 +4,12 @@ import loadding2 from "../../assets/loading/loadding2.png";
 
 interface LoadingProps {
   className?: string
+  loading?: boolean
+  children?: JSX.Element
 }
 
 const Loading = (props: LoadingProps) => {
+  if(props.loading) {
   return (
     <section id="loadding " className={`${props.className || ""}`}>
       <div className="relative w-24 mx-auto " style={{height: 150}}>
@@ -15,7 +18,8 @@ const Loading = (props: LoadingProps) => {
       </div>
       <h3 className="text-center mt-5 text-background font-normal">Loading...</h3>
     </section>
-  );
+  );}
+  return props.children || <></>;
 };
 
 export default Loading;

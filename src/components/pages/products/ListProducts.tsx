@@ -5,25 +5,16 @@ import Sort from "./Sort";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { getDataAPI } from "../../../utils/api";
 import Loading from "../../common/Loading";
+import { Pagination } from "@mui/material";
 
-const ListProducts = () => {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(false)
+interface ListProductsProps {
+  data: any[]
+  loading: boolean
+}
 
-  useEffect(() => {
-    (async() => {
-      setLoading(true)
-      try {
-        const result: any = await getDataAPI()
-        setData(result)
-      } catch (error) {
-        
-      } finally {
-        setLoading(false)
-      }
+const ListProducts = (props: ListProductsProps) => {
 
-    })()
-  }, [])
+  const {data, loading} = props
   // const {
   //   state: { defaultList, filterProduct },
   // } = useFilterContext();
@@ -44,9 +35,6 @@ const ListProducts = () => {
     }
   };
 
-  if(loading){
-    return <Loading className="flex-1 mt-5" />
-  }
 
   return (
     <section id="product_content " className="flex flex-1 flex-col">
@@ -64,47 +52,8 @@ const ListProducts = () => {
               ))}
             </div>
           )}
-          <div className="listPage">
-            {index > 0 ? (
-              <button
-                className="btn_page btn_change-index"
-                onClick={() => {
-                  changeIndexPage("prev");
-                  window.scrollTo(0, 0);
-                }}
-              >
-                <GrFormPrevious size="18" />
-              </button>
-            ) : null}
-            {Array.from({ length: newFilterList.length }, (_, i) => i).map(
-              (item) => {
-                return (
-                  <button
-                    className={`btn_page ${
-                      item === index ? "activeBtnPage" : null
-                    } `}
-                    key={item}
-                    onClick={() => {
-                      setIndex(item);
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    {item + 1}
-                  </button>
-                );
-              }
-            )}
-            {index < newFilterList.length - 1 ? ( 
-              <button
-                className="btn_page btn_change-index"
-                onClick={() => {
-                  changeIndexPage("next");
-                  window.scrollTo(0, 0);
-                }}
-              >
-                <GrFormNext size="18" />
-              </button>
-            ) : null}
+          <div className="flex mb-3 mt-5 justify-end">
+           <Pagination  count={10} shape="rounded" />
           </div>
         </>
       )}
