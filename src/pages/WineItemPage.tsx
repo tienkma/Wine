@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import AddToCard from "../components/Quantity";
 import PageHero from "../components/common/PageHero";
-import { CartItem, Loading } from "../components";
 import { useParams } from "react-router-dom";
 import { getItem } from "../utils/apiGetItem";
 import { Rating } from "@mui/material";
@@ -13,6 +12,7 @@ import {
 } from "react-icons/ai";
 import { Comments } from "../components/pages/products/Comments";
 import LoadingPage from "../components/common/LoadingPage";
+import ProductItem from "../components/pages/products/CartItem";
 
 const WineItemPage = () => {
   const { id } = useParams();
@@ -204,7 +204,7 @@ const WineItemPage = () => {
               }}
             >
               {relatedProduct.map((item, idx) => (
-                <CartItem key={idx} {...item} />
+                <ProductItem key={idx} {...item} />
               ))}
             </div>
           </div>

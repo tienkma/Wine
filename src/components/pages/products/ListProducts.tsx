@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { arrayFormList } from "../../../utils/ArrayForm";
-import CartItem from "./CartItem";
 import Sort from "./Sort";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { getDataAPI } from "../../../utils/api";
 import Loading from "../../common/Loading";
 import { Pagination } from "@mui/material";
+import ProductItem from "./CartItem";
 
 interface ListProductsProps {
   data: any[]
@@ -48,7 +48,7 @@ const ListProducts = (props: ListProductsProps) => {
           ) : (
             <div className="listProduct grid gap-3 mt-7" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))'}}>
               {newFilterList[index].map((item, idx) => (
-                <CartItem key={idx} {...item} />
+                <ProductItem key={idx} {...item} />
               ))}
             </div>
           )}

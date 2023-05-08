@@ -1,9 +1,10 @@
 import React from "react";
-import { CartItem, Loading } from "../../index";
+import { Loading } from "../../index";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { relatedProduct } from "../../../pages/WineItemPage";
+import ProductItem from "../products/CartItem";
 
 const Featured = () => {
   // const {
@@ -65,7 +66,7 @@ const Featured = () => {
         swipeable
         >
           {relatedProduct.concat(relatedProduct).map((item: any) => (
-            <CartItem className="mx-auto h-full" key={item.id} {...item} />
+            <ProductItem className="mx-auto h-full" key={item.id} {...item} />
           ))}
         </Carousel>
       )}
