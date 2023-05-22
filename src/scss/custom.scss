@@ -11,22 +11,33 @@ body {
   background-color: #fff;
 }
 
-a, button{
+a,
+button {
   color: #fff;
   text-transform: capitalize;
 }
 
 .container {
   @media (max-width: 700px) {
-    
-    @apply px-6
+    @apply px-6;
   }
 }
 
-.center{
-  @apply flex justify-center items-center
+.center {
+  @apply flex justify-center items-center;
+}
+
+.centerAb {
+  @apply absolute top-1/2 left-1/2 -translate-y-1/2;
 }
 
 .minHeight {
   min-height: calc(100vh - 120px);
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 2% !important;
+}
+.react-multiple-carousel__arrow--right {
+  right: 2% !important;
 }

@@ -7,24 +7,35 @@ const AboutPage = () => {
   const [list, setList] = useState(aboutList);
   return (
     <>
-    <div id="about">
-      <PageHero title="about" />
-      <div className="contentAbout">
-        {list.map((item, idx) => (
-          <article key={idx} className={`flex ${(idx + 1) % 2 ===0 ? "flex-row-reverse text-white bg-background" : ""}`}>
-            <div className="aboutImage w-1/2">
-              <img src={item.image} alt="image" />
-            </div>
-            <div className="aboutInfo w-1/2">
-              <h2 className="text-4xl mb-8">{item.title}</h2>
-              <p className="text-lg">{item.text}</p>
-            </div>
-          </article>
-        ))}
+      <div id="about">
+        <PageHero title="about" />
+        <div className="container mx-auto mt-4 mb-12">
+          {list.map((item, idx) => (
+            <article
+              key={idx}
+              className={`flex flex-col-reverse gap-5 md:flex-row my-10 ${
+                (idx + 1) % 2 === 0 ? "md:flex-row-reverse " : ""
+              }`}
+            >
+              <div className="aboutImage md:w-1/2">
+                <img
+                  className="h-[450px] max-sm:h-[350px] object-cover rounded-xl"
+                  src={item.image}
+                  alt="image"
+                />
+              </div>
+              <div className="aboutInfo w-full md:w-1/2 md:p-10 py-6 flex flex-col justify-center">
+                <h2 className="text-4xl max-sm:text-3xl mb-8">{item.title}</h2>
+                <p className="text-lg !leading-loose max-sm:text-base">
+                  {item.text}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
-          <Footer />
-        </>
+      <Footer />
+    </>
   );
 };
 

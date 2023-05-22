@@ -4,7 +4,7 @@ import { FiUsers } from "react-icons/fi";
 
 const AdminPage = () => {
   return (
-    <main id="user-page" className="minHeight">
+    <main id="user-page" className="minHeight h-full">
       {/* <div className="flex">
         <div className="w-full ">
           <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
@@ -35,7 +35,7 @@ const AdminPage = () => {
           </div>
         </div>
       </div> */}
-      <div className="bg-indigo-50 flex-grow py-12 px-10">
+      <div className="bg-indigo-50 flex-grow py-12 px-10 h-full">
         <div className="flex justify-between">
           <div>
             <h4 className="text-sm font-bold text-indigo-600">Hi Andrei,</h4>

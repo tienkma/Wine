@@ -21,8 +21,8 @@ export default function HelpPage() {
     <>
     <main className="minHeight">
       <PageHero title="help" />
-      <div className="container mx-auto flex divide-x pt-4 py-14">
-        <div className="pr-8 flex-1">
+      <div className="container mx-auto flex max-lg:flex-col lg:divide-x pt-4 py-14">
+        <div className="lg:pr-8 flex-1">
           <h6 className="uppercase text-slate-500 text-sm font-bold">
             Common purchase queries answered
           </h6>
@@ -223,7 +223,7 @@ export default function HelpPage() {
           </Accordion>
         </div>
 
-        <div className="pl-8 flex-1">
+        <div className="lg:pl-8 max-lg:mt-8 flex-1">
           <h6 className="uppercase text-slate-500 text-sm font-bold">
             If you need to swap an item
           </h6>

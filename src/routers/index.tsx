@@ -11,9 +11,9 @@ import ErrorPage from "../pages/ErrorPage";
 import HelpPage from "../pages/HelpPage";
 import { ContactPage } from "../pages/ContactPage";
 import { AdminInboxPage } from "../pages/AdminInboxPage";
-import { AdminProductPage } from "../pages/AdminProduct";
+import AdminProductPage from "../pages/AdminProduct";
 import { RouterName } from "./RouterName";
-
+import ReactQueryUserProvider from "../pages/AdminUserPage";
 
 export const routers = [
   { path: RouterName.HOME, component: <HomePage /> },
@@ -33,7 +33,7 @@ export const routersNoLayout = [
 export const routerAdmin = [
   { path: RouterName.ADMIN, component: <AdminPage /> },
   { path: RouterName.ADMIN_PRODUCTS, component: <AdminProductPage /> },
-  { path: RouterName.ADMIN_USERS, component: <AdminProductPage /> },
+  { path: RouterName.ADMIN_USERS, component: <ReactQueryUserProvider /> },
   { path: RouterName.ADMIN_INBOX, component: <AdminInboxPage /> },
   { path: RouterName.ADMIN_PRODUCTS_DETAIL, component: <CreateProductPage /> },
   { path: RouterName.ADMIN_USERS_DETAIL, component: <CreateUserPage /> },

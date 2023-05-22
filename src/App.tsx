@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-        <ScrollToTop />
+      <ScrollToTop />
       <Routes>
         {routers.map((router) => {
           return (
@@ -80,7 +80,7 @@ const LayoutAdminPage = (props: LayoutPageProps) => {
       <div className="flex">
         <SideBarAdmin />
         <div className="flex-1" style={{ width: "calc(100% - 240px)" }}>
-          <div className="w-full overflow-y-auto h-screen ">{props.children}</div>
+          <div className="w-full overflow-y-auto h-full ">{props.children}</div>
         </div>
       </div>
     </>

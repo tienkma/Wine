@@ -15,7 +15,7 @@ interface CartItemProps {
 const CartItem = (props: CartItemProps) => {
   const { wine, id, image, price, available, amount } = props;
   return (
-    <article className="grid-cols-[200px_auto_auto] grid grid-rows-[75px] gap-[3rem_1rem] justify-items-center mb-6 items-center md:grid-cols-[1fr_1fr_1fr_1fr_auto]">
+    <article className="grid-cols-[200px_auto_auto] grid grid-rows-[75px] gap-[3rem_1rem] justify-items-center mb-6 items-center md:grid-cols-[316px_1fr_1fr_1fr_auto]">
       <div className="grid-cols-[75px_125px] grid grid-rows-[75px] items-center gap-4 md:grid-cols-[100px_200px] md:text-left">
         <img src={image} className="h-full block rounded-sm object-contain" alt={wine} />
         <div>

@@ -1,16 +1,10 @@
-import { IoMdSend } from 'react-icons/io';
-import SimpleBar from 'simplebar-react';
-import 'simplebar-react/dist/simplebar.min.css';
+import { IoMdSend } from "react-icons/io";
+import { ScrollComponent } from "../components/common/SimpleBar";
 
 export const AdminInboxPage = () => {
   return (
     <div className="flex-1 p:2 sm:p-6 justify-between flex  h-screen">
-      <div className="w-80">
-        
-        <SimpleBar>
-
-        </SimpleBar>
-      </div>
+      <div className="w-80">{/* <ScrollComponent></ScrollComponent> */}</div>
       <div className="flex-1 h-full flex flex-col">
         <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
           <div className="relative flex items-center space-x-4">
@@ -93,10 +87,7 @@ export const AdminInboxPage = () => {
             </button>
           </div>
         </div>
-        <SimpleBar
-          id="messages"
-          className="flex flex-col space-y-4 p-3 overflow-y-auto"
-        >
+        <ScrollComponent className="flex flex-col space-y-4 p-3 overflow-y-auto">
           <div className="chat-message">
             <div className="flex items-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
@@ -285,7 +276,7 @@ export const AdminInboxPage = () => {
               />
             </div>
           </div>
-        </SimpleBar>
+        </ScrollComponent>
         <div className="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
           <div className="relative flex gap-3">
             <input
@@ -293,14 +284,14 @@ export const AdminInboxPage = () => {
               placeholder="Write your message!"
               className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 px-4 bg-gray-200 rounded-md py-2 text-xs"
             />
-             
-              <button
-                type="button"
-                className="inline-flex items-center justify-center rounded-3xl text-xs px-5 py-2 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
-              >
-                <span className="font-bold mr-1">Send</span>
-                <IoMdSend />
-              </button>
+
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-3xl text-xs px-5 py-2 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
+            >
+              <span className="font-bold mr-1">Send</span>
+              <IoMdSend />
+            </button>
           </div>
         </div>
       </div>

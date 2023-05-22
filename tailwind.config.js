@@ -19,13 +19,12 @@ export default {
           800: "#1e40af",
           900: "#1e3a8a",
         },
-
       },
       fontSize: {
         "font-13": "13px",
         "font-15": "15px",
-      }
+      },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require("@tailwindcss/forms")],
 };

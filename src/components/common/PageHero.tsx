@@ -8,7 +8,10 @@ const PageHero: React.FC<{ title: string; product?: string }> = (props) => {
     // <div className=" w-full flex justify-start px-16 py-6">
     <>
       <div className="flex items-center py-4 overflow-x-auto whitespace-nowrap container mx-auto">
-        <a href="/" className="text-gray-600 dark:text-gray-200 flex hover:underline">
+        <a
+          href="/"
+          className="text-gray-600 dark:text-gray-200 flex hover:underline"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5 mr-2"
@@ -25,21 +28,18 @@ const PageHero: React.FC<{ title: string; product?: string }> = (props) => {
           <>
             <Link
               to={RouterName.PRODUCTS}
-              className="text-gray-600 dark:text-gray-200 hover:underline"
+              className="text-gray-600 dark:text-gray-200 hover:underline font-medium"
             >
               {title}
             </Link>{" "}
             <span className="mx-5 text-gray-500 dark:text-gray-300">/</span>
-            <Link
-              to="#"
-              className="text-background "
-            >
+            <Link to="#" className="text-background  font-medium">
               {`${product}`}
             </Link>
           </>
         ) : (
           <Link
-            className="text-background  "
+            className="text-background  font-medium"
             to={`/${title}`}
           >{`${title}`}</Link>
         )}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/home/logo.png";
@@ -7,12 +7,22 @@ import { linkAdminPage } from "../../../utils/listLink";
 import { Button } from "@mui/material";
 
 export const SideBarAdmin = () => {
-  const [activeLink, setActiveLink] = useState(0);
+  const [activeLink, setActiveLink] = useState(RouterName.ADMIN);
+  const href = window.location.href;
+
+  useLayoutEffect(() => {
+    const regex = /\/([^/]+)$/;
+    const match = href.match(regex);
+    if (match) {
+      const cutString = match[0];
+      setActiveLink(cutString);
+    }
+  }, []);
 
   return (
     <>
       <div className="min-h-screen w-72 bg-background flex-shrink-0">
-        <div className="py-4 px-4 w-full h-full flex flex-col ">
+        <div className="py-4 px-4 h-full flex flex-col fixed w-72">
           <div className="flex space-2 items-center justify-center border-b-2 pb-4">
             <Link to="/" className="logo h-full">
               <img className="h-20" src={logo} alt="logo" />
@@ -23,12 +33,20 @@ export const SideBarAdmin = () => {
               <Link
                 to={item.url}
                 key={item.url}
-                onClick={() => setActiveLink(idx)}
+                onClick={() => setActiveLink(item.url)}
                 className={` rounded-md cursor-pointer flex items-center space-x-4 mt-2  text-white ${
-                  activeLink === idx ? "bg-color" : ""
+                  item.url.endsWith(activeLink) ? "bg-color" : ""
                 }`}
               >
-                <Button sx={{ width: "100%", height: "100%", justifyContent: 'start', textTransform: "capitalize", padding: "12px 16px" }} >
+                <Button
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    justifyContent: "start",
+                    textTransform: "capitalize",
+                    padding: "12px 16px",
+                  }}
+                >
                   <div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
