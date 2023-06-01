@@ -5,14 +5,7 @@ export const HomePage = () => {
   return (
     <main>
       <Video />
-      <Featured
-        listItem={relatedProduct.concat(relatedProduct)}
-        lable="Featured Products"
-      />
-      <Featured
-        listItem={relatedProduct.concat(relatedProduct)}
-        lable=" Discounted products"
-      />
+      <Featured />
       <Shopify />
       <Commit />
       <Footer />

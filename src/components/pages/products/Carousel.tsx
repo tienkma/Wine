@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { relatedProduct } from "../../../pages/WineItemPage";
-import ProductItem from "../products/CartItem";
+import ProductItem from "./CartItem";
 import { ProductEntity } from "../../../types/products";
 
-interface FeaturedProps {
+interface CarouselProps {
   lable: string;
   listItem: ProductEntity[];
 }
 
-const Featured = (props: FeaturedProps) => {
+const CarouselComponent = (props: CarouselProps) => {
   // const {
-  //   state: { home_featured, home_loading, home_error },
+  //   state: { home_Carousel, home_loading, home_error },
   // } = useHomeContact();
   const { lable, listItem } = props;
 
@@ -38,11 +38,11 @@ const Featured = (props: FeaturedProps) => {
   };
 
   const home_loading: boolean = false;
-  const home_featured: any[] = [];
+  const home_Carousel: any[] = [];
   return (
-    <div id="featured" className="container mx-auto">
+    <div id="Carousel" className="container mx-auto my-10">
       <div className="flex justify-center">
-        <h1 className="text-center m-10 text-3xl font-bold relative inline-block before:h-1 before:bg-background before:w-4/5 before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2">
+        <h1 className="text-center mb-12 mt-4 text-3xl font-bold relative inline-block before:h-1 before:bg-background before:w-4/5 before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2">
           {lable}
         </h1>
       </div>
@@ -89,4 +89,4 @@ const Featured = (props: FeaturedProps) => {
   );
 };
 
-export default Featured;
+export default CarouselComponent;

@@ -6,18 +6,22 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className=" fixed w-full bg-background z-[1070] h-20" >
+    <header className=" fixed w-full bg-background z-[1070] h-20">
       <div className="container mx-auto flex justify-between items-center h-full">
-      <Link to="/" className="logo h-full">
-        <img className="h-full" src={logo} alt="logo" />
-      </Link>
+        <Link to="/" className="logo h-full">
+          <img className="h-full" src={logo} alt="logo" />
+        </Link>
 
-      {/* <button className="text-3xl border-none outline-none cursor-pointer font-bold text-white bg-slate-600 ">
-        <AiOutlineMenu />
-      </button> */}
+        <button className="text-3xl border-none outline-none max-lg:block hidden cursor-pointer font-bold text-white  ">
+          <AiOutlineMenu />
+        </button>
 
-      <HeaderLink />
-      <CartButton />
+        <div className=" max-lg:hidden">
+          <HeaderLink />
+        </div>
+        <div className="max-lg:hidden">
+          <CartButton />
+        </div>
       </div>
     </header>
   );

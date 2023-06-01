@@ -7,7 +7,7 @@ const PageHero: React.FC<{ title: string; product?: string }> = (props) => {
   return (
     // <div className=" w-full flex justify-start px-16 py-6">
     <>
-      <div className="flex items-center py-4 overflow-x-auto whitespace-nowrap container mx-auto">
+      <div className="flex items-center py-4 overflow-x-auto whitespace-nowrap container mx-auto mt-4">
         <a
           href="/"
           className="text-gray-600 dark:text-gray-200 flex hover:underline"

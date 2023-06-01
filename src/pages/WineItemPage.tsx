@@ -13,6 +13,7 @@ import {
 import { Comments } from "../components/pages/products/Comments";
 import LoadingPage from "../components/common/LoadingPage";
 import ProductItem from "../components/pages/products/CartItem";
+import CarouselComponent from "../components/pages/products/Carousel";
 
 const WineItemPage = () => {
   const { id } = useParams();
@@ -50,7 +51,7 @@ const WineItemPage = () => {
     available,
     rating,
     image,
-    discount
+    discount,
   } = wineItem;
 
   const item_error = false;
@@ -105,20 +106,21 @@ const WineItemPage = () => {
                 <h3 className="text-lg mb-1 capitalize text-background/90">
                   {winery}
                 </h3>
-                  {
-                    discount ?  <div className="flex items-center relative">
+                {discount ? (
+                  <div className="flex items-center relative">
                     <p className="mr-2 text-xl font-semibold text-color dark:text-white">
-                    ${price * (100 - (+discount)) / 100}
+                      ${(price * (100 - +discount)) / 100}
                     </p>
                     <p className="text-base  font-medium text-gray-500 line-through dark:text-gray-300">
-                    ${price}
+                      ${price}
                     </p>
                     <p className=" text-base font-medium text-red-500 ">
                       (-{discount}%)
                     </p>
-                  </div> : 
-                <p className="price text-color text-xl font-bold">${price}</p>
-                  }
+                  </div>
+                ) : (
+                  <p className="price text-color text-xl font-bold">${price}</p>
+                )}
 
                 {/* <Rating average={rating.average} reviews={rating.reviews} /> */}
                 <Rating
@@ -183,9 +185,7 @@ const WineItemPage = () => {
                     add to cart
                   </button>
 
-                  <button
-                    className="mt-5 ml-4 flex px-12 py-3 capitalize text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium"
-                  >
+                  <button className="mt-5 ml-4 flex px-12 py-3 capitalize text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium">
                     checkout
                   </button>
                 </div>
@@ -193,12 +193,20 @@ const WineItemPage = () => {
             </section>
             <hr />
             <Comments item={wineItem} />
-            <h1 className="my-10 text-4xl text-center text-background">
-              Related Product
-            </h1>
+            <hr />
+
+            <CarouselComponent
+              listItem={relatedProduct}
+              lable="Related Product"
+            />
+            {/* <div className="center">
+              <h1 className=" text-center my-8 text-3xl font-bold relative inline-block before:h-1 before:bg-background before:w-4/5 before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2">
+                
+              </h1>
+            </div>
 
             <div
-              className="listProduct grid gap-3 my-7"
+              className="listProduct grid gap-3 mt-7 mb-14"
               style={{
                 gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               }}
@@ -206,7 +214,7 @@ const WineItemPage = () => {
               {relatedProduct.map((item, idx) => (
                 <ProductItem key={idx} {...item} />
               ))}
-            </div>
+            </div> */}
           </div>
         </>
       </LoadingPage>
@@ -215,6 +223,102 @@ const WineItemPage = () => {
 };
 
 export const relatedProduct = [
+  {
+    winery: "Petrus",
+    wine: "Amarone della Valpolicella Riserva N.V.",
+    rating: {
+      average: 5,
+      reviews: "75 ratings",
+    },
+
+    image:
+      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
+    price: 6,
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    id: "2",
+    available: 74,
+  },
+  {
+    winery: "Cartuxa",
+    wine: "Pera-Manca Tinto 1990",
+    rating: {
+      average: 5,
+      reviews: "72 ratings",
+    },
+
+    image:
+      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
+    price: 6,
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    id: "3",
+    available: 74,
+  },
+  {
+    winery: "Petrus",
+    wine: "Amarone della Valpolicella Riserva N.V.",
+    rating: {
+      average: 5,
+      reviews: "75 ratings",
+    },
+
+    image:
+      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
+    price: 6,
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    id: "2",
+    available: 74,
+  },
+  {
+    winery: "Cartuxa",
+    wine: "Pera-Manca Tinto 1990",
+    rating: {
+      average: 5,
+      reviews: "72 ratings",
+    },
+
+    image:
+      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
+    price: 6,
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    id: "3",
+    available: 74,
+  },
+  {
+    winery: "Petrus",
+    wine: "Amarone della Valpolicella Riserva N.V.",
+    rating: {
+      average: 5,
+      reviews: "75 ratings",
+    },
+
+    image:
+      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
+    price: 6,
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    id: "2",
+    available: 74,
+  },
+  {
+    winery: "Cartuxa",
+    wine: "Pera-Manca Tinto 1990",
+    rating: {
+      average: 5,
+      reviews: "72 ratings",
+    },
+
+    image:
+      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
+    price: 6,
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    id: "3",
+    available: 74,
+  },
   {
     winery: "Petrus",
     wine: "Amarone della Valpolicella Riserva N.V.",

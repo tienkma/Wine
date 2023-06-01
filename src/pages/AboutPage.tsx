@@ -13,7 +13,7 @@ const AboutPage = () => {
           {list.map((item, idx) => (
             <article
               key={idx}
-              className={`flex flex-col-reverse gap-5 md:flex-row my-10 ${
+              className={`flex flex-col-reverse gap-10 md:flex-row my-6 ${
                 (idx + 1) % 2 === 0 ? "md:flex-row-reverse " : ""
               }`}
             >
@@ -24,7 +24,7 @@ const AboutPage = () => {
                   alt="image"
                 />
               </div>
-              <div className="aboutInfo w-full md:w-1/2 md:p-10 py-6 flex flex-col justify-center">
+              <div className="aboutInfo w-full md:w-1/2 md:p-6 py-6 flex flex-col justify-center">
                 <h2 className="text-4xl max-sm:text-3xl mb-8">{item.title}</h2>
                 <p className="text-lg !leading-loose max-sm:text-base">
                   {item.text}
