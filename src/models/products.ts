@@ -11,6 +11,6 @@ export interface ProductEntity {
   image: string;
   price: string | number;
   description: string;
-  id: string | number;
+  _id: string | number;
   available: string | number;
 }

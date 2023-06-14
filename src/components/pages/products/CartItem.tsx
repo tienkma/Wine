@@ -3,23 +3,14 @@ import { Link, Navigate } from "react-router-dom";
 import { Toasts } from "../../../utils/notification";
 import { Rating } from "@mui/material";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { ProductEntity } from "../../../models";
 
-interface ProductItemProps {
-  id?: string;
-  price: string | number;
-  wine?: string;
-  image?: string;
-  available?: string | number;
+interface ProductItemProps extends ProductEntity {
   className?: string;
-  discount?: string | number;
-  rating: {
-    average: string | number;
-    reviews: string | number;
-  };
 }
 
 const ProductItem = (props: ProductItemProps) => {
-  const { id, price, wine, image, available, className, discount, rating } =
+  const { _id, price, wine, image, available, className, discount, rating } =
     props;
   return (
     <article
@@ -32,7 +23,7 @@ const ProductItem = (props: ProductItemProps) => {
         style={{ height: 300 }}
       >
         <Link
-          to={`/products/${id}`}
+          to={`/products/${_id}`}
           className=" w-full transition-all inline-block flex-shrink-0"
           style={{
             // background: `url(${image}) no-repeat top center`,

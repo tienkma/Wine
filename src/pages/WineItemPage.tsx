@@ -33,7 +33,7 @@ const WineItemPage = () => {
     (async () => {
       setLoading(true);
       try {
-        const result = await getItem(id || "");
+        const result = (await getItem(id || "")) || {};
         setWineItem(result);
       } catch (error) {
         throw new Error((error as string) || "");
@@ -44,7 +44,7 @@ const WineItemPage = () => {
   }, [id]);
 
   const {
-    wine = 1,
+    wine,
     winery,
     price,
     description,
@@ -83,7 +83,7 @@ const WineItemPage = () => {
         className="absolute w-1/2 h1/2 translate-x-1/2 translate-y-1/2"
       >
         <>
-          <PageHero title="products" product={wine} />
+          <PageHero title="products" product={wine || ""} />
           <div className="container  mx-auto ">
             <section
               className="itemPage grid gap-10 pt-7 pb-16"

@@ -2,22 +2,23 @@ import React from "react";
 import Footer from "./Footer";
 import Loading from "./Loading";
 
-interface LoadingPageProps{
+interface LoadingPageProps {
   loading: boolean;
-  children: JSX.Element
+  children: JSX.Element;
   className?: string;
+  footer?: boolean;
 }
 
-const LoadingPage = (props:LoadingPageProps) => {
-  const {loading, className} = props;
-  if(loading) {
-    return <Loading loading={true} className={className} />
+const LoadingPage = (props: LoadingPageProps) => {
+  const { loading, className, footer } = props;
+  if (loading) {
+    return <Loading loading={true} className={className} />;
   }
 
   return (
     <>
-    {props.children}
-    <Footer />
+      {props.children}
+      {footer && <Footer />}
     </>
   );
 };
