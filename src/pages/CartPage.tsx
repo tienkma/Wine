@@ -60,15 +60,15 @@ const CartPage = () => {
               <div className="listCart mb-9">
                 <div className="cartColumn hidden md:block ">
                   <div className="content grid justify-items-center gap-4 grid-cols-[316px_1fr_1fr_1fr_auto]">
-                    <h5 className="text-[#617d98] font-normal text-lg">item</h5>
+                    <h5 className="text-[#617d98] font-normal text-lg">Item</h5>
                     <h5 className="text-[#617d98] font-normal text-lg">
-                      price
+                      Price
                     </h5>
                     <h5 className="text-[#617d98] font-normal text-lg">
-                      quantity
+                      Quantity
                     </h5>
                     <h5 className="text-[#617d98] font-normal text-lg">
-                      subtotal
+                      Subtotal
                     </h5>
                     <span className="h-8 w-8"></span>
                   </div>
