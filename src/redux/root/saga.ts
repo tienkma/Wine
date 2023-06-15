@@ -1,10 +1,12 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeEvery, takeLatest, all } from "redux-saga/effects";
 import homeSage from "../sagas/homeSaga";
+import productSaga from "../sagas/productSaga";
+import wineSaga from "../sagas/wineSaga";
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 export function* rootSagas() {
-  yield all([homeSage()]);
+  yield all([homeSage(), productSaga(), wineSaga()]);
 }
 
 /*

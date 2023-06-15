@@ -14,11 +14,23 @@ import { Comments } from "../components/pages/products/Comments";
 import LoadingPage from "../components/common/LoadingPage";
 import ProductItem from "../components/pages/products/CartItem";
 import CarouselComponent from "../components/pages/products/Carousel";
+import { useAppDispatch, useAppSelector } from "../redux/root/hooks";
+import {
+  getWine,
+  selectWineData,
+  selectWineLoading,
+  selectWineError,
+} from "../redux/silces/wineSlide";
+import { ProductEntity } from "../models";
 
 const WineItemPage = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState(false);
-  const [wineItem, setWineItem] = useState<any>({});
+  const dispatch = useAppDispatch();
+  const wineData: ProductEntity | Record<string, any> =
+    useAppSelector(selectWineData) || {};
+  const isLoading = useAppSelector(selectWineLoading);
+  const isError = useAppSelector(selectWineError);
+
   // const { getItemWine } = useHomeContact();
   // const { getCartItem } = useCartContext();
   // const {
@@ -30,17 +42,7 @@ const WineItemPage = () => {
   //   getItemWine(id);
   // }, [id]);
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      try {
-        const result = (await getItem(id || "")) || {};
-        setWineItem(result);
-      } catch (error) {
-        throw new Error((error as string) || "");
-      } finally {
-        setLoading(false);
-      }
-    })();
+    dispatch(getWine(id));
   }, [id]);
 
   const {
@@ -52,7 +54,7 @@ const WineItemPage = () => {
     rating,
     image,
     discount,
-  } = wineItem;
+  } = wineData;
 
   const item_error = false;
   const [count, setCount] = useState(1);
@@ -79,7 +81,7 @@ const WineItemPage = () => {
   return (
     <main id="itemPage" className="minHeight">
       <LoadingPage
-        loading={loading}
+        loading={isLoading}
         className="absolute w-1/2 h1/2 translate-x-1/2 translate-y-1/2"
       >
         <>
@@ -192,7 +194,7 @@ const WineItemPage = () => {
               </div>
             </section>
             <hr />
-            <Comments item={wineItem} />
+            <Comments item={wineData} />
             <hr />
 
             <CarouselComponent

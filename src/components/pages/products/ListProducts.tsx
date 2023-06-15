@@ -8,17 +8,16 @@ import { Pagination } from "@mui/material";
 import ProductItem from "./CartItem";
 
 interface ListProductsProps {
-  data: any[]
-  loading: boolean
+  data: any[] | null;
+  loading: boolean;
 }
 
 const ListProducts = (props: ListProductsProps) => {
-
-  const {data, loading} = props
+  const { data, loading } = props;
   // const {
   //   state: { defaultList, filterProduct },
   // } = useFilterContext();
-  let newFilterList = arrayFormList(data);
+  let newFilterList = arrayFormList(data || []);
 
   const [index, setIndex] = useState(0);
 
@@ -35,7 +34,6 @@ const ListProducts = (props: ListProductsProps) => {
     }
   };
 
-
   return (
     <section id="product_content " className="flex flex-1 flex-col">
       <Sort />
@@ -46,14 +44,19 @@ const ListProducts = (props: ListProductsProps) => {
           {!newFilterList[index] ? (
             setIndex(0)
           ) : (
-            <div className="listProduct grid gap-3 mt-7" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))'}}>
+            <div
+              className="listProduct grid gap-3 mt-7"
+              style={{
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              }}
+            >
               {newFilterList[index].map((item, idx) => (
                 <ProductItem key={idx} {...item} />
               ))}
             </div>
           )}
           <div className="flex mb-3 mt-5 justify-end">
-           <Pagination  count={10} shape="rounded" />
+            <Pagination count={10} shape="rounded" />
           </div>
         </>
       )}
