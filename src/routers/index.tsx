@@ -14,6 +14,7 @@ import { AdminInboxPage } from "../pages/AdminInboxPage";
 import AdminProductPage from "../pages/AdminProduct";
 import { RouterName } from "./RouterName";
 import ReactQueryUserProvider from "../pages/AdminUserPage";
+import Register from "../pages/Register";
 
 export const routers = [
   { path: RouterName.HOME, component: <HomePage /> },
@@ -28,6 +29,7 @@ export const routers = [
 export const routersNoLayout = [
   { path: RouterName.ERROR, component: <ErrorPage /> },
   { path: RouterName.LOGIN, component: <LoginPage /> },
+  { path: RouterName.REGISTER, component: <Register /> },
 ];
 
 export const routerAdmin = [

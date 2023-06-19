@@ -13,5 +13,6 @@ export const RouterName = {
   ADMIN_PRODUCTS_DETAIL: "/admin/products/:id",
   ADMIN_USERS_DETAIL: "/admin/users/:id",
   ADMIN_INBOX: "/admin/inbox",
+  REGISTER: "/register",
   ERROR: "/*",
 };

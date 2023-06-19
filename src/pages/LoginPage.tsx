@@ -7,6 +7,8 @@ import { isEmpty } from "lodash";
 import { Button } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { InputField } from "../components/form/HookFormInput";
+import { RouterName } from "../routers/RouterName";
 
 const LoginPage = () => {
   const [displayLogin, setDisplayLogin] = useState(true);
@@ -72,10 +74,14 @@ const SignIn = ({ setDisplayLogin }: any) => {
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Email Address
                   </div>
-                  <input
-                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-600"
-                    type=""
+
+                  <InputField
+                    formState={formState}
+                    control={control}
+                    register={register}
+                    name="email"
                     placeholder="mike@gmail.com"
+                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-600 !ring-0 max-lg:text-base  pl-0 rounded-none !border-t-0 !border-x-0"
                   />
                 </div>
                 <div className="mt-8">
@@ -92,10 +98,14 @@ const SignIn = ({ setDisplayLogin }: any) => {
                       </a>
                     </div>
                   </div>
-                  <input
-                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    type=""
+                  <InputField
+                    formState={formState}
+                    control={control}
+                    register={register}
+                    name="email"
+                    type="password"
                     placeholder="Enter your password"
+                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none !ring-0 focus:border-blue-500 max-lg:text-base pl-0 rounded-none !border-t-0 !border-x-0"
                   />
                 </div>
                 <div className="mt-10">
@@ -110,9 +120,12 @@ const SignIn = ({ setDisplayLogin }: any) => {
               </form>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 Don't have an account ?{" "}
-                <a className="cursor-pointer text-blue-600 hover:text-blue-800">
+                <Link
+                  to={RouterName.REGISTER}
+                  className="cursor-pointer text-blue-600 hover:text-blue-800"
+                >
                   Sign up
-                </a>
+                </Link>
               </div>
             </div>
           </div>
