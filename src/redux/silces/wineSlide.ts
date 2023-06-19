@@ -1,17 +1,25 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductEntity } from "../../models";
+import { CommentEntity, ProductEntity } from "../../models";
 import { RootState } from "../root/store";
 
 export interface wineState {
   isLoading: boolean;
   wineData: ProductEntity | null;
+  relatedProduct: ProductEntity[] | null;
   isError: boolean;
+  isLoadingRelated: boolean;
+  comments: CommentEntity[] | null;
+  isLoadComments: boolean;
 }
 
 const initialState: wineState = {
   isLoading: false,
   wineData: null,
   isError: false,
+  relatedProduct: null,
+  isLoadingRelated: false,
+  comments: null,
+  isLoadComments: false,
 };
 
 export const wineSlice = createSlice({
@@ -30,14 +38,43 @@ export const wineSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     },
+    getRelatedProduct: (state) => {
+      state.isLoadingRelated = true;
+    },
+    getRelatedProductSuccess: (state, action) => {
+      state.isLoadingRelated = false;
+      state.relatedProduct = action.payload;
+    },
+    getListComment: (state) => {
+      state.isLoadingRelated = true;
+    },
+    getListCommentSuccess: (state, action) => {
+      state.isLoadingRelated = false;
+      state.relatedProduct = action.payload;
+    },
   },
 });
 
-export const { getWine, getWineSuccess, getWineFalse } = wineSlice.actions;
+export const {
+  getWine,
+  getWineSuccess,
+  getWineFalse,
+  getRelatedProduct,
+  getRelatedProductSuccess,
+  getListComment,
+  getListCommentSuccess,
+} = wineSlice.actions;
 
 // Selectors
 export const selectWineData = (state: RootState) => state.wine.wineData;
 export const selectWineLoading = (state: RootState) => state.wine.isLoading;
 export const selectWineError = (state: RootState) => state.wine.isError;
+export const selectListCommentError = (state: RootState) => state.wine.comments;
+export const selectLoadCommentError = (state: RootState) =>
+  state.wine.isLoadComments;
+export const selectRelatedProduct = (state: RootState) =>
+  state.wine.relatedProduct;
+export const selectRelatedLoading = (state: RootState) =>
+  state.wine.isLoadingRelated;
 
 export default wineSlice.reducer;

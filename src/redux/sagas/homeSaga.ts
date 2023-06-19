@@ -27,6 +27,4 @@ function* fetchHomeList(state: any): Generator<any> {
   }
 }
 
-export default function* homeSaga(): Generator<any> {
-  yield all([takeLatest(getListProduct.type, fetchHomeList)]);
-}
+export default [takeLatest(getListProduct.type, fetchHomeList)];

@@ -7,12 +7,21 @@ interface LoadingPageProps {
   children: JSX.Element;
   className?: string;
   footer?: boolean;
+  error?: boolean;
 }
 
 const LoadingPage = (props: LoadingPageProps) => {
-  const { loading, className, footer } = props;
+  const { loading, className, footer, error = false } = props;
   if (loading) {
     return <Loading loading={true} className={className} />;
+  }
+
+  if (error) {
+    return (
+      <div className="my-10 text-center font-medium text-xl text-red-500">
+        No Data Avaiable
+      </div>
+    );
   }
 
   return (

@@ -14,3 +14,5 @@ export interface ProductEntity {
   _id: string | number;
   available: string | number;
 }
+
+export interface CommentEntity {}

@@ -2,7 +2,7 @@ export const Storage = {
   getLocal: (name: string) => {
     try {
       const data = localStorage.getItem(name);
-      return JSON.parse(data || "");
+      return JSON.parse(data || JSON.stringify(""));
     } catch (error) {
       console.log("error local storage", error);
     }

@@ -10,6 +10,8 @@ import productReducer from "../silces/productSlide";
 import createSagaMiddleware from "redux-saga";
 import { rootSagas } from "./saga";
 import wineReduce from "../silces/wineSlide";
+import notificationReduce from "../silces/notificationSlide";
+import cartReduce from "../silces/cartSlide";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,14 +21,23 @@ const createRootReducer = () =>
     home: homeReducer,
     product: productReducer,
     wine: wineReduce,
+    notification: notificationReduce,
+    cart: cartReduce,
   });
 
-export const store = configureStore({
-  reducer: createRootReducer(),
-  middleware(getDefaultMiddleware) {
-    return getDefaultMiddleware().concat(sagaMiddleware);
-  },
-});
+const tes = () => {
+  const store = configureStore({
+    reducer: createRootReducer(),
+    middleware(getDefaultMiddleware) {
+      return getDefaultMiddleware().concat(sagaMiddleware);
+    },
+  });
+  return store;
+};
+
+const store = tes();
+
+export default store;
 
 sagaMiddleware.run(rootSagas);
 

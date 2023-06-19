@@ -12,6 +12,7 @@ interface ProductItemProps extends ProductEntity {
 const ProductItem = (props: ProductItemProps) => {
   const { _id, price, wine, image, available, className, discount, rating } =
     props;
+
   return (
     <article
       className={`max-w-xs flex flex-col rounded-lg transition-all border-2 border-solid border-transparent hover:border-background ${
@@ -42,7 +43,7 @@ const ProductItem = (props: ProductItemProps) => {
         <h4 className="text-sm font-medium mb-2">{wine}</h4>
         <div className=" mb-5  mt-auto">
           <Rating
-            className="my-4"
+            className="my-2"
             name="read-only"
             icon={<AiFillStar color="#891826" />}
             emptyIcon={<AiOutlineStar />}

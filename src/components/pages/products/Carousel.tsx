@@ -3,9 +3,8 @@ import { Loading } from "../../index";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { relatedProduct } from "../../../pages/WineItemPage";
 import ProductItem from "./CartItem";
-import { ProductEntity } from "../../../types/products";
+import { ProductEntity } from "../../../models";
 
 interface CarouselProps {
   lable: string;
@@ -13,9 +12,6 @@ interface CarouselProps {
 }
 
 const CarouselComponent = (props: CarouselProps) => {
-  // const {
-  //   state: { home_Carousel, home_loading, home_error },
-  // } = useHomeContact();
   const { lable, listItem } = props;
 
   const responsive = {
@@ -37,8 +33,6 @@ const CarouselComponent = (props: CarouselProps) => {
     },
   };
 
-  const home_loading: boolean = false;
-  const home_Carousel: any[] = [];
   return (
     <div id="Carousel" className="container mx-auto my-10">
       <div className="flex justify-center">
@@ -46,42 +40,39 @@ const CarouselComponent = (props: CarouselProps) => {
           {lable}
         </h1>
       </div>
-      {home_loading ? (
-        <Loading />
-      ) : (
-        <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className="className"
-          containerClass="container-with-dots"
-          dotListClass="dotListClass"
-          draggable
-          focusOnSelect={false}
-          infinite
-          itemClass="itemClass"
-          keyBoardControl
-          minimumTouchDrag={80}
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
-          responsive={responsive}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots={false}
-          sliderClass="sliderClass"
-          slidesToSlide={1}
-          swipeable
-        >
-          {listItem.map((item: any) => (
-            <ProductItem className="mx-auto h-full" key={item.id} {...item} />
-          ))}
-        </Carousel>
-      )}
+
+      <Carousel
+        additionalTransfrom={0}
+        arrows
+        autoPlaySpeed={3000}
+        centerMode={false}
+        className="className"
+        containerClass="container-with-dots"
+        dotListClass="dotListClass"
+        draggable
+        focusOnSelect={false}
+        infinite
+        itemClass="itemClass"
+        keyBoardControl
+        minimumTouchDrag={80}
+        pauseOnHover
+        renderArrowsWhenDisabled={false}
+        renderButtonGroupOutside={false}
+        renderDotsOutside={false}
+        responsive={responsive}
+        rewind={false}
+        rewindWithAnimation={false}
+        rtl={false}
+        shouldResetAutoplay
+        showDots={false}
+        sliderClass="sliderClass"
+        slidesToSlide={1}
+        swipeable
+      >
+        {listItem.map((item: any) => (
+          <ProductItem className="mx-auto h-full" key={item._id} {...item} />
+        ))}
+      </Carousel>
       <Link to="/products" className="btn">
         All Products
       </Link>

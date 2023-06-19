@@ -20,6 +20,9 @@ import {
   selectWineData,
   selectWineLoading,
   selectWineError,
+  getRelatedProduct,
+  selectRelatedProduct,
+  selectRelatedLoading,
 } from "../redux/silces/wineSlide";
 import { ProductEntity } from "../models";
 
@@ -29,20 +32,13 @@ const WineItemPage = () => {
   const wineData: ProductEntity | Record<string, any> =
     useAppSelector(selectWineData) || {};
   const isLoading = useAppSelector(selectWineLoading);
+  const relateProductData = useAppSelector(selectRelatedProduct);
+  const relatedLoading = useAppSelector(selectRelatedLoading);
   const isError = useAppSelector(selectWineError);
 
-  // const { getItemWine } = useHomeContact();
-  // const { getCartItem } = useCartContext();
-  // const {
-  //   state: { role },
-  // } = UseUserContext();
-
-  // const history = useHistory();
-  // useLayoutEffect(() => {
-  //   getItemWine(id);
-  // }, [id]);
   useEffect(() => {
     dispatch(getWine(id));
+    dispatch(getRelatedProduct());
   }, [id]);
 
   const {
@@ -56,7 +52,6 @@ const WineItemPage = () => {
     discount,
   } = wineData;
 
-  const item_error = false;
   const [count, setCount] = useState(1);
 
   const decreAmount = (id?: string) => {
@@ -83,6 +78,7 @@ const WineItemPage = () => {
       <LoadingPage
         loading={isLoading}
         className="absolute w-1/2 h1/2 translate-x-1/2 translate-y-1/2"
+        error={isError}
       >
         <>
           <PageHero title="products" product={wine || ""} />
@@ -159,6 +155,7 @@ const WineItemPage = () => {
                       type="number"
                       id="Quantity"
                       defaultValue="1"
+                      max={available}
                       className="h-10 w-16 !border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none focus:ring-transparent "
                     />
 
@@ -196,195 +193,21 @@ const WineItemPage = () => {
             <hr />
             <Comments item={wineData} />
             <hr />
-
-            <CarouselComponent
-              listItem={relatedProduct}
-              lable="Related Product"
-            />
-            {/* <div className="center">
-              <h1 className=" text-center my-8 text-3xl font-bold relative inline-block before:h-1 before:bg-background before:w-4/5 before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2">
-                
-              </h1>
-            </div>
-
-            <div
-              className="listProduct grid gap-3 mt-7 mb-14"
-              style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              }}
-            >
-              {relatedProduct.map((item, idx) => (
-                <ProductItem key={idx} {...item} />
-              ))}
-            </div> */}
+            <LoadingPage loading={relatedLoading}>
+              {relateProductData?.length ? (
+                <CarouselComponent
+                  listItem={relateProductData}
+                  lable="Related Product"
+                />
+              ) : (
+                <></>
+              )}
+            </LoadingPage>
           </div>
         </>
       </LoadingPage>
     </main>
   );
 };
-
-export const relatedProduct = [
-  {
-    winery: "Petrus",
-    wine: "Amarone della Valpolicella Riserva N.V.",
-    rating: {
-      average: 5,
-      reviews: "75 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "2",
-    available: 74,
-  },
-  {
-    winery: "Cartuxa",
-    wine: "Pera-Manca Tinto 1990",
-    rating: {
-      average: 5,
-      reviews: "72 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "3",
-    available: 74,
-  },
-  {
-    winery: "Petrus",
-    wine: "Amarone della Valpolicella Riserva N.V.",
-    rating: {
-      average: 5,
-      reviews: "75 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "2",
-    available: 74,
-  },
-  {
-    winery: "Cartuxa",
-    wine: "Pera-Manca Tinto 1990",
-    rating: {
-      average: 5,
-      reviews: "72 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "3",
-    available: 74,
-  },
-  {
-    winery: "Petrus",
-    wine: "Amarone della Valpolicella Riserva N.V.",
-    rating: {
-      average: 5,
-      reviews: "75 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "2",
-    available: 74,
-  },
-  {
-    winery: "Cartuxa",
-    wine: "Pera-Manca Tinto 1990",
-    rating: {
-      average: 5,
-      reviews: "72 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "3",
-    available: 74,
-  },
-  {
-    winery: "Petrus",
-    wine: "Amarone della Valpolicella Riserva N.V.",
-    rating: {
-      average: 5,
-      reviews: "75 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/nC9V6L2mQQSq0s-wZLcaxw_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "2",
-    available: 74,
-  },
-  {
-    winery: "Cartuxa",
-    wine: "Pera-Manca Tinto 1990",
-    rating: {
-      average: 5,
-      reviews: "72 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/L33jsYUuTMWTMy3KoqQyXg_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "3",
-    available: 74,
-  },
-  {
-    winery: "Schrader",
-    wine: "Cabernet Sauvignon RBS Beckstoffer To Kalon Vineyard 2015",
-    rating: {
-      average: 5,
-      reviews: "72 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/GpcSXs2ERS6niDxoAsvESA_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "4",
-    available: 74,
-  },
-  {
-    winery: "Petrus",
-    wine: "Wraith Cabernet Sauvignon 2013",
-    rating: {
-      average: 5,
-      reviews: "68 ratings",
-    },
-
-    image:
-      "https://images.vivino.com/thumbs/PBhGMcRNQ7aVnVNr7VgnWA_pb_x300.png",
-    price: 6,
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    id: "5",
-    available: 74,
-  },
-];
 
 export default WineItemPage;
