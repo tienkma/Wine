@@ -10,10 +10,7 @@ const notificationApi = {
       url,
       {},
       {
-        params: {
-          page: 1,
-          limit: 10,
-        },
+        params: payload.params,
       }
     );
   },

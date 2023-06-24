@@ -26,10 +26,10 @@ function* fetchProductList(
     if (response.pageItems) {
       yield put(getListSuccess(response.pageItems));
     } else {
-      yield put(getListFalse);
+      yield put(getListFalse());
     }
   } catch (error) {
-    yield put(getListFalse);
+    yield put(getListFalse());
   }
 }
 

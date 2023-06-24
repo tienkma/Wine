@@ -26,7 +26,7 @@ export const homeSlice = createSlice({
       state.featuredProducts = action.payload;
       state.isError = false;
     },
-    getListFalse: (state, action) => {
+    getListFalse: (state) => {
       state.isLoading = false;
       state.isError = true;
     },

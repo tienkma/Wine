@@ -10,6 +10,8 @@ import {
 import { RequestPayload } from "../../models";
 import productApi from "../../api/productApi";
 import {
+  getListComment,
+  getListCommentSuccess,
   getRelatedProduct,
   getRelatedProductSuccess,
   getWine,
@@ -19,14 +21,37 @@ import {
 
 function* fetchWineData(state: PayloadAction<string>): Generator<any> {
   try {
-    const response: any = yield call(() => productApi.getWine(state.payload));
-    if (response?._id) {
-      yield put(getWineSuccess({ ...response, id: response._id }));
+    const reponseWine: any = yield call(() =>
+      productApi.getWine(state.payload)
+    );
+    if (reponseWine?._id) {
+      yield put(getWineSuccess({ ...reponseWine, id: reponseWine._id }));
     } else {
-      yield put(getWineFalse);
+      yield put(getWineFalse());
     }
   } catch (error) {
-    yield put(getWineFalse);
+    yield put(getWineFalse());
+  }
+}
+
+function* fetchWineComment(
+  state: PayloadAction<RequestPayload & { id: string }>
+): Generator<any> {
+  try {
+    const { id, params } = state.payload;
+    const reponseComment: any = yield call(() =>
+      productApi.getCommentByIdWine(id, { params })
+    );
+
+    if (reponseComment?.pageItems) {
+      yield put(
+        getListCommentSuccess({ ...reponseComment, id: reponseComment._id })
+      );
+    } else {
+      console.log("error get comments");
+    }
+  } catch (error) {
+    console.log("error get comments");
   }
 }
 
@@ -48,4 +73,5 @@ function* fetchRelatedData(): Generator<any> {
 export default function* wineSaga(): Generator<any> {
   yield takeLatest(getWine.type, fetchWineData);
   yield takeLatest(getRelatedProduct.type, fetchRelatedData);
+  yield takeLatest(getListComment.type, fetchWineComment);
 }

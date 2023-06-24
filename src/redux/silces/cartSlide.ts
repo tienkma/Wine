@@ -27,7 +27,7 @@ export const cartSlice = createSlice({
       state.carts = action.payload;
       state.isError = false;
     },
-    getListCartFalse: (state, action) => {
+    getListCartFalse: (state) => {
       state.isLoading = false;
       state.isError = true;
     },

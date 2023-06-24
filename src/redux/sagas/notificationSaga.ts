@@ -25,13 +25,13 @@ function* fetchNotificationList(
     if (response.pageItems) {
       yield put(getNotificationsSuccess(response.pageItems));
     } else {
-      yield put(getNotificationsFalse);
+      yield put(getNotificationsFalse());
     }
   } catch (error) {
-    yield put(getNotificationsFalse);
+    yield put(getNotificationsFalse());
   }
 }
 
-export default function* NotificationSaga(): Generator<any> {
+export default function* notificationSaga(): Generator<any> {
   yield takeLatest(getNotifications.type, fetchNotificationList);
 }

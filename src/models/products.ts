@@ -15,4 +15,9 @@ export interface ProductEntity {
   available: string | number;
 }
 
-export interface CommentEntity {}
+export interface CommentEntity {
+  id: string | number;
+  name: string;
+  comment: string;
+  date: Date;
+}

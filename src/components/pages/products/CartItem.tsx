@@ -10,8 +10,17 @@ interface ProductItemProps extends ProductEntity {
 }
 
 const ProductItem = (props: ProductItemProps) => {
-  const { _id, price, wine, image, available, className, discount, rating } =
-    props;
+  const {
+    _id,
+    price,
+    wine,
+    image,
+    available,
+    className,
+    discount,
+    rating,
+    winery,
+  } = props;
 
   return (
     <article
@@ -40,10 +49,11 @@ const ProductItem = (props: ProductItemProps) => {
         </Link>
       </div>
       <div className="cart_item-bottom p-3 pt-0 flex flex-col flex-1 justify-between overflow-hidden select-none">
-        <h4 className="text-sm font-medium mb-2">{wine}</h4>
+        <h4 className="text-sm font-bold mb-2 ">{wine}</h4>
         <div className=" mb-5  mt-auto">
+          <h3 className="text-sm font-medium mb-0">{winery}</h3>
           <Rating
-            className="my-2"
+            className="my-1"
             name="read-only"
             icon={<AiFillStar color="#891826" />}
             emptyIcon={<AiOutlineStar />}
