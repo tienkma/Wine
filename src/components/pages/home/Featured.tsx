@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { relatedProduct } from "../../../pages/WineItemPage";
 import ProductItem from "../products/CartItem";
 import { useAppDispatch, useAppSelector } from "../../../redux/root/hooks";
 import {

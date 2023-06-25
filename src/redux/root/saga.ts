@@ -3,10 +3,11 @@ import { call, put, takeEvery, takeLatest, all } from "redux-saga/effects";
 import homeSage from "../sagas/homeSaga";
 import productSaga from "../sagas/productSaga";
 import wineSaga from "../sagas/wineSaga";
+import notificationSaga from "../sagas/notificationSaga";
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 export function* rootSagas() {
-  yield all([...homeSage, productSaga(), wineSaga()]);
+  yield all([...homeSage, productSaga(), wineSaga(), notificationSaga()]);
 }
 
 /*

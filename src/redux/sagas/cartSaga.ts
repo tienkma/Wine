@@ -20,10 +20,10 @@ function* fetchCartList(state: any): Generator<any> {
     if (response.pageItems) {
       yield put(getListCartSuccess(response.pageItems));
     } else {
-      yield put(getListCartFalse);
+      yield put(getListCartFalse());
     }
   } catch (error) {
-    yield put(getListCartFalse);
+    yield put(getListCartFalse());
   }
 }
 

@@ -6,17 +6,18 @@ import { AiOutlineSend } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useAppSelector } from "../../../redux/root/hooks";
+import { selectListCommentError } from "../../../redux/silces/wineSlide";
+import { CommentEntity } from "../../../models";
 
 export const classNameInput =
   "block w-full p-2 text-gray-900 border-gray-300 bg-gray-20 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-0 !border rounded-lg";
 
-interface CommentsProps {
-  item: Record<string, any> | null;
-}
+interface CommentsProps {}
 
 export const Comments = (props: CommentsProps) => {
-  const { item } = props;
   const [comments, setComments] = useState([]);
+  const listComment = useAppSelector(selectListCommentError);
 
   const user = Storage.getLocal("user");
 
@@ -52,7 +53,7 @@ export const Comments = (props: CommentsProps) => {
             </div>
           </form>
 
-          {listComment.map((comment) => {
+          {listComment?.map((comment) => {
             return <Comment key={comment.id} comment={comment} />;
           })}
         </div>
@@ -62,7 +63,7 @@ export const Comments = (props: CommentsProps) => {
 };
 
 interface CommentProps {
-  comment: any;
+  comment: CommentEntity;
 }
 
 const Comment = (props: CommentProps) => {

@@ -11,6 +11,7 @@ import {
   selectproductError,
   selectproductFilter,
   getListProduct,
+  selectProductPage,
 } from "../redux/silces/productSlide";
 
 const ProductsPage = () => {
@@ -18,13 +19,14 @@ const ProductsPage = () => {
   const isLoading = useAppSelector(selectproductLoading);
   const isError = useAppSelector(selectproductError);
   const filterProduct = useAppSelector(selectproductFilter);
+  const page = useAppSelector(selectProductPage);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(
-      getListProduct({ filter: filterProduct, params: { page: 1, limit: 50 } })
+      getListProduct({ filter: filterProduct, params: { page, limit: 50 } })
     );
-  }, [filterProduct]);
+  }, [filterProduct, page]);
 
   return (
     <>

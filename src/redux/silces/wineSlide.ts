@@ -34,7 +34,7 @@ export const wineSlice = createSlice({
       state.wineData = action.payload;
       state.isError = false;
     },
-    getWineFalse: (state, action) => {
+    getWineFalse: (state) => {
       state.isLoading = false;
       state.isError = true;
     },
@@ -45,12 +45,12 @@ export const wineSlice = createSlice({
       state.isLoadingRelated = false;
       state.relatedProduct = action.payload;
     },
-    getListComment: (state) => {
-      state.isLoadingRelated = true;
+    getListComment: (state, action) => {
+      state.isLoadComments = true;
     },
     getListCommentSuccess: (state, action) => {
-      state.isLoadingRelated = false;
-      state.relatedProduct = action.payload;
+      state.isLoadComments = false;
+      state.comments = action.payload;
     },
   },
 });

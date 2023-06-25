@@ -26,7 +26,7 @@ export const notificationSlice = createSlice({
       state.notifications = action.payload;
       state.isError = false;
     },
-    getNotificationsFalse: (state, action) => {
+    getNotificationsFalse: (state) => {
       state.isLoading = false;
       state.isError = true;
     },

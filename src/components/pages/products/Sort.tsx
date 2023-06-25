@@ -6,15 +6,20 @@ const Sort = () => {
   //   changeSort,
   // } = useFilterContext();
   return (
-    <section id="sortContent " className="flex justify-between relative items-center">
+    <section
+      id="sortContent "
+      className="flex justify-between relative items-center"
+    >
       <p className="text-background capitalize">{[].length} Products Found</p>
       <hr className="flex-1 border-x-none border-b-none border border-solid border-background" />
       <form>
-        <label htmlFor="sort" className="text-base text-black capitalize">Sort By</label>
+        <label htmlFor="sort" className="text-base text-black capitalize">
+          Sort By
+        </label>
         <select
           name="sort"
           id="sort"
-          className="sort-input border-transparent text-base capitalize py-2 px-1"
+          className=" text-base capitalize py-0.5 pl-0.5 pr-7 border-0 focus:outline-none focus:ring-0 font-normal"
           // onChange={(e) => changeSort(e.target.value)}
           // value={sort}
         >
