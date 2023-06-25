@@ -1,49 +1,32 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserEntity } from "../../models";
 
 export interface authState {
   isLogin: boolean;
-  logging: boolean;
-  currentUser?: {
-    name: string;
-    id: string;
-  };
+  user?: UserEntity;
 }
 
 const initialState: authState = {
   isLogin: false,
-  logging: false,
 };
-
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<{username: string, password: string}>) => {
-      state.logging = true
+    loginSuccess: (state, action) => {
+      state.isLogin = true;
+      state.user = action.payload;
     },
-    loginSuccess: (state ) => {
-      localStorage.setItem("tokens", "login success")
-
-      state.logging = false
-      state.isLogin = true
-    },
-    loginFail: (state, action) => {
-      action.payload.navigate('/login')
-      state.logging = false
-      state.isLogin = false
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    logOut: (state) => {
-      localStorage.removeItem('tokens')
-      state.logging = false
-      state.isLogin = false
-
+    logout: (state) => {
+      state.isLogin = false;
+      state.user = undefined;
+      localStorage.removeItem("user");
     },
   },
 });
 
-export const { login, loginSuccess, loginFail, logOut } = authSlice.actions;
+export const { loginSuccess } = authSlice.actions;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

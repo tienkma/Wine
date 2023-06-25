@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, useEffect, useState } from "react";
 // import { Forms } from "../../utils/forms";
-import { flattenDeep } from "lodash";
+import { flattenDeep, isString } from "lodash";
 import { FormState } from "react-hook-form";
 import { Toasts } from "../../utils/notification";
 
@@ -17,13 +17,32 @@ export const HookForm = (props: ProductTypeFormProps) => {
   const [errorMessage, setErrorMessage] = useState(error);
   const [errorsState, setErrorsState] = useState<any[]>([]);
 
+  const getErrorMessages: (error: Record<string, any>) => any = (errors) => {
+    if (!errors) return [];
+
+    return Object.entries(errors)
+      .map(([name, message]) => {
+        let newMessage = message as Record<string, any>;
+        if (Array.isArray(newMessage)) {
+          newMessage = [...new Set(newMessage)];
+        }
+        if (isString(newMessage)) {
+          return newMessage;
+        }
+        if (!newMessage?.message && newMessage) {
+          return getErrorMessages(newMessage);
+        }
+        return newMessage?.message;
+      })
+      .filter((msg) => msg);
+  };
+
   useEffect(() => {
     props.error && setErrorMessage(props.error);
   }, [error]);
   useEffect(() => {
     // Logger.debug('submitData', validation.values)
-    // let errorsList = Forms.getErrorMessages(errors);
-    let errorsList = [""];
+    let errorsList = getErrorMessages(errors);
     if (isSubmitted) {
       setErrorsState(errorsList);
     }
