@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { AiFillHome } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Toasts } from "../utils/notification";
 import { isEmpty } from "lodash";
 import { Button } from "@mui/material";
@@ -9,6 +9,9 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputField } from "../components/form/HookFormInput";
 import { RouterName } from "../routers/RouterName";
+import authApi from "../api/authApi";
+import { HookForm } from "../components/form/HookForm";
+import { Storage } from "../utils/local";
 
 const LoginPage = () => {
   const [displayLogin, setDisplayLogin] = useState(true);
@@ -21,6 +24,7 @@ const LoginPage = () => {
           <SignUp setDisplayLogin={setDisplayLogin} />
         )}
       </div>
+
       <Link
         to="/"
         className="backHome fixed bottom-4 right-4 w-10 h-10 flex justify-center items-center bg-red-400 rounded-full"
@@ -37,6 +41,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
   // const history = useHistory();
   // const { setUsers } = UseUserContext();
   // const { getListCart } = useCartContext();
+  let navigate = useNavigate();
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(
@@ -50,8 +55,13 @@ const SignIn = ({ setDisplayLogin }: any) => {
   });
 
   // TODO user
-  const onSubmit = async (value: any) => {
+  const onSubmit = async (values: any) => {
     try {
+      const result = await authApi.login(values);
+      if (result.user?.id || result.token) {
+        Storage.setLocal("user", result.user);
+        navigate(RouterName.HOME);
+      }
     } catch (error) {
       console.log(`authen ${error}`);
     }
@@ -69,7 +79,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
               Log in
             </h2>
             <div className="mt-12">
-              <form>
+              <HookForm formState={formState} onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Email Address
@@ -102,7 +112,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
                     formState={formState}
                     control={control}
                     register={register}
-                    name="email"
+                    name="password"
                     type="password"
                     placeholder="Enter your password"
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none !ring-0 focus:border-blue-500 max-lg:text-base pl-0 rounded-none !border-t-0 !border-x-0"
@@ -117,7 +127,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
                     Log In
                   </button>
                 </div>
-              </form>
+              </HookForm>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 Don't have an account ?{" "}
                 <Link

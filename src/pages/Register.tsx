@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { isNumber, some } from "lodash";
@@ -9,6 +8,7 @@ import { HiCheck } from "react-icons/hi2";
 import { HookForm } from "../components/form/HookForm";
 import { InputField } from "../components/form/HookFormInput";
 import { RouterName } from "../routers/RouterName";
+import authApi from "../api/authApi";
 
 export const listValidatePassword = [
   {
@@ -71,16 +71,13 @@ export const getStatusValidatePassword = (
 const Register = (props: any) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [registerError, setRegisterError] = useState<string>("");
-  const search = useLocation().search;
-  const searchParams = new URLSearchParams(search);
-
-  const serviceName = searchParams.get("serviceName");
+  let navigate = useNavigate();
 
   const { handleSubmit, formState, control, getValues, watch, register } =
     useForm({
       resolver: yupResolver(
         Yup.object({
-          username: Yup.string().required("username_required"),
+          name: Yup.string().required("username_required"),
           email: Yup.string().email().required("email_required").nullable(),
           password: Yup.string()
             .min(8)
@@ -95,6 +92,11 @@ const Register = (props: any) => {
 
   const onSubmit = async (values: any) => {
     try {
+      const result = await authApi.register(values);
+      if (result.token && result.user?.id) {
+        // navigate(RouterName.LOGIN);
+        setIsSuccess(true);
+      }
     } catch (error: any) {
       setRegisterError(error.response?.data.message || error.message);
     } finally {
