@@ -3,6 +3,7 @@ export const RouterName = {
   PRODUCTS: "/products",
   PRODUCT_DETAIL: "/products/:id",
   CART: "/cart",
+  ORDERS: "/orders",
   ABOUT: "/about",
   LOGIN: "/login",
   HELP: "/help",

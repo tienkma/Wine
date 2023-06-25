@@ -15,6 +15,7 @@ import AdminProductPage from "../pages/AdminProduct";
 import { RouterName } from "./RouterName";
 import ReactQueryUserProvider from "../pages/AdminUserPage";
 import Register from "../pages/Register";
+import { OrderPage } from "../pages/OrderPage";
 
 export const routers = [
   { path: RouterName.HOME, component: <HomePage /> },
@@ -24,6 +25,7 @@ export const routers = [
   { path: RouterName.CART, component: <CartPage /> },
   { path: RouterName.ABOUT, component: <AboutPage /> },
   { path: RouterName.CONTACT, component: <ContactPage /> },
+  { path: RouterName.ORDERS, component: <OrderPage /> },
 ];
 
 export const routersNoLayout = [
