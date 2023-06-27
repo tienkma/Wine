@@ -6,5 +6,6 @@ export interface CartEntity {
   price: string | number;
   _id: string | number;
   available: string | number;
-  count: number;
+  quantity: number;
+  Subtotal: number;
 }

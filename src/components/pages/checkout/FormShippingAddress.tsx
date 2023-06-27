@@ -1,0 +1,169 @@
+import { useForm } from "react-hook-form";
+import { HookForm } from "../../form/HookForm";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { InputField } from "../../form/HookFormInput";
+
+export const FormShippingAddress = () => {
+  const { register, handleSubmit, formState, control } = useForm({
+    resolver: yupResolver(
+      Yup.object({
+        email: Yup.string()
+          .email("Email must be a valid email")
+          .required("Please enter the value Email"),
+        password: Yup.string().required().min(8, "Your password is too short."),
+      })
+    ),
+  });
+
+  return (
+    <HookForm className="justify-center w-full mx-auto" formState={formState}>
+      <div className="">
+        <div className="space-x-0 lg:flex lg:space-x-4">
+          <div className="w-full lg:w-1/2">
+            <label
+              htmlFor="firstName"
+              className="block mb-3 text-sm font-semibold text-gray-600"
+            >
+              First Name
+            </label>
+            <InputField
+              formState={formState}
+              control={control}
+              register={register}
+              name="firstName"
+              placeholder="First Name"
+              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+            />
+          </div>
+          <div className="w-full lg:w-1/2 ">
+            <label
+              htmlFor="firstName"
+              className="block mb-3 text-sm font-semibold text-gray-600"
+            >
+              Last Name
+            </label>
+            <InputField
+              formState={formState}
+              control={control}
+              register={register}
+              name="Last Name"
+              placeholder="Last Name"
+              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="w-full">
+            <label
+              htmlFor="Email"
+              className="block mb-3 text-sm font-semibold text-gray-600"
+            >
+              Email
+            </label>
+            <InputField
+              formState={formState}
+              control={control}
+              register={register}
+              name="Last Name"
+              placeholder="Email"
+              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="w-full">
+            <label
+              htmlFor="Address"
+              className="block mb-3 text-sm font-semibold text-gray-600"
+            >
+              Address
+            </label>
+            <textarea
+              className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+              name="Address"
+              cols={20}
+              rows={4}
+              placeholder="Address"
+              defaultValue={""}
+            />
+          </div>
+        </div>
+        <div className="space-x-0 lg:flex lg:space-x-4">
+          <div className="w-full lg:w-1/2">
+            <label
+              htmlFor="city"
+              className="block mb-3 text-sm font-semibold text-gray-600"
+            >
+              City
+            </label>
+            <InputField
+              formState={formState}
+              control={control}
+              register={register}
+              name="city"
+              placeholder="City"
+              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+            />
+          </div>
+          <div className="w-full lg:w-1/2 ">
+            <label
+              htmlFor="postcode"
+              className="block mb-3 text-sm font-semibold text-gray-600"
+            >
+              Postcode
+            </label>
+            <InputField
+              formState={formState}
+              control={control}
+              register={register}
+              name="postcode"
+              placeholder="Post Code"
+              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+            />
+          </div>
+        </div>
+        <div className="flex items-center mt-4">
+          <label className="flex items-center text-sm group text-heading">
+            <input
+              type="checkbox"
+              className="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1"
+            />
+            <span className="ml-2">Save this information for next time</span>
+          </label>
+        </div>
+        <div className="relative pt-3 xl:pt-6">
+          <label
+            htmlFor="note"
+            className="block mb-3 text-sm font-semibold text-gray-600"
+          >
+            {" "}
+            Notes (Optional)
+          </label>
+
+          <InputField
+            formState={formState}
+            control={control}
+            name="note"
+            register={register}
+            customInput={() => {
+              return (
+                <textarea
+                  className="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  rows={4}
+                  placeholder="Notes for delivery"
+                  defaultValue={""}
+                />
+              );
+            }}
+          />
+        </div>
+        <div className="mt-4">
+          <button className="w-full px-6 py-2 text-white bg-background hover:bg-color rounded-[4px] transition-colors">
+            Confirm Order
+          </button>
+        </div>
+      </div>
+    </HookForm>
+  );
+};

@@ -56,7 +56,7 @@ function App() {
 const PortableComponent = () => {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer className={"text-sm"} />
     </>
   );
 };

@@ -4,6 +4,7 @@ export const RouterName = {
   PRODUCT_DETAIL: "/products/:id",
   CART: "/cart",
   ORDERS: "/orders",
+  CHECKOUT: "/checkout",
   ABOUT: "/about",
   LOGIN: "/login",
   HELP: "/help",

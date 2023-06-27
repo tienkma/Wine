@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import AddToCard from "../components/Quantity";
 import PageHero from "../components/common/PageHero";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getItem } from "../utils/apiGetItem";
 import { Rating } from "@mui/material";
 import {
@@ -26,6 +25,8 @@ import {
   getListComment,
 } from "../redux/silces/wineSlide";
 import { ProductEntity } from "../models";
+import { addCart } from "../redux/silces/cartSlide";
+import { RouterName } from "../routers/RouterName";
 
 const WineItemPage = () => {
   const { id } = useParams();
@@ -55,6 +56,7 @@ const WineItemPage = () => {
   } = wineData;
 
   const [count, setCount] = useState(1);
+  const navigator = useNavigate();
 
   const decreAmount = () => {
     setCount((count) => {
@@ -148,8 +150,9 @@ const WineItemPage = () => {
                   <div className="flex items-center border border-gray-200 rounded">
                     <button
                       type="button"
-                      className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 center"
+                      className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 center cursor-pointer"
                       onClick={decreAmount}
+                      disabled={count === 1}
                     >
                       <AiOutlineMinus />
                     </button>
@@ -160,12 +163,13 @@ const WineItemPage = () => {
                       defaultValue="1"
                       value={count}
                       max={available}
-                      className="h-10 w-16 !border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none focus:ring-transparent "
+                      className="h-10 w-16 !border-transparent font-normal text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none focus:ring-transparent "
                     />
 
                     <button
                       type="button"
-                      className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 center"
+                      className="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 center cursor-pointer"
+                      disabled={count === available}
                       onClick={increAmuont}
                     >
                       <AiOutlinePlus />
@@ -178,18 +182,15 @@ const WineItemPage = () => {
                 <div className="flex">
                   <button
                     className="mt-5 flex px-12 py-3 capitalize text-sm justify-center items-center transition-colors hover:bg-color bg-background"
-                    // onClick={async () => {
-                    //   if (!getLocal("users")) {
-                    //     return history.replace("/login");
-                    //   }
-                    //   await getCartItem(id, wine, price, available, image, count);
-                    //   history.push('/cart')
-                    // }}
+                    onClick={() => {
+                      dispatch(addCart({ ...wineData, quantity: count }));
+                      navigator(RouterName.CART);
+                    }}
                   >
                     add to cart
                   </button>
 
-                  <button className="mt-5 ml-4 flex px-12 py-3 capitalize text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium">
+                  <button className="mt-5 ml-4 flex px-12 py-3 capitalize  text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium">
                     checkout
                   </button>
                 </div>

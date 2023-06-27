@@ -4,6 +4,9 @@ import { Toasts } from "../../../utils/notification";
 import { Rating } from "@mui/material";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { ProductEntity } from "../../../models";
+import { addCart } from "../../../redux/silces/cartSlide";
+import { useAppDispatch } from "../../../redux/root/hooks";
+import { omit } from "lodash";
 
 interface ProductItemProps extends ProductEntity {
   className?: string;
@@ -21,6 +24,8 @@ const ProductItem = (props: ProductItemProps) => {
     rating,
     winery,
   } = props;
+
+  const dispatch = useAppDispatch();
 
   return (
     <article
@@ -82,9 +87,11 @@ const ProductItem = (props: ProductItemProps) => {
         </div>
         <button
           className="btn bg-background rounded px-4 py-2 hover:bg-color transition-colors"
-          onClick={() => {}}
+          onClick={() =>
+            dispatch(addCart(omit({ ...props, quantity: 1 }, "className")))
+          }
         >
-          Add to Product
+          Add to cart
         </button>
       </div>
     </article>

@@ -9,7 +9,7 @@ export const Storage = {
   },
   setLocal: (name: string, value: any) => {
     try {
-      const data = localStorage.setItem(name, JSON.stringify(value));
+      localStorage.setItem(name, value);
     } catch (error) {
       console.log("error local storage", error);
     }

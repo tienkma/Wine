@@ -43,50 +43,7 @@ const PageHero: React.FC<{ title: string; product?: string }> = (props) => {
             to={`/${title}`}
           >{`${title}`}</Link>
         )}
-        {/* 
-    <span className="mx-5 text-gray-500 dark:text-gray-300">
-        /
-    </span>
-
-    <a href="#" className="text-gray-600 dark:text-gray-200 hover:underline">
-        Profile
-    </a>
-
-    <span className="mx-5 text-gray-500 dark:text-gray-300">
-        /
-    </span>
-
-    <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline">
-        Settings
-    </a> */}
       </div>
-      {/* <div className="container mx-auto">
-        {product ? (
-          <h2 className="text-xl font-semibold">
-            <Link className="text-background" to="/">
-              Home
-            </Link>{" "}
-            /{" "}
-            <Link className="text-background" to="/products">
-              {" "}
-              product
-            </Link>{" "}
-            / {`${product}`}
-          </h2>
-        ) : (
-          <h2 className="text-xl font-semibold">
-            <Link className="text-background" to="/">
-              Home
-            </Link>{" "}
-            /{" "}
-            <Link
-              className="text-background"
-              to={`/${title}`}
-            >{`${title}`}</Link>
-          </h2>
-        )}
-      </div> */}
-      {/* </div> */}
     </>
   );
 };
