@@ -23,8 +23,8 @@ function* fetchProductList(
     const response: any = yield call(() =>
       productApi.getListProduct(state.payload)
     );
-    if (response.pageItems) {
-      yield put(getListSuccess(response.pageItems));
+    if (response) {
+      yield put(getListSuccess(response));
     } else {
       yield put(getListFalse());
     }

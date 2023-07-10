@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import LoadingPage from "../components/common/LoadingPage";
 import PageHero from "../components/common/PageHero";
 import { FormShippingAddress } from "../components/pages/checkout/FormShippingAddress";
@@ -6,25 +7,30 @@ import { Storage } from "../utils/local";
 
 export const CheckoutPage = () => {
   const listCart: CartEntity[] = Storage.getLocal("carts") || [];
+  const [checkoutCart, setCheckourCart] = useState(listCart)
+
+  useEffect(() => {
+    setCheckourCart(checkoutCart)
+  }, [checkoutCart])
 
   return (
-    <main>
+    <main className="minHeight">
       <PageHero title="Checkout" />
       <LoadingPage loading={false} footer={true}>
         <div className="container p-12 mx-auto mb-16">
-          <div className="flex flex-col w-full px-0 mx-auto md:flex-row">
+          <div className="flex flex-col w-full px-0 mx-auto gap-8 md:flex-row">
             <div className="flex flex-col md:w-full">
               <h2 className="mb-4 font-bold md:text-xl text-heading ">
                 Shipping Address
               </h2>
               <FormShippingAddress />
             </div>
-            <div className="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
+            <div className="flex flex-col w-full ml-0 lg:w-2/5">
               <div className="pt-12 md:pt-0 2xl:ps-4">
                 <h2 className="text-xl font-bold">Order Summary</h2>
                 <div className="mt-8">
                   <div className="flex flex-col space-y-4 ">
-                    {listCart.map((cart) => {
+                    {checkoutCart.map((cart) => {
                       return (
                         <div
                           className="flex space-x-4 justify-between"
@@ -45,34 +51,39 @@ export const CheckoutPage = () => {
                                 <span className="text-red-600 font-normal">
                                   Price
                                 </span>{" "}
-                                ${cart.Subtotal}
+                                ${cart.subtotal}
                               </p>
                             </div>
                           </div>
                           <div>
+                            <span onClick={() => {
+                              setCheckourCart((props) => props.filter((item) => item._id !== cart._id))
+                            }} className="cursor-pointer">
+
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="w-6 h-6"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
-                            >
+                              >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 strokeWidth={2}
                                 d="M6 18L18 6M6 6l12 12"
-                              />
+                                />
                             </svg>
+                                </span>
                           </div>
                         </div>
                       );
                     })}
                   </div>
                 </div>
-                <div className="flex p-4 mt-4">
+                <div className="flex py-4 mt-4">
                   <h2 className="text-xl font-bold">
-                    ITEMS {listCart?.length}
+                    ITEMS {checkoutCart?.length}
                   </h2>
                 </div>
                 <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">

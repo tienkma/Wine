@@ -3,6 +3,7 @@ import { HookForm } from "../../form/HookForm";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputField } from "../../form/HookFormInput";
+import ActionButton from "../../../utils/ActionButton";
 
 export const FormShippingAddress = () => {
   const { register, handleSubmit, formState, control } = useForm({
@@ -11,13 +12,16 @@ export const FormShippingAddress = () => {
         email: Yup.string()
           .email("Email must be a valid email")
           .required("Please enter the value Email"),
-        password: Yup.string().required().min(8, "Your password is too short."),
       })
     ),
   });
 
+  const onSubmit = (values: any) => { 
+    console.log("value", values);
+  }
+
   return (
-    <HookForm className="justify-center w-full mx-auto" formState={formState}>
+    <form className="justify-center w-full mx-auto" onSubmit={handleSubmit(onSubmit)}>
       <div className="">
         <div className="space-x-0 lg:flex lg:space-x-4">
           <div className="w-full lg:w-1/2">
@@ -36,7 +40,7 @@ export const FormShippingAddress = () => {
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </div>
-          <div className="w-full lg:w-1/2 ">
+          <div className="w-full lg:w-1/2 max-md:mt-4">
             <label
               htmlFor="firstName"
               className="block mb-3 text-sm font-semibold text-gray-600"
@@ -47,7 +51,7 @@ export const FormShippingAddress = () => {
               formState={formState}
               control={control}
               register={register}
-              name="Last Name"
+              name="lastName"
               placeholder="Last Name"
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
@@ -65,7 +69,7 @@ export const FormShippingAddress = () => {
               formState={formState}
               control={control}
               register={register}
-              name="Last Name"
+              name="email"
               placeholder="Email"
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
@@ -81,7 +85,7 @@ export const FormShippingAddress = () => {
             </label>
             <textarea
               className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-              name="Address"
+              name="address"
               cols={20}
               rows={4}
               placeholder="Address"
@@ -106,7 +110,7 @@ export const FormShippingAddress = () => {
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </div>
-          <div className="w-full lg:w-1/2 ">
+          <div className="w-full lg:w-1/2 max-md:mt-4">
             <label
               htmlFor="postcode"
               className="block mb-3 text-sm font-semibold text-gray-600"
@@ -159,11 +163,11 @@ export const FormShippingAddress = () => {
           />
         </div>
         <div className="mt-4">
-          <button className="w-full px-6 py-2 text-white bg-background hover:bg-color rounded-[4px] transition-colors">
+          <ActionButton className="w-full px-6 py-2 text-white bg-background hover:bg-color rounded-[4px] transition-colors" onClick={handleSubmit(onSubmit)}>
             Confirm Order
-          </button>
+          </ActionButton>
         </div>
       </div>
-    </HookForm>
+    </form>
   );
 };

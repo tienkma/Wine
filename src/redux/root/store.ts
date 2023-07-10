@@ -12,6 +12,7 @@ import { rootSagas } from "./saga";
 import wineReduce from "../silces/wineSlide";
 import notificationReduce from "../silces/notificationSlide";
 import cartReduce from "../silces/cartSlide";
+import orderReduce from "../silces/orderSlide";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -23,6 +24,7 @@ const createRootReducer = () =>
     wine: wineReduce,
     notification: notificationReduce,
     cart: cartReduce,
+    order: orderReduce
   });
 
 const tes = () => {

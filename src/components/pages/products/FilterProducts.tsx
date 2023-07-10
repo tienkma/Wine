@@ -13,6 +13,7 @@ import {
   changeFilter,
   clearFilter,
   selectproductFilter,
+  setPage,
 } from "../../../redux/silces/productSlide";
 import { useForm } from "react-hook-form";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
@@ -36,16 +37,13 @@ const FilterProducts = () => {
   const dispatch = useAppDispatch();
   const { formState, register, handleSubmit, setValue } = useForm();
 
-  const { search, rating, price, maxPrice, winery } = filterProduct || {};
-  const [priceRange, setPriceRange] = useState(price || maxPrice);
-
-  useEffect(() => {
-    setValue("search", search);
-  }, [search]);
+  const { wine, rating, price, winery } = filterProduct || {};
+  const [priceRange, setPriceRange] = useState(price || 1000);
 
   useEffect(() => {
     setPriceRange(price);
   }, [price]);
+
   return (
     <section
       id="filterProduct"
@@ -53,18 +51,7 @@ const FilterProducts = () => {
       className="flex-shrink-0 "
     >
       <div>
-        <form
-          onSubmit={handleSubmit((value) => {
-            dispatch(changeFilter({ filter: value.search, key: "search" }));
-          })}
-        >
-          <input
-            type="text"
-            placeholder="search"
-            className="search w-full p-1 text-background border border-solid border-background rounded placeholder:capitalize placeholder:text-background"
-            {...register("search")}
-          />
-        </form>
+        <FormSearch wine={wine} />
         <div className="winery">
           <h3 className="text-background capitalize text-2xl mt-5 mb-2">
             winery
@@ -73,7 +60,15 @@ const FilterProducts = () => {
             {listWinery.map((wineryItem, idx) => {
               return (
                 <button
-                  className="bg-transparent outline-none border-0 !ring-0 text-[#0f1928]/70 block mr-auto capitalize mt-1.5 font-semibold text-base activeWinery"
+                  className={`bg-transparent outline-none border-0 !ring-0 text-[#0f1928]/70 block mr-auto capitalize mt-1.5 font-semibold text-base ${
+                    winery === wineryItem ? "underline text-background" : ""
+                  }`}
+                  onClick={() => {
+                    dispatch(setPage(1));
+                    dispatch(
+                      changeFilter({ filter: wineryItem, key: "winery" })
+                    );
+                  }}
                   value={wineryItem}
                   key={wineryItem}
                 >
@@ -94,9 +89,16 @@ const FilterProducts = () => {
                 aria-labelledby="demo-form-control-label-placement"
                 name="position"
                 defaultValue="all"
+                value={rating}
+                onChange={(e, value) => {
+                  dispatch(setPage(1));
+                  dispatch(
+                    changeFilter({ filter: value, key: "rating" })
+                  );
+                }}
               >
                 <FormControlLabel
-                  value="top"
+                  value="5"
                   sx={{ width: "100%" }}
                   control={
                     <Radio
@@ -121,7 +123,7 @@ const FilterProducts = () => {
                   }
                 />
                 <FormControlLabel
-                  value="top"
+                  value="4"
                   sx={{ width: "100%" }}
                   control={
                     <Radio
@@ -146,7 +148,7 @@ const FilterProducts = () => {
                   }
                 />
                 <FormControlLabel
-                  value="top 3"
+                  value="3"
                   sx={{ width: "100%" }}
                   control={
                     <Radio
@@ -194,17 +196,18 @@ const FilterProducts = () => {
           <h3 className="text-background capitalize text-2xl mt-5 mb-2">
             Price
           </h3>
-          <p className="text-lg font-bold text-background/70">$ {price}</p>
+          <p className="text-lg font-bold text-background/70">$ {priceRange}</p>
           <Slider
-            defaultValue={maxPrice}
+            defaultValue={1000}
             aria-label="Default"
-            max={maxPrice}
+            max={1000}
             value={priceRange}
             min={0}
             onChange={(e, value) => {
               setPriceRange(value);
             }}
             onChangeCommitted={(e, value) => {
+              dispatch(setPage(1));
               dispatch(changeFilter({ filter: value, key: "price" }));
             }}
             sx={{ color: "#0d1928", height: "8px" }}
@@ -212,16 +215,56 @@ const FilterProducts = () => {
         </div>
 
         <button
-          className="inline-flex items-center py-2 px-6 text-sm font-medium text-center text-white bg-background rounded-lg focus:ring-4  hover:bg-color"
+          className="inline-flex items-center py-2 px-6 text-sm font-medium text-center text-white bg-background rounded-md focus:ring-4  hover:bg-color"
           onClick={() => {
             dispatch(clearFilter());
-            setValue("search", "");
+            dispatch(setPage(1));
+            setValue("wine", "");
           }}
         >
           Clear All
         </button>
       </div>
     </section>
+  );
+};
+
+interface FormSearchProps {
+  wine: string;
+}
+
+const FormSearch = (props: FormSearchProps) => {
+  const { wine } = props;
+
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState("")
+
+  useEffect(() => {
+    if(!value){
+      onSubmit()
+    }
+  }, [value])
+  
+  const onSubmit = (e?: any) => {
+    e && e.preventDefault();
+    dispatch(setPage(1));
+    dispatch(changeFilter({ filter: value, key: "wine" }));
+  }
+
+  return (
+    <>
+      <form
+        onSubmit={onSubmit}
+      >
+        <input
+          type="text"
+          placeholder="search"
+          className="search w-full p-1 text-background border border-solid border-background rounded placeholder:capitalize placeholder:text-background"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </form>
+    </>
   );
 };
 

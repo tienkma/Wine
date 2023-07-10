@@ -7,5 +7,5 @@ export interface CartEntity {
   _id: string | number;
   available: string | number;
   quantity: number;
-  Subtotal: number;
+  subtotal: number;
 }

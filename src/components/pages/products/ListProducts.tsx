@@ -7,7 +7,7 @@ import Loading from "../../common/Loading";
 import { Pagination } from "@mui/material";
 import ProductItem from "./CartItem";
 import { useAppDispatch, useAppSelector } from "../../../redux/root/hooks";
-import { selectProductPage, setPage } from "../../../redux/silces/productSlide";
+import { selectProductPage, setPage, selectProductTotalPage } from "../../../redux/silces/productSlide";
 
 interface ListProductsProps {
   data: any[] | null;
@@ -18,26 +18,11 @@ const ListProducts = (props: ListProductsProps) => {
   const { data, loading } = props;
   const dispatch = useAppDispatch();
 
-  // const {
-  //   state: { defaultList, filterProduct },
-  // } = useFilterContext();
   let newFilterList = arrayFormList(data || []);
   const page = useAppSelector(selectProductPage);
+  const totalPage = useAppSelector(selectProductTotalPage);
 
   const [index, setIndex] = useState(0);
-
-  const changeIndexPage = (type: string) => {
-    if (type === "prev") {
-      setIndex((index) => {
-        return index - 1;
-      });
-    }
-    if (type === "next") {
-      setIndex((index) => {
-        return index + 1;
-      });
-    }
-  };
 
   return (
     <section id="product_content " className="flex flex-1 flex-col">
@@ -62,7 +47,7 @@ const ListProducts = (props: ListProductsProps) => {
           )}
           <div className="flex mb-3 mt-5 justify-end">
             <Pagination
-              count={10}
+              count={totalPage}
               page={page}
               onChange={(e, page) => dispatch(setPage(page))}
               shape="rounded"

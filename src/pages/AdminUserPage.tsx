@@ -18,7 +18,6 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { getDataAPI } from "../utils/api";
-import { ProductEntity } from "../types/products";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
 import { UserEntity } from "../types/users";
 import PersonIcon from "@mui/icons-material/Person";

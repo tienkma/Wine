@@ -65,7 +65,7 @@ const InputComponent = (props: InputPropsComponent) => {
   return (
     <div className={label ? "mb-2.5" : ""}>
       {label && (
-        <label htmlFor={props.id} className="text-sm mb-2">
+        <label htmlFor={props.id} className="text-sm mb-2 border-red-500">
           {label}
         </label>
       )}
@@ -82,7 +82,7 @@ const InputComponent = (props: InputPropsComponent) => {
         <input
           {...{
             className: `${classNameInput} ${className} ${
-              errors && errors[name] ? "invalid:!bg-[#c00000]" : ""
+              errors && errors[name] ? "border-red-500" : ""
             }`,
           }}
           {...(restProps || {})}

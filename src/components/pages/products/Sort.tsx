@@ -1,17 +1,17 @@
 import React from "react";
+import { useAppSelector } from "../../../redux/root/hooks";
+import { selectproductList } from "../../../redux/silces/productSlide";
 
 const Sort = () => {
-  // const {
-  //   state: { filterProduct, sort },
-  //   changeSort,
-  // } = useFilterContext();
+  const listProduct = useAppSelector(selectproductList);
+
   return (
     <section
       id="sortContent "
       className="flex justify-between relative items-center"
     >
-      <p className="text-background capitalize">{[].length} Products Found</p>
-      <hr className="flex-1 border-x-none border-b-none border border-solid border-background" />
+      <p className="text-background capitalize">{listProduct?.length || 0} Products Found</p>
+      <hr className="flex-1 border-x-none border-b-none border border-solid border-background mx-2" />
       <form>
         <label htmlFor="sort" className="text-base text-black capitalize">
           Sort By

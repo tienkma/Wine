@@ -8,7 +8,9 @@ export interface productState {
   isError: boolean;
   filter: Record<string, any>;
   sort: string;
+  sortBy: "price" | 'name'
   page: number;
+  totalPage: number
 }
 
 const initialState: productState = {
@@ -16,14 +18,15 @@ const initialState: productState = {
   products: null,
   isError: false,
   sort: "",
+  sortBy: 'price',
   filter: {
-    search: "",
-    maxPrice: 1000,
+    wine: "",
     winery: "all",
     rating: "all",
     price: 1000,
   },
   page: 1,
+  totalPage: 1
 };
 
 export const productSlice = createSlice({
@@ -35,7 +38,8 @@ export const productSlice = createSlice({
     },
     getListSuccess: (state, action) => {
       state.isLoading = false;
-      state.products = action.payload;
+      state.products = action.payload.pageItems;
+      state.totalPage = action.payload.pageInfo?.totalPage || 1;
       state.isError = false;
     },
     getListFalse: (state) => {
@@ -49,7 +53,8 @@ export const productSlice = createSlice({
       state.filter[action.payload.key] = action.payload.filter;
     },
     changeSort: (state, action) => {
-      state.sort = action.payload;
+      state.sort = action.payload.sort;
+      state.sortBy = action.payload.sortBy;
     },
     clearFilter: (state) => {
       state.filter = initialState.filter;
@@ -74,5 +79,6 @@ export const selectproductLoading = (state: RootState) =>
 export const selectproductError = (state: RootState) => state.product.isError;
 export const selectproductFilter = (state: RootState) => state.product.filter;
 export const selectProductPage = (state: RootState) => state.product.page;
+export const selectProductTotalPage = (state: RootState) => state.product.totalPage;
 
 export default productSlice.reducer;

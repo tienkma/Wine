@@ -4,10 +4,11 @@ import homeSage from "../sagas/homeSaga";
 import productSaga from "../sagas/productSaga";
 import wineSaga from "../sagas/wineSaga";
 import notificationSaga from "../sagas/notificationSaga";
+import orderSaga from "../sagas/orderSaga";
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 export function* rootSagas() {
-  yield all([...homeSage, productSaga(), wineSaga(), notificationSaga()]);
+  yield all([...homeSage, productSaga(), wineSaga(), notificationSaga(), orderSaga()]);
 }
 
 /*
