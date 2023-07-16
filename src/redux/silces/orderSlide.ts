@@ -9,9 +9,9 @@ export interface orderState {
 }
 
 const initialState: orderState = {
-    isLoading: false,
-    orders: null,
-    isError: false
+  isLoading: false,
+  orders: null,
+  isError: false,
 };
 
 export const orderSlice = createSlice({
@@ -23,7 +23,7 @@ export const orderSlice = createSlice({
     },
     getOrdersSuccess: (state, action) => {
       state.isLoading = false;
-      state.orders = action.payload;
+      state.orders = action.payload.pageItems;
       state.isError = false;
     },
     getOrdersFalse: (state) => {
@@ -33,16 +33,12 @@ export const orderSlice = createSlice({
   },
 });
 
-export const {
-  getListOrder,
-  getOrdersSuccess,
-  getOrdersFalse,
-} = orderSlice.actions;
+export const { getListOrder, getOrdersSuccess, getOrdersFalse } =
+  orderSlice.actions;
 
 // Selectors
 export const selectOrderList = (state: RootState) => state.order.orders;
-export const selectOrderLoading = (state: RootState) =>
-  state.order.isLoading;
+export const selectOrderLoading = (state: RootState) => state.order.isLoading;
 export const selectOrderError = (state: RootState) => state.order.isError;
 
 export default orderSlice.reducer;

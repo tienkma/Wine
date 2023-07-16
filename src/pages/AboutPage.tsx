@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageHero from "../components/common/PageHero";
 import { aboutList } from "../utils/about";
 import { Footer } from "../components";
 
 const AboutPage = () => {
   const [list, setList] = useState(aboutList);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div id="about">

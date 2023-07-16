@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import "./scss/tailwindBase.scss";
 import Button from "@mui/material/Button";
@@ -10,9 +10,17 @@ import { routerAdmin, routers, routersNoLayout } from "./routers";
 import { Grid } from "@mui/material";
 import { SideBarAdmin } from "./components/pages/admin/SideBarAdmin";
 import ScrollToTop from "./utils/model/scrollTop";
+import { Storage } from "./utils/local";
+import { useAppDispatch } from "./redux/root/hooks";
+import { setLogin } from "./redux/silces/authSlice";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (Storage.getLocal("token") && Storage.getLocal("user")) {
+      dispatch(setLogin(true));
+    }
+  }, []);
 
   return (
     <>

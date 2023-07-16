@@ -9,11 +9,12 @@ import { HookForm } from "../components/form/HookForm";
 import { InputField } from "../components/form/HookFormInput";
 import { RouterName } from "../routers/RouterName";
 import authApi from "../api/authApi";
+import ActionButton from "../utils/ActionButton";
 
 export const listValidatePassword = [
   {
     value: "lowercase",
-    label: "one_lowercase_character",
+    label: "One lowercase character",
     checkValidate: (value: string) => {
       return some([...value], function (char) {
         return /[a-z]/.test(char);
@@ -22,7 +23,7 @@ export const listValidatePassword = [
   },
   {
     value: "uppercase",
-    label: "one_uppercase_character",
+    label: "One uppercase character",
     checkValidate: (value: string) => {
       return some([...value], function (char) {
         return /[A-Z]/.test(char);
@@ -31,14 +32,14 @@ export const listValidatePassword = [
   },
   {
     value: "oneNumber",
-    label: "one_number",
+    label: "One number",
     checkValidate: (value: string) => {
       return /\d/.test(value);
     },
   },
   {
     value: "minLength",
-    label: "length_characters_minimum",
+    label: "8 characters minimum",
     checkValidate: (value: string) => {
       const isMinLength = value.length > 7 ? true : false;
       return isMinLength;
@@ -77,14 +78,23 @@ const Register = (props: any) => {
     useForm({
       resolver: yupResolver(
         Yup.object({
-          name: Yup.string().required("username_required"),
-          email: Yup.string().email().required("email_required").nullable(),
+          name: Yup.string().required("Please enter the value name"),
+          email: Yup.string()
+            .email()
+            .required("Please enter the value email")
+            .nullable(),
           password: Yup.string()
-            .min(8)
-            .matches(/[a-z]/, "required_lowercase")
-            .matches(/[A-Z]/, "required_uppercase")
-            .matches(/[0-9]/, "required_number")
-            .required("password_required"),
+            .min(8, "Password must be at least 8 characters")
+            .matches(
+              /[a-z]/,
+              "The string must have at least one lowercase letter"
+            )
+            .matches(
+              /[A-Z]/,
+              "The string must have at least one uppercase letter"
+            )
+            .matches(/[0-9]/, "The string must have at least one number")
+            .required("Please enter the value password"),
         })
       ),
     });
@@ -127,7 +137,7 @@ const Register = (props: any) => {
                 </div>
 
                 <p className="text-center text-sm font-normal mt-2">
-                  {"register_success"}
+                  {"Sign Up Success"}
                 </p>
               </>
             ) : (
@@ -167,7 +177,7 @@ const Register = (props: any) => {
                     id="email"
                     control={control}
                     formState={formState}
-                    placeholder="mike@gmail.com"
+                    placeholder="tien@gmail.com"
                     autoComplete="on"
                   />
                 </div>
@@ -212,13 +222,12 @@ const Register = (props: any) => {
                   })}
                 </div>
                 <div className="mt-12">
-                  <button
-                    className="bg-background text-gray-100 p-4 w-full rounded-full tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-color transition-colors
-                                shadow-lg"
+                  <ActionButton
+                    onClick={handleSubmit(onSubmit)}
+                    className="bg-background text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-color transition-colors shadow-lg"
                   >
                     Create my account
-                  </button>
+                  </ActionButton>
                 </div>
               </HookForm>
             )}

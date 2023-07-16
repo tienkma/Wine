@@ -7,7 +7,7 @@ import { removeItem } from "../../../redux/silces/cartSlide";
 import { CartEntity } from "../../../models";
 
 const CartItem = (props: CartEntity) => {
-  const { wine, _id, image, price, available, quantity } = props;
+  const { wine, _id, image, price, available, quantity, subtotal } = props;
 
   const dispatch = useAppDispatch();
 
@@ -32,7 +32,7 @@ const CartItem = (props: CartEntity) => {
       </h5>
       <ChangeQuantity count={quantity} id={_id as string} />
       <h5 className="subtotal hidden md:block mb-0 text-background font-normal text-base">
-        ${+price * quantity || ""}
+        ${subtotal}
       </h5>
       <button
         className="remove-btn text-white bg-red-700  w-6 h-6 center rounded text-sm cursor-pointer mr-6"

@@ -10,20 +10,18 @@ import {
 import { RequestPayload } from "../../models";
 import orderApi from "../../api/orderApi";
 import {
-    getListOrder,
- getOrdersFalse,
- getOrdersSuccess
+  getListOrder,
+  getOrdersFalse,
+  getOrdersSuccess,
 } from "../silces/orderSlide";
 
-function* fetchOrderList(
-  state: PayloadAction<RequestPayload>
-): Generator<any> {
+function* fetchOrderList(state: PayloadAction<RequestPayload>): Generator<any> {
   try {
     const response: any = yield call(() =>
       orderApi.getListOrder(state.payload)
     );
-    if (response.pageItems) {
-      yield put(getOrdersSuccess(response.pageItems));
+    if (response) {
+      yield put(getOrdersSuccess(response));
     } else {
       yield put(getOrdersFalse());
     }

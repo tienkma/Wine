@@ -28,15 +28,18 @@ export interface InputPropsComponent
   defaultValue?: any;
   rules?: any;
   register: UseFormRegister<FieldValues>;
-  customInput?: ({
-    field,
-    fieldState,
-    formState,
-  }: {
-    field: ControllerRenderProps<any, string>;
-    fieldState: ControllerFieldState;
-    formState: UseFormStateReturn<any>;
-  }) => any;
+  customInput?: (
+    {
+      field,
+      fieldState,
+      formState,
+    }: {
+      field: ControllerRenderProps<any, string>;
+      fieldState: ControllerFieldState;
+      formState: UseFormStateReturn<any>;
+    },
+    invalid: boolean
+  ) => any;
   formState: FormState<FieldValues>;
   control: Control<any, any>;
 }
@@ -76,7 +79,9 @@ const InputComponent = (props: InputPropsComponent) => {
           control={control}
           defaultValue={defaultValue || ""}
           rules={rules}
-          render={(propsRender) => customInput(propsRender)}
+          render={(propsRender) =>
+            customInput(propsRender, !!(errors && errors[name]))
+          }
         />
       ) : (
         <input

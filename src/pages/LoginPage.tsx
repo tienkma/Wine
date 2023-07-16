@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { AiFillHome } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Toasts } from "../utils/notification";
 import { isEmpty } from "lodash";
 import { Button } from "@mui/material";
@@ -11,7 +11,9 @@ import { InputField } from "../components/form/HookFormInput";
 import { RouterName } from "../routers/RouterName";
 import authApi from "../api/authApi";
 import { HookForm } from "../components/form/HookForm";
-import { Storage } from "../utils/local";
+import { useAppDispatch } from "../redux/root/hooks";
+import { loginSuccess } from "../redux/silces/authSlice";
+import ActionButton from "../utils/ActionButton";
 
 const LoginPage = () => {
   const [displayLogin, setDisplayLogin] = useState(true);
@@ -42,25 +44,34 @@ const SignIn = ({ setDisplayLogin }: any) => {
   // const { setUsers } = UseUserContext();
   // const { getListCart } = useCartContext();
   let navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(
       Yup.object({
         email: Yup.string()
           .email("Email must be a valid email")
-          .required("Please enter the value Email"),
-        password: Yup.string().required().min(8, "Your password is too short."),
+          .required("Please enter the value email"),
+        password: Yup.string()
+          .required("Please enter the value password")
+          .min(8, "Your password is too short."),
       })
     ),
   });
 
   // TODO user
+  const { state } = useLocation();
+  const dispatch = useAppDispatch();
   const onSubmit = async (values: any) => {
     try {
       const result = await authApi.login(values);
       if (result.user?.id || result.token) {
-        Storage.setLocal("user", result.user);
-        navigate(RouterName.HOME);
+        dispatch(loginSuccess({ user: result.user, token: result.token }));
+        navigate(state || RouterName.HOME);
+        Toasts.success("You are successfully logged in");
+      }
+      if (result?.error) {
+        setError(result.error?.msg || "");
       }
     } catch (error) {
       console.log(`authen ${error}`);
@@ -79,7 +90,11 @@ const SignIn = ({ setDisplayLogin }: any) => {
               Log in
             </h2>
             <div className="mt-12">
-              <HookForm formState={formState} onSubmit={handleSubmit(onSubmit)}>
+              <HookForm
+                formState={formState}
+                error={error}
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <div>
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Email Address
@@ -90,7 +105,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
                     control={control}
                     register={register}
                     name="email"
-                    placeholder="mike@gmail.com"
+                    placeholder="tien@gmail.com"
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-600 !ring-0 max-lg:text-base  pl-0 rounded-none !border-t-0 !border-x-0"
                   />
                 </div>
@@ -100,10 +115,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
                       Password
                     </div>
                     <div>
-                      <a
-                        className="text-xs font-display font-semibold text-blue-600 hover:text-blue-800
-                                        cursor-pointer"
-                      >
+                      <a className="text-xs font-display font-semibold text-blue-600 hover:text-blue-800 cursor-pointer">
                         Forgot Password?
                       </a>
                     </div>
@@ -119,13 +131,12 @@ const SignIn = ({ setDisplayLogin }: any) => {
                   />
                 </div>
                 <div className="mt-10">
-                  <button
-                    className="bg-background text-gray-100 p-4 w-full rounded-full tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-color transition-colors
-                                shadow-lg"
+                  <ActionButton
+                    onClick={handleSubmit(onSubmit)}
+                    className="bg-background text-gray-100 p-4 w-full rounded-full tracking-wide  font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-color transition-colors shadow-lg"
                   >
                     Log In
-                  </button>
+                  </ActionButton>
                 </div>
               </HookForm>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
@@ -140,7 +151,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
             </div>
           </div>
         </div>
-        <div className="hidden lg:flex items-center justify-center bg-background flex-1 h-screen">
+        <div className="hidden lg:flex items-center justify-center bg-background flex-1 min-h-screen h-full">
           <div className="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
             <svg
               className="w-5/6 mx-auto"

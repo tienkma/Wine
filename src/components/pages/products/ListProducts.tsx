@@ -7,15 +7,18 @@ import Loading from "../../common/Loading";
 import { Pagination } from "@mui/material";
 import ProductItem from "./CartItem";
 import { useAppDispatch, useAppSelector } from "../../../redux/root/hooks";
-import { selectProductPage, setPage, selectProductTotalPage } from "../../../redux/silces/productSlide";
+import {
+  selectProductPage,
+  setPage,
+  selectProductTotalPage,
+} from "../../../redux/silces/productSlide";
 
 interface ListProductsProps {
   data: any[] | null;
-  loading: boolean;
 }
 
 const ListProducts = (props: ListProductsProps) => {
-  const { data, loading } = props;
+  const { data } = props;
   const dispatch = useAppDispatch();
 
   let newFilterList = arrayFormList(data || []);
@@ -49,7 +52,10 @@ const ListProducts = (props: ListProductsProps) => {
             <Pagination
               count={totalPage}
               page={page}
-              onChange={(e, page) => dispatch(setPage(page))}
+              onChange={(e, page) => {
+                dispatch(setPage(page));
+                window.scrollTo(0, 0);
+              }}
               shape="rounded"
             />
           </div>

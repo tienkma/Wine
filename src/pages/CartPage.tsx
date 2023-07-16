@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoIosPricetags } from "react-icons/io";
 import { Toasts } from "../utils/notification";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -11,15 +11,23 @@ import { Storage } from "../utils/local";
 import { RouterName } from "../routers/RouterName";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import LoadingPage from "../components/common/LoadingPage";
+import { selectIsLogin } from "../redux/silces/authSlice";
 
 const CartPage = () => {
   const [valueInput, setValueInput] = useState("");
   const [coupon, setCoupon] = useState("");
   const listCart = useAppSelector(selectcartList) || [];
+  const isLogin = useAppSelector(selectIsLogin);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     Storage.setLocal("carts", JSON.stringify(listCart));
   }, [listCart]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main id="cartPage" className="relative ">
@@ -81,12 +89,20 @@ const CartPage = () => {
                       </svg>
                       Continue Shopping
                     </Link>
-                    <Link
-                      to={RouterName.CHECKOUT}
+                    <button
+                      onClick={() => {
+                        if (isLogin) {
+                          navigate(RouterName.CHECKOUT);
+                        } else {
+                          navigate(RouterName.LOGIN, {
+                            state: RouterName.CART,
+                          });
+                        }
+                      }}
                       className="rounded-md border border-transparent bg-background px-10 py-2 text-base font-medium text-white shadow-sm hover:bg-color transition-colors"
                     >
                       Checkout
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

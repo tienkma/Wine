@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import PageHero from "../components/common/PageHero";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getItem } from "../utils/apiGetItem";
 import { Rating } from "@mui/material";
 import {
@@ -41,7 +41,12 @@ const WineItemPage = () => {
   useEffect(() => {
     dispatch(getWine(id));
     dispatch(getRelatedProduct());
-    dispatch(getListComment({ id, params: { limit: 10, page: 1 } }));
+    dispatch(
+      getListComment({
+        filter: { productId: id },
+        params: { limit: 20, page: 1 },
+      })
+    );
   }, [id]);
 
   const {
@@ -76,6 +81,10 @@ const WineItemPage = () => {
       return newCount;
     });
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main id="itemPage" className="minHeight">
@@ -190,9 +199,21 @@ const WineItemPage = () => {
                     add to cart
                   </button>
 
-                  <button className="mt-5 ml-4 flex px-12 py-3 capitalize  text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium">
+                  <Link
+                    to={RouterName.CHECKOUT}
+                    state={{
+                      productCheckout: [
+                        {
+                          ...wineData,
+                          quantity: count,
+                          subtotal: +price * count,
+                        },
+                      ],
+                    }}
+                    className="mt-5 ml-4 flex px-12 py-3 capitalize  text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium"
+                  >
                     checkout
-                  </button>
+                  </Link>
                 </div>
               </div>
             </section>

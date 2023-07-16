@@ -4,14 +4,17 @@ import PageHero from "../components/common/PageHero";
 import { FormShippingAddress } from "../components/pages/checkout/FormShippingAddress";
 import { CartEntity } from "../models";
 import { Storage } from "../utils/local";
+import { useLocation } from "react-router-dom";
 
 export const CheckoutPage = () => {
-  const listCart: CartEntity[] = Storage.getLocal("carts") || [];
-  const [checkoutCart, setCheckourCart] = useState(listCart)
+  const { state } = useLocation();
+  const listCart: CartEntity[] =
+    state?.productCheckout || Storage.getLocal("carts") || [];
+  const [checkoutCart, setCheckourCart] = useState(listCart);
 
   useEffect(() => {
-    setCheckourCart(checkoutCart)
-  }, [checkoutCart])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main className="minHeight">
@@ -23,7 +26,7 @@ export const CheckoutPage = () => {
               <h2 className="mb-4 font-bold md:text-xl text-heading ">
                 Shipping Address
               </h2>
-              <FormShippingAddress />
+              <FormShippingAddress checkoutCart={checkoutCart} />
             </div>
             <div className="flex flex-col w-full ml-0 lg:w-2/5">
               <div className="pt-12 md:pt-0 2xl:ps-4">
@@ -47,34 +50,41 @@ export const CheckoutPage = () => {
                             <div>
                               <h2 className="text-lg font-bold">{cart.wine}</h2>
                               <p className="text-sm">{cart.winery}</p>
-                              <p className="font-medium">
-                                <span className="text-red-600 font-normal">
-                                  Price
-                                </span>{" "}
-                                ${cart.subtotal}
+                              <span className="text-sm">x{cart.quantity}</span>
+                              <p className="font-medium ">
+                                <div>
+                                  <span className="text-red-600 font-normal">
+                                    Price
+                                  </span>{" "}
+                                  ${cart.subtotal}
+                                </div>
                               </p>
                             </div>
                           </div>
                           <div>
-                            <span onClick={() => {
-                              setCheckourCart((props) => props.filter((item) => item._id !== cart._id))
-                            }} className="cursor-pointer">
-
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-6 h-6"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
+                            <span
+                              onClick={() => {
+                                setCheckourCart((props) =>
+                                  props.filter((item) => item._id !== cart._id)
+                                );
+                              }}
+                              className="cursor-pointer"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
                               >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M6 18L18 6M6 6l12 12"
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M6 18L18 6M6 6l12 12"
                                 />
-                            </svg>
-                                </span>
+                              </svg>
+                            </span>
                           </div>
                         </div>
                       );

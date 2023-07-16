@@ -4,8 +4,9 @@ export interface CartEntity {
   wine: string;
   image: string;
   price: string | number;
-  _id: string | number;
+  _id: string;
   available: string | number;
   quantity: number;
   subtotal: number;
+  createAt: string | Date;
 }

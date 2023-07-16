@@ -35,7 +35,6 @@ const listWinery = [
 const FilterProducts = () => {
   const filterProduct = useAppSelector(selectproductFilter);
   const dispatch = useAppDispatch();
-  const { formState, register, handleSubmit, setValue } = useForm();
 
   const { wine, rating, price, winery } = filterProduct || {};
   const [priceRange, setPriceRange] = useState(price || 1000);
@@ -92,9 +91,7 @@ const FilterProducts = () => {
                 value={rating}
                 onChange={(e, value) => {
                   dispatch(setPage(1));
-                  dispatch(
-                    changeFilter({ filter: value, key: "rating" })
-                  );
+                  dispatch(changeFilter({ filter: value, key: "rating" }));
                 }}
               >
                 <FormControlLabel
@@ -219,7 +216,7 @@ const FilterProducts = () => {
           onClick={() => {
             dispatch(clearFilter());
             dispatch(setPage(1));
-            setValue("wine", "");
+            dispatch(changeFilter({ filter: "", key: "wine" }));
           }}
         >
           Clear All
@@ -237,25 +234,27 @@ const FormSearch = (props: FormSearchProps) => {
   const { wine } = props;
 
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("");
 
   useEffect(() => {
-    if(!value){
-      onSubmit()
+    if (!value) {
+      onSubmit();
     }
-  }, [value])
-  
+  }, [value]);
+
+  useEffect(() => {
+    setValue(wine);
+  }, [wine]);
+
   const onSubmit = (e?: any) => {
     e && e.preventDefault();
     dispatch(setPage(1));
     dispatch(changeFilter({ filter: value, key: "wine" }));
-  }
+  };
 
   return (
     <>
-      <form
-        onSubmit={onSubmit}
-      >
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="search"

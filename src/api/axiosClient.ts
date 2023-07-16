@@ -1,10 +1,12 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { Storage } from "../utils/local";
 
 // const baseURL = process.env.REACT_APP_API_URL;
 const axiosClient = axios.create({
   baseURL: "http://localhost:5000/api/v1",
   headers: {
     "Content-Type": "application/json",
+    Authorization: `Bearer ${Storage.getLocal("token")}`,
   },
 });
 

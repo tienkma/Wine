@@ -2,16 +2,30 @@ import { Link } from "react-router-dom";
 import { Loading } from "../components";
 import LoadingPage from "../components/common/LoadingPage";
 import PageHero from "../components/common/PageHero";
-import { useAppSelector } from "../redux/root/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/root/hooks";
 import {
+  getListOrder,
   selectOrderList,
   selectOrderLoading,
 } from "../redux/silces/orderSlide";
 import { RouterName } from "../routers/RouterName";
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 export const OrderPage = () => {
   const listOrder = useAppSelector(selectOrderList);
   const loadingOrder = useAppSelector(selectOrderLoading);
+  const [status, setStatus] = useState("");
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getListOrder({ status }));
+  }, [status]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main className="relative ">
@@ -26,7 +40,7 @@ export const OrderPage = () => {
                     {listOrder?.length ? (
                       listOrder?.map((order, idx) => {
                         return (
-                          <li className="ti ek gj pj zi">
+                          <li className="ti ek gj pj zi" key={order._id}>
                             <div className="jy">
                               <div className="re ij pj zy p1 q1 fk">
                                 <div className="ql ul rt u1">
@@ -38,13 +52,16 @@ export const OrderPage = () => {
                                     <div>
                                       <p className="kn un go">Date</p>
                                       <p className="kn vn fo od">
-                                        14 January, 2022
+                                        {format(
+                                          new Date(order.createAt),
+                                          "d LLLL, yyyy"
+                                        )}
                                       </p>
                                     </div>
                                     <div>
                                       <p className="kn un go">Total Amount</p>
                                       <p className="kn vn fo od">
-                                        ${order.totalPrice}
+                                        ${order.total}
                                       </p>
                                     </div>
                                     <div>
@@ -79,10 +96,13 @@ export const OrderPage = () => {
                                 <ul className="hi">
                                   {order.products?.map((product) => {
                                     return (
-                                      <li className="y sd wm nu">
+                                      <li
+                                        className="y sd wm nu"
+                                        key={product._id}
+                                      >
                                         <div className="xf">
                                           <img
-                                            className="hl yi if oe"
+                                            className="hl yi if oe object-contain"
                                             src={product.image}
                                             alt=""
                                           />
@@ -95,6 +115,9 @@ export const OrderPage = () => {
                                               </p>
                                               <p className="kc kn un go">
                                                 {product.winery}
+                                              </p>
+                                              <p className="text-sm">
+                                                x{product.quantity}
                                               </p>
                                             </div>
                                             <div className="oc qr">
@@ -133,54 +156,7 @@ export const OrderPage = () => {
                                       </li>
                                     );
                                   })}
-
-                                  <li className="y sd wm nu">
-                                    <div className="xf">
-                                      <img
-                                        className="hl yi if oe"
-                                        src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/order-details/3/product-2.png"
-                                        alt=""
-                                      />
-                                    </div>
-                                    <div className="sd kg vg vf jc">
-                                      <div className="gs qs bt">
-                                        <div>
-                                          <p className="mn vn fo">
-                                            Beylob 90 Speaker
-                                          </p>
-                                          <p className="kc kn un go">
-                                            Space Gray
-                                          </p>
-                                        </div>
-                                        <div className="oc qr">
-                                          <p className="mn vn gn fo pu">$49</p>
-                                        </div>
-                                      </div>
-                                      <div className="x ob jb dr">
-                                        <div className="sd wh">
-                                          <a
-                                            href="#"
-                                            title=""
-                                            className="ll xb kn un go cp dp aj rp fq gq mq iq"
-                                          >
-                                            {" "}
-                                            View Product{" "}
-                                          </a>
-                                          <span className="lo"> | </span>
-                                          <a
-                                            href="#"
-                                            title=""
-                                            className="ll xb kn un go cp dp aj rp fq gq mq iq"
-                                          >
-                                            {" "}
-                                            Similar Product{" "}
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </li>
                                 </ul>
-                                <hr className="nc pj" />
                                 {/* <div className="sd qg nc wh">
                               <button
                                 type="button"

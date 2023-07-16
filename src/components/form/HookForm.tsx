@@ -47,7 +47,7 @@ export const HookForm = (props: ProductTypeFormProps) => {
       setErrorsState(errorsList);
     }
     if (isSubmitted && errorsList?.length) {
-      Toasts.error("form_has_invalid_field");
+      Toasts.error("Invalid input message, please check the notification");
     }
   }, [isSubmitted, errors]);
 
@@ -66,14 +66,16 @@ export const HookForm = (props: ProductTypeFormProps) => {
       }
     >
       {errorMessage ? (
-        <div className="bg-red-500 relative rounded border p-4 mb-4">
-          {errorMessage}
+        <div className="bg-[#fde1e1] relative rounded border p-4 mb-4">
+          <p className="text-[#924040] text-sm">{errorMessage}</p>
         </div>
       ) : null}
       {!errorsState.length ? null : (
-        <div className="bg-red-500 relative rounded border p-4 mb-4">
+        <div className="bg-[#fde1e1] relative rounded border p-4 mb-4">
           {flattenDeep(errorsState).map((msg, index) => (
-            <li key={index}>{msg}</li>
+            <li key={index} className="text-[#924040] text-sm">
+              {msg}
+            </li>
           ))}
         </div>
       )}

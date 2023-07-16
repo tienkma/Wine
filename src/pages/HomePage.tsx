@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { Video, Featured, Shopify, Commit, Footer } from "../components";
-import { relatedProduct } from "./WineItemPage";
 
 export const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main>
       <Video />

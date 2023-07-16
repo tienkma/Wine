@@ -4,24 +4,53 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputField } from "../../form/HookFormInput";
 import ActionButton from "../../../utils/ActionButton";
+import orderApi from "../../../api/orderApi";
+import { CartEntity } from "../../../models";
+import { Toasts } from "../../../utils/notification";
+import { Navigate, useNavigate } from "react-router-dom";
+import { RouterName } from "../../../routers/RouterName";
+import { useAppDispatch } from "../../../redux/root/hooks";
+import { clearCart, removeItem } from "../../../redux/silces/cartSlide";
 
-export const FormShippingAddress = () => {
+interface FormShippingAddressProps {
+  checkoutCart: CartEntity[];
+}
+
+export const FormShippingAddress = (props: FormShippingAddressProps) => {
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(
       Yup.object({
-        email: Yup.string()
-          .email("Email must be a valid email")
-          .required("Please enter the value Email"),
+        firstName: Yup.string().required("Please enter the value first name"),
+        lastName: Yup.string().required("Please enter the value last name"),
+        address: Yup.string().required("Please enter the value address"),
+        city: Yup.string().required("Please enter the value city"),
+        postCode: Yup.string().required("Please enter the value post code"),
       })
     ),
   });
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (values: any) => { 
-    console.log("value", values);
-  }
+  const onSubmit = async (values: any) => {
+    if (props.checkoutCart?.length) {
+      const data: any = await orderApi.createOrder({
+        ...values,
+        products: props.checkoutCart,
+        total: 500,
+      });
+      if (data?._id) {
+        Toasts.success("Success");
+        dispatch(removeItem(props.checkoutCart.map((item) => item._id)));
+        navigate(RouterName.ORDERS);
+      }
+    }
+  };
 
   return (
-    <form className="justify-center w-full mx-auto" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="justify-center w-full mx-auto"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="">
         <div className="space-x-0 lg:flex lg:space-x-4">
           <div className="w-full lg:w-1/2">
@@ -60,36 +89,31 @@ export const FormShippingAddress = () => {
         <div className="mt-4">
           <div className="w-full">
             <label
-              htmlFor="Email"
-              className="block mb-3 text-sm font-semibold text-gray-600"
-            >
-              Email
-            </label>
-            <InputField
-              formState={formState}
-              control={control}
-              register={register}
-              name="email"
-              placeholder="Email"
-              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-            />
-          </div>
-        </div>
-        <div className="mt-4">
-          <div className="w-full">
-            <label
               htmlFor="Address"
               className="block mb-3 text-sm font-semibold text-gray-600"
             >
               Address
             </label>
-            <textarea
-              className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+            <InputField
+              formState={formState}
+              control={control}
+              register={register}
               name="address"
-              cols={20}
-              rows={4}
-              placeholder="Address"
-              defaultValue={""}
+              customInput={({ field: { onChange, onBlur, value, ref } }) => {
+                return (
+                  <textarea
+                    className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                    cols={20}
+                    rows={4}
+                    onChange={onChange} // send value to hook form
+                    onBlur={onBlur}
+                    name="address"
+                    placeholder="Address"
+                    defaultValue={""}
+                    value={value}
+                  />
+                );
+              }}
             />
           </div>
         </div>
@@ -121,7 +145,7 @@ export const FormShippingAddress = () => {
               formState={formState}
               control={control}
               register={register}
-              name="postcode"
+              name="postCode"
               placeholder="Post Code"
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
@@ -163,7 +187,10 @@ export const FormShippingAddress = () => {
           />
         </div>
         <div className="mt-4">
-          <ActionButton className="w-full px-6 py-2 text-white bg-background hover:bg-color rounded-[4px] transition-colors" onClick={handleSubmit(onSubmit)}>
+          <ActionButton
+            className="w-full px-6 py-2 text-white bg-background hover:bg-color rounded-[4px] transition-colors"
+            onClick={handleSubmit(onSubmit)}
+          >
             Confirm Order
           </ActionButton>
         </div>

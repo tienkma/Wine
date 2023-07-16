@@ -9,6 +9,11 @@ import * as Yup from "yup";
 import { useAppSelector } from "../../../redux/root/hooks";
 import { selectListCommentError } from "../../../redux/silces/wineSlide";
 import { CommentEntity } from "../../../models";
+import { HookForm } from "../../form/HookForm";
+import { InputField } from "../../form/HookFormInput";
+import ActionButton from "../../../utils/ActionButton";
+import productApi from "../../../api/productApi";
+import { useParams } from "react-router-dom";
 
 export const classNameInput =
   "block w-full p-2 text-gray-900 border-gray-300 bg-gray-20 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-0 !border rounded-lg";
@@ -16,10 +21,7 @@ export const classNameInput =
 interface CommentsProps {}
 
 export const Comments = (props: CommentsProps) => {
-  const [comments, setComments] = useState([]);
   const listComment = useAppSelector(selectListCommentError);
-
-  const user = Storage.getLocal("user");
 
   return (
     <>
@@ -27,38 +29,80 @@ export const Comments = (props: CommentsProps) => {
         <div className="mx-auto">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-              Discussion (20)
+              Discussion ({listComment?.length || 0})
             </h2>
           </div>
-          <form className="mb-6">
-            {/* <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-              <label htmlFor="comment" className="sr-only">
-                Your comment
-              </label> */}
-            <textarea
-              id="comment"
-              rows={6}
-              className="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 mb-4"
-              placeholder="Write a comment..."
-              required
-            ></textarea>
-            {/* </div> */}
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-background rounded-lg focus:ring-4  hover:bg-color"
-              >
-                Post comment
-              </button>
-            </div>
-          </form>
+          <FormCommentCreate />
 
-          {listComment?.map((comment) => {
-            return <Comment key={comment.id} comment={comment} />;
-          })}
+          {listComment?.length ? (
+            listComment.map((comment) => {
+              return <Comment key={comment.id} comment={comment} />;
+            })
+          ) : (
+            <p className="font-bold">
+              There are currently no comments. Be the first to comment.
+            </p>
+          )}
         </div>
       </section>
     </>
+  );
+};
+
+const FormCommentCreate = () => {
+  const { id } = useParams();
+
+  const { formState, control, register, handleSubmit } = useForm({
+    resolver: yupResolver(
+      Yup.object({
+        content: Yup.string().required("Please enter the value comment"),
+      })
+    ),
+  });
+
+  const onSubmit = async (values: any) => {
+    try {
+      const newComment = await productApi.createComment({
+        ...values,
+        productId: id,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+  return (
+    <form className="mb-6">
+      <InputField
+        formState={formState}
+        control={control}
+        register={register}
+        name="content"
+        customInput={({ field: { onChange, onBlur, value, ref } }, valid) => {
+          return (
+            <textarea
+              id="content"
+              rows={6}
+              className={`flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 mb-4 ${
+                valid ? "border-red-500" : ""
+              }`}
+              placeholder="Write a comment..."
+              onChange={onChange} // send value to hook form
+              onBlur={onBlur}
+              value={value}
+            ></textarea>
+          );
+        }}
+      />
+
+      <div className="flex justify-end">
+        <ActionButton
+          onClick={handleSubmit(onSubmit)}
+          className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-background rounded-[4px] focus:ring-4  hover:bg-color"
+        >
+          Post comment
+        </ActionButton>
+      </div>
+    </form>
   );
 };
 
@@ -88,7 +132,7 @@ const Comment = (props: CommentProps) => {
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             <time dateTime="2022-02-08" title="February 8th, 2022">
-              {format(comment.date, "MMM. h, yyyy")}
+              {format(new Date(comment.createdAt), "MMM. h, yyyy")}
             </time>
           </p>
         </div>

@@ -19,5 +19,5 @@ export interface CommentEntity {
   id: string | number;
   name: string;
   comment: string;
-  date: Date;
+  createdAt: Date;
 }

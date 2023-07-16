@@ -3,6 +3,7 @@ import { CartEntity } from "../../models";
 import { RootState } from "../root/store";
 import { Storage } from "../../utils/local";
 import { Toasts } from "../../utils/notification";
+import { isArray } from "lodash";
 
 export interface cartState {
   carts: CartEntity[] | [];
@@ -18,23 +19,25 @@ export const cartSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       try {
+        const newCart = action.payload;
         const cart = state.carts?.find(
           (item) => item._id === action.payload.id
         );
         if (!cart) {
           state.carts = state.carts.concat({
             ...action.payload,
-            Subtotal: action.payload.quantity * +action.payload.price,
+            subtotal: action.payload.quantity * +action.payload.price,
           });
           return;
         }
         state.carts =
           state.carts?.map((item) => {
             if (item._id === cart._id) {
-              const newQuantity = cart.quantity + item.quantity;
+              const newQuantity = newCart.quantity + item.quantity;
+
               return {
                 ...item,
-                Subtotal: action.payload.quantity * +action.payload.price,
+                subtotal: action.payload.quantity * +action.payload.price,
                 quantity:
                   newQuantity > +cart.available
                     ? item.quantity
@@ -53,8 +56,15 @@ export const cartSlice = createSlice({
       state.carts = [];
     },
     removeItem: (state, action) => {
-      state.carts =
-        state.carts?.filter((cart) => cart._id != action.payload) || [];
+      if (isArray(action.payload)) {
+        const listIdItemRemove: string[] = action.payload;
+        state.carts =
+          state.carts.filter((cart) => !listIdItemRemove.includes(cart._id)) ||
+          [];
+      } else {
+        state.carts =
+          state.carts.filter((cart) => cart._id != action.payload) || [];
+      }
     },
     changeQuantityCart: (state, action) => {
       const { id, count } = action.payload;
@@ -62,15 +72,13 @@ export const cartSlice = createSlice({
         state.carts?.map((cart) => {
           if (cart._id === id) {
             const quantity = cart.quantity;
+            const newQuantity =
+              count > +cart.available ? quantity : count < 1 ? quantity : count;
 
             return {
               ...cart,
-              quantity:
-                count > +cart.available
-                  ? quantity
-                  : count < 1
-                  ? quantity
-                  : count,
+              subtotal: newQuantity * +cart.price,
+              quantity: newQuantity,
             };
           }
           return cart;

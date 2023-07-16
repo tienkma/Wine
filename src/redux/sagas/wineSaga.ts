@@ -38,15 +38,13 @@ function* fetchWineComment(
   state: PayloadAction<RequestPayload & { id: string }>
 ): Generator<any> {
   try {
-    const { id, params } = state.payload;
+    const { filter, params } = state.payload;
     const reponseComment: any = yield call(() =>
-      productApi.getCommentByIdWine(id, { params })
+      productApi.getCommentByIdWine({ filter, params })
     );
 
-    if (reponseComment?.pageItems) {
-      yield put(
-        getListCommentSuccess({ ...reponseComment, id: reponseComment._id })
-      );
+    if (reponseComment) {
+      yield put(getListCommentSuccess(reponseComment));
     } else {
       console.log("error get comments");
     }

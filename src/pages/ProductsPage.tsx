@@ -12,7 +12,10 @@ import {
   selectproductFilter,
   getListProduct,
   selectProductPage,
+  selectproductSort,
+  selectproductSortBy,
 } from "../redux/silces/productSlide";
+import PageHero from "../components/common/PageHero";
 
 const ProductsPage = () => {
   const listProduct = useAppSelector(selectproductList);
@@ -20,25 +23,36 @@ const ProductsPage = () => {
   const isError = useAppSelector(selectproductError);
   const filterProduct = useAppSelector(selectproductFilter);
   const page = useAppSelector(selectProductPage);
+
+  const sort = useAppSelector(selectproductSort);
+  const sortBy = useAppSelector(selectproductSortBy);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(
-      getListProduct({ filter: filterProduct, params: { page, limit: 50 } })
+      getListProduct({
+        filter: { ...filterProduct, sortDirection: sort, sortBy },
+        params: { page, limit: 50 },
+      })
     );
-  }, [filterProduct, page]);
+  }, [filterProduct, page, sort, sortBy]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
       <main id="product_page">
-        <section className="container py-8  mx-auto flex gap-5">
+        <PageHero title="Product" />
+        <section className="container py-6  mx-auto flex gap-5">
           <FilterProducts />
           <Loading loading={isLoading} className="flex-1 mt-5">
-            <ListProducts data={listProduct} loading={isLoading} />
+            <ListProducts data={listProduct} />
           </Loading>
         </section>
       </main>
-      <LoadingPage loading={isLoading} className="hidden">
+      <LoadingPage loading={isLoading} className="hidden" footer={true}>
         <></>
       </LoadingPage>
     </>

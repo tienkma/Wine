@@ -50,7 +50,7 @@ export const wineSlice = createSlice({
     },
     getListCommentSuccess: (state, action) => {
       state.isLoadComments = false;
-      state.comments = action.payload;
+      state.comments = action.payload.pageItems;
     },
   },
 });
