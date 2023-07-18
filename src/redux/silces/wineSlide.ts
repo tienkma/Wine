@@ -69,7 +69,7 @@ export const {
 export const selectWineData = (state: RootState) => state.wine.wineData;
 export const selectWineLoading = (state: RootState) => state.wine.isLoading;
 export const selectWineError = (state: RootState) => state.wine.isError;
-export const selectListCommentError = (state: RootState) => state.wine.comments;
+export const selectListComment = (state: RootState) => state.wine.comments;
 export const selectLoadCommentError = (state: RootState) =>
   state.wine.isLoadComments;
 export const selectRelatedProduct = (state: RootState) =>

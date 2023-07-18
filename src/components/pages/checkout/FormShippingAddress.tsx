@@ -174,13 +174,16 @@ export const FormShippingAddress = (props: FormShippingAddressProps) => {
             control={control}
             name="note"
             register={register}
-            customInput={() => {
+            customInput={({ field: { onChange, onBlur, value, ref } }) => {
               return (
                 <textarea
+                  name="note"
                   className="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                   rows={4}
                   placeholder="Notes for delivery"
                   defaultValue={""}
+                  value={value}
+                  onChange={onChange}
                 />
               );
             }}

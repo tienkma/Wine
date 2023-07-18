@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useAppSelector } from "../../../redux/root/hooks";
-import { selectListCommentError } from "../../../redux/silces/wineSlide";
+import { selectListComment } from "../../../redux/silces/wineSlide";
 import { CommentEntity } from "../../../models";
 import { HookForm } from "../../form/HookForm";
 import { InputField } from "../../form/HookFormInput";
@@ -21,7 +21,7 @@ export const classNameInput =
 interface CommentsProps {}
 
 export const Comments = (props: CommentsProps) => {
-  const listComment = useAppSelector(selectListCommentError);
+  const listComment = useAppSelector(selectListComment);
 
   return (
     <>
@@ -36,7 +36,7 @@ export const Comments = (props: CommentsProps) => {
 
           {listComment?.length ? (
             listComment.map((comment) => {
-              return <Comment key={comment.id} comment={comment} />;
+              return <Comment key={comment._id} comment={comment} />;
             })
           ) : (
             <p className="font-bold">
@@ -82,9 +82,7 @@ const FormCommentCreate = () => {
             <textarea
               id="content"
               rows={6}
-              className={`flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 mb-4 ${
-                valid ? "border-red-500" : ""
-              }`}
+              className={`flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 mb-4 `}
               placeholder="Write a comment..."
               onChange={onChange} // send value to hook form
               onBlur={onBlur}
@@ -117,18 +115,18 @@ const Comment = (props: CommentProps) => {
 
   return (
     <article
-      className="py-6 text-base bg-white rounded-lg dark:bg-gray-900 group "
-      key={comment.id}
+      className="pt-4 text-base bg-white rounded-lg dark:bg-gray-900 group "
+      key={comment._id}
     >
       <footer className="flex justify-between items-center mb-2">
         <div className="flex items-center">
-          <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+          <p className="inline-flex items-center mr-3 text-[15px] font-normal  text-background dark:text-white">
             <img
-              className="mr-2 w-14 h-14 rounded-full"
+              className="mr-2 w-8 h-18 rounded-full"
               src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
               alt="Michael Gough"
             />
-            {comment.name}
+            {comment.user?.name}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             <time dateTime="2022-02-08" title="February 8th, 2022">
@@ -136,67 +134,17 @@ const Comment = (props: CommentProps) => {
             </time>
           </p>
         </div>
-        <button
-          id="dropdownComment1Button"
-          data-dropdown-toggle="dropdownComment1"
-          className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          type="button"
-        >
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-          </svg>
-          <span className="sr-only">Comment settings</span>
-        </button>
-        {/* <!-- Dropdown menu --> */}
-        <div
-          id="dropdownComment1"
-          className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-        >
-          <ul
-            className="py-1 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownMenuIconHorizontalButton"
-          >
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Edit
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Remove
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Report
-              </a>
-            </li>
-          </ul>
-        </div>
       </footer>
-      <p className="text-gray-500 dark:text-gray-400">{comment.comment}</p>
+      <p className="text-gray-500 dark:text-gray-400 pl-5 mb-2">
+        {comment.content || "fbdshfsd"}
+      </p>
       <div className="ml-6 border-l-2 border-solid">
-        <article className="pb-3 ml-4 py-6 pr-0 lg:ml-8 text-base bg-white  border-background dark:bg-gray-900">
+        <article className="pb-2.5 mb-2 ml-4 py-6 pr-0 lg:ml-8 text-base bg-white  border-background dark:bg-gray-900">
           <footer className="flex justify-between items-center mb-2">
             <div className="flex items-center">
-              <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+              <p className="inline-flex items-center mr-3 text-[15px] font-normal  text-background dark:text-white">
                 <img
-                  className="mr-2 w-14 h-14 rounded-full"
+                  className="mr-2 w-8 h-18 rounded-full"
                   src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                   alt="Jese Leos"
                 />
@@ -208,58 +156,6 @@ const Comment = (props: CommentProps) => {
                 </time>
               </p>
             </div>
-            <button
-              id="dropdownComment2Button"
-              data-dropdown-toggle="dropdownComment2"
-              className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              type="button"
-            >
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-              </svg>
-              <span className="sr-only">Comment settings</span>
-            </button>
-            {/* <!-- Dropdown menu --> */}
-            <div
-              id="dropdownComment2"
-              className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-            >
-              <ul
-                className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownMenuIconHorizontalButton"
-              >
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Edit
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Remove
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Report
-                  </a>
-                </li>
-              </ul>
-            </div>
           </footer>
           <p className="text-gray-500 dark:text-gray-400">
             Much appreciated! Glad you liked it ☺️
@@ -267,7 +163,7 @@ const Comment = (props: CommentProps) => {
         </article>
         {activeComment ? (
           <div className=" ml-4 pr-0 lg:ml-8 mt-5">
-            <FormComment />
+            <FormComment comment={comment} />
           </div>
         ) : (
           <div
@@ -280,6 +176,7 @@ const Comment = (props: CommentProps) => {
               className="w-full rounded-lg"
               placeholder="Enter your comment"
               onFocus={() => setActiveComment(true)}
+              value={valueComment}
               onChange={(e) => setValueComment(e.target.value)}
             />
             <button className="right-4 text-blue-500 !left-auto centerAb cursor-pointer">
@@ -292,124 +189,67 @@ const Comment = (props: CommentProps) => {
   );
 };
 
-interface FormCommentProps {}
+interface FormCommentProps {
+  comment: CommentEntity;
+}
 
 const FormComment = (props: FormCommentProps) => {
-  const { register, handleSubmit, formState, control } = useForm({
+  const { comment } = props;
+  const { register, handleSubmit, formState, control, setError } = useForm({
     resolver: yupResolver(
       Yup.object({
-        email: Yup.string()
-          .email("Email must be a valid email")
-          .required("Please enter the value Email"),
-        password: Yup.string().required().min(8, "Your password is too short."),
+        content: Yup.string()
+          .min(20, "Please enter a minimum of 20 characters")
+          .required("Please input the value"),
       })
     ),
   });
 
-  const onSubmit = (values: Record<string, string>) => {};
+  const { id } = useParams();
+
+  const onSubmit = async (values: any) => {
+    try {
+      const newComment = await productApi.createComment({
+        ...values,
+        productId: id,
+        currentId: comment._id,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex justify-between gap-5">
-        <input
-          {...register("name")}
-          type="text"
-          className={`text-sm bg-[#e5e5e5] ${classNameInput}`}
-          placeholder="Name"
-        />
-        <input
-          {...register("numberPhone")}
-          type="text"
-          className={`text-sm bg-[#e5e5e5] ${classNameInput}`}
-          placeholder="Number Phone"
-        />
-        <input
-          {...register("email")}
-          type="email"
-          className={`text-sm bg-[#e5e5e5] ${classNameInput}`}
-          placeholder="Email"
-        />
-      </div>
-      <div className="py-2 px-4 mb-4 bg-[#e5e5e5] mt-5 rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-        <label htmlFor="comment" className="sr-only">
-          Your comment
-        </label>
-        <textarea
-          id="comment"
-          rows={6}
-          className="px-0  w-full text-sm bg-[#e5e5e5] text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-          placeholder="Write a comment..."
-          required
-        ></textarea>
-      </div>
-      <div className="mt-4 flex justify-between items-center">
-        <i className="text-sm">
-          To post a comment, you need to enter at least the name and content
-          fields
-        </i>
-        <button className="right-4 text-white items-center text-sm !left-auto flex cursor-pointer bg-background hover:bg-color transition-colors px-10 py-2 rounded-3xl">
+      <InputField
+        formState={formState}
+        control={control}
+        register={register}
+        name="content"
+        customInput={({ field: { onChange, onBlur, value, ref } }, valid) => {
+          return (
+            <textarea
+              name="content"
+              id="content"
+              rows={6}
+              className={`flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600 mb-4`}
+              placeholder="Write a comment..."
+              onChange={onChange} // send value to hook form
+              onBlur={onBlur}
+              value={value}
+            ></textarea>
+          );
+        }}
+      />
+      <div className="mt-4 flex justify-end items-center">
+        <ActionButton
+          onClick={handleSubmit(onSubmit)}
+          className="right-4 text-white items-center text-sm !left-auto flex cursor-pointer bg-background hover:bg-color transition-colors px-10 py-2 rounded-3xl"
+        >
           <AiOutlineSend className="text-sm mr-1" size={16} />
           Post Comment
-        </button>
+        </ActionButton>
       </div>
     </form>
   );
 };
-
-const listComment = [
-  {
-    avatarImage:
-      "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
-    date: new Date(),
-    comment:
-      "Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects",
-    id: 1,
-    productId: "4",
-    parentCommentId: null,
-    name: "Name",
-  },
-  {
-    avatarImage:
-      "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
-    date: new Date(),
-    comment:
-      "Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects",
-    id: 2,
-    productId: "4",
-    parentCommentId: null,
-    name: "Name 2",
-  },
-  {
-    avatarImage:
-      "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
-    date: new Date(),
-    comment:
-      "Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects",
-    id: 3,
-    productId: "4",
-    parentCommentId: 1,
-    name: "Name 3",
-  },
-  {
-    avatarImage:
-      "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
-    date: new Date(),
-    comment:
-      "Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects",
-    id: 4,
-    productId: "4",
-    parentCommentId: 2,
-    name: "Name 4",
-  },
-  {
-    avatarImage:
-      "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
-    date: new Date(),
-    comment:
-      "Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects",
-    id: 5,
-    productId: "4",
-    parentCommentId: 2,
-    name: "Name 5",
-  },
-];
