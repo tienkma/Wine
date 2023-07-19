@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 // const baseURL = process.env.REACT_APP_API_URL;
 const axiosClient = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "https://twine-be.onrender.com" || "http://localhost:5000/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
