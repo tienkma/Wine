@@ -1,6 +1,12 @@
 import { omit } from "lodash";
-import { ListResponse, ProductEntity, RequestPayload } from "../models";
+import {
+  CommentEntity,
+  ListResponse,
+  ProductEntity,
+  RequestPayload,
+} from "../models";
 import axiosClient from "./axiosClient";
+import { Storage } from "../utils/local";
 
 const productApi = {
   getListProduct({
@@ -51,9 +57,11 @@ const productApi = {
       params: payload.params,
     });
   },
-  createComment(payload: any) {
+  createComment(payload: any): Promise<CommentEntity> {
     const url = "/comments/create";
-    return axiosClient.post(url, payload);
+    return axiosClient.post(url, payload, {
+      headers: { Authorization: `Bearer ${Storage.getLocal("token")}` },
+    });
   },
 };
 

@@ -52,6 +52,9 @@ export const wineSlice = createSlice({
       state.isLoadComments = false;
       state.comments = action.payload.pageItems;
     },
+    addComment: (state, action) => {
+      state.comments = [action.payload, ...(state.comments || [])];
+    },
   },
 });
 
@@ -63,6 +66,7 @@ export const {
   getRelatedProductSuccess,
   getListComment,
   getListCommentSuccess,
+  addComment,
 } = wineSlice.actions;
 
 // Selectors

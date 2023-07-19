@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { arrayFormList } from "../../../utils/ArrayForm";
 import Sort from "./Sort";
-import { GrFormPrevious, GrFormNext } from "react-icons/gr";
-import { getDataAPI } from "../../../utils/api";
-import Loading from "../../common/Loading";
 import { Pagination } from "@mui/material";
 import ProductItem from "./CartItem";
 import { useAppDispatch, useAppSelector } from "../../../redux/root/hooks";
@@ -43,7 +40,7 @@ const ListProducts = (props: ListProductsProps) => {
                 gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               }}
             >
-              {newFilterList[index].map((item, idx) => (
+              {newFilterList[index].map((item: any, idx: number) => (
                 <ProductItem key={idx} {...item} />
               ))}
             </div>

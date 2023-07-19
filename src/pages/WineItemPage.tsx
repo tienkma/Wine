@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import PageHero from "../components/common/PageHero";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getItem } from "../utils/apiGetItem";
 import { Rating } from "@mui/material";
 import {
   AiFillStar,

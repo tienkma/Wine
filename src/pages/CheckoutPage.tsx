@@ -6,7 +6,7 @@ import { CartEntity } from "../models";
 import { Storage } from "../utils/local";
 import { useLocation } from "react-router-dom";
 
-export const CheckoutPage = () => {
+const CheckoutPage = () => {
   const { state } = useLocation();
   const listCart: CartEntity[] =
     state?.productCheckout || Storage.getLocal("carts") || [];
@@ -113,3 +113,5 @@ export const CheckoutPage = () => {
     </main>
   );
 };
+
+export default CheckoutPage;

@@ -23,4 +23,5 @@ export interface CommentEntity {
   };
   content: string;
   createdAt: Date;
+  currentId?: string;
 }

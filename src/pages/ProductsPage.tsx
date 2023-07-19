@@ -3,7 +3,6 @@ import FilterProducts from "../components/pages/products/FilterProducts";
 import ListProducts from "../components/pages/products/ListProducts";
 import { Footer, Loading } from "../components";
 import LoadingPage from "../components/common/LoadingPage";
-import { getDataAPI } from "../utils/api";
 import { useAppDispatch, useAppSelector } from "../redux/root/hooks";
 import {
   selectproductList,

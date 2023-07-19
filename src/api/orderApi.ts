@@ -1,5 +1,6 @@
 import { ListResponse, OrderEntity, RequestPayload } from "../models";
 import axiosClient from "./axiosClient";
+import { Storage } from "../utils/local";
 
 const orderApi = {
   getListOrder({
@@ -15,7 +16,12 @@ const orderApi = {
   },
   createOrder(data: any) {
     const url = "/orders";
-    return axiosClient.post(url, { ...data });
+
+    return axiosClient.post(
+      url,
+      { ...data },
+      { headers: { Authorization: `Bearer ${Storage.getLocal("token")}` } }
+    );
   },
 };
 

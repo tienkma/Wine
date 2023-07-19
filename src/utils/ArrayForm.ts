@@ -1,6 +1,4 @@
-import { typeItemWine } from "../types/homeTypes";
-
-export const arrayFormList = (data: typeItemWine[]) => {
+export const arrayFormList = (data: any[]) => {
   const itemsPage = 24;
   const numberOfPages = Math.ceil(data.length / itemsPage);
 

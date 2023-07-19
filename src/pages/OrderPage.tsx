@@ -12,7 +12,7 @@ import { RouterName } from "../routers/RouterName";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 
-export const OrderPage = () => {
+const OrderPage = () => {
   const listOrder = useAppSelector(selectOrderList);
   const loadingOrder = useAppSelector(selectOrderLoading);
   const [status, setStatus] = useState("");
@@ -348,3 +348,5 @@ export const OrderPage = () => {
     </main>
   );
 };
+
+export default OrderPage;

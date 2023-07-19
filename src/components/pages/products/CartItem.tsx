@@ -7,6 +7,7 @@ import { ProductEntity } from "../../../models";
 import { addCart } from "../../../redux/silces/cartSlide";
 import { useAppDispatch } from "../../../redux/root/hooks";
 import { omit } from "lodash";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface ProductItemProps extends ProductEntity {
   className?: string;
@@ -45,7 +46,7 @@ const ProductItem = (props: ProductItemProps) => {
             height: "90%",
           }}
         >
-          <img
+          <LazyLoadImage
             src={image}
             alt="wine"
             className=" object-contain"
