@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import "./App.css";
 import "./scss/tailwindBase.scss";
 import Button from "@mui/material/Button";
@@ -24,18 +24,33 @@ function App() {
 
   return (
     <>
-      <ScrollToTop />
-      <Routes>
-        {routers.map((router) => {
-          return (
-            <Route
-              path={router.path}
-              element={<LayoutPage>{router.component}</LayoutPage>}
-              key={router.path}
-            />
-          );
-        })}
-        {routerAdmin.map((router) => {
+      <Suspense
+        fallback={
+          <div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Loading...
+          </div>
+        }
+      >
+        <ScrollToTop />
+        <Routes>
+          {routers.map((router) => {
+            return (
+              <Route
+                path={router.path}
+                element={<LayoutPage>{router.component}</LayoutPage>}
+                key={router.path}
+              />
+            );
+          })}
+          {/* {routerAdmin.map((router) => {
           return (
             <Route
               path={router.path}
@@ -45,18 +60,19 @@ function App() {
               key={router.path}
             />
           );
-        })}
-        {routersNoLayout.map((router) => {
-          return (
-            <Route
-              path={router.path}
-              element={router.component as any}
-              key={router.path}
-            />
-          );
-        })}
-      </Routes>
-      <PortableComponent />
+        })} */}
+          {routersNoLayout.map((router) => {
+            return (
+              <Route
+                path={router.path}
+                element={router.component as any}
+                key={router.path}
+              />
+            );
+          })}
+        </Routes>
+        <PortableComponent />
+      </Suspense>
     </>
   );
 }

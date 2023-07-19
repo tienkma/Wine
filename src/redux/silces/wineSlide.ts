@@ -52,6 +52,9 @@ export const wineSlice = createSlice({
       state.isLoadComments = false;
       state.comments = action.payload.pageItems;
     },
+    addComment: (state, action) => {
+      state.comments = [action.payload, ...(state.comments || [])];
+    },
   },
 });
 
@@ -63,13 +66,14 @@ export const {
   getRelatedProductSuccess,
   getListComment,
   getListCommentSuccess,
+  addComment,
 } = wineSlice.actions;
 
 // Selectors
 export const selectWineData = (state: RootState) => state.wine.wineData;
 export const selectWineLoading = (state: RootState) => state.wine.isLoading;
 export const selectWineError = (state: RootState) => state.wine.isError;
-export const selectListCommentError = (state: RootState) => state.wine.comments;
+export const selectListComment = (state: RootState) => state.wine.comments;
 export const selectLoadCommentError = (state: RootState) =>
   state.wine.isLoadComments;
 export const selectRelatedProduct = (state: RootState) =>

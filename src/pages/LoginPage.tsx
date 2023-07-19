@@ -83,10 +83,7 @@ const SignIn = ({ setDisplayLogin }: any) => {
       <div className="lg:grid lg:grid-cols-2">
         <div className="w-full xl:max-w-screen-sm center mx-auto max-2xl:px-7 max-lg:h-screen max-lg:flex max-lg:items-center">
           <div className="mt-10 px-12 w-full md:p-0 md:mt-0">
-            <h2
-              className="text-center text-4xl text-blue-900 font-display font-semibold lg:text-left xl:text-5xl
-                    xl:text-bold"
-            >
+            <h2 className="text-center text-4xl text-blue-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
               Log in
             </h2>
             <div className="mt-12">

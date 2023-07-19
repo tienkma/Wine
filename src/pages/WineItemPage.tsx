@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import PageHero from "../components/common/PageHero";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getItem } from "../utils/apiGetItem";
 import { Rating } from "@mui/material";
 import {
   AiFillStar,
@@ -168,11 +167,15 @@ const WineItemPage = () => {
 
                     <input
                       type="number"
-                      id="Quantity"
-                      defaultValue="1"
-                      value={count}
-                      max={available}
+                      id="quantity"
                       className="h-10 w-16 !border-transparent font-normal text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none focus:ring-transparent "
+                      value={count}
+                      defaultValue={1}
+                      min={1}
+                      max={available}
+                      onChange={(e) => {
+                        setCount(+e.target.value || 1);
+                      }}
                     />
 
                     <button

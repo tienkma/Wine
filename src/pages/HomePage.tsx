@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Video, Featured, Shopify, Commit, Footer } from "../components";
 
-export const HomePage = () => {
+const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -16,3 +16,5 @@ export const HomePage = () => {
     </main>
   );
 };
+
+export default HomePage;

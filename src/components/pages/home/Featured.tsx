@@ -50,7 +50,7 @@ export const Featured = () => {
             </div>
           </>
         ) : (
-          <h3 className="text-center text-red-400">No Data available</h3>
+          <h3 className="text-center text-red-400 my-20">No Data available</h3>
         )}
       </LoadingPage>
     </div>

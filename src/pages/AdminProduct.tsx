@@ -17,9 +17,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import { getDataAPI } from "../utils/api";
-import { ProductEntity } from "../types/products";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
+import { ProductEntity } from "../models";
 
 export const AdminProductPage = () => {
   const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>(
@@ -41,7 +40,7 @@ export const AdminProductPage = () => {
       pagination.pageSize, //refetch when pagination.pageSize changes
       sorting, //refetch when sorting changes
     ],
-    queryFn: async () => await getDataAPI(10),
+    // queryFn: async () => await getDataAPI(10),
     keepPreviousData: true,
   });
 

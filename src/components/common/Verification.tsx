@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useHomeContact } from "../context/HomeContext";
 import "../css/Verification.css";
 import logo from "../images/logo.png";
 import { FaTimes } from "react-icons/fa";
 
 const Verification = () => {
-  const { setVerification } = useHomeContact();
-  const [model, serModle] = useState(false);
+  // const { setVerification } = useHomeContact();
+  // const [model, serModle] = useState(false);
   return (
-    <main id="verification" >
-      <div className="backGround"></div>
+    <main id="verification">
+      {/* <div className="backGround"></div>
       <div className="title">
         <img src={logo} alt="logo" />
         <p>website Only sold to people over 18 years old</p>
@@ -28,7 +27,7 @@ const Verification = () => {
         <button onClick={() => serModle(false)}>
           <FaTimes />
         </button>
-      </div>
+      </div> */}
     </main>
   );
 };

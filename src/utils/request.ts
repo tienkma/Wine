@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { getLocal } from "../context/UserContext";
+import { Storage } from "./local";
 
 interface response extends AxiosResponse {
   error: { msg: string };
@@ -7,7 +7,7 @@ interface response extends AxiosResponse {
 
 class requests {
   headers(params?: any) {
-    const token = getLocal("token");
+    const token = Storage.getLocal("token");
     return {
       headers: {
         "Content-Type": "application/json",

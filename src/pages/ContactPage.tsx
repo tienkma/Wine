@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import PageHero from "../components/common/PageHero";
 
-export const ContactPage = () => {
+const ContactPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -187,3 +187,5 @@ export const ContactPage = () => {
     </main>
   );
 };
+
+export default ContactPage;

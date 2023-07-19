@@ -99,10 +99,15 @@ export const FormShippingAddress = (props: FormShippingAddressProps) => {
               control={control}
               register={register}
               name="address"
-              customInput={({ field: { onChange, onBlur, value, ref } }) => {
+              customInput={(
+                { field: { onChange, onBlur, value, ref } },
+                valid
+              ) => {
                 return (
                   <textarea
-                    className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                    className={`w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 ${
+                      valid ? "border-red-500" : ""
+                    }`}
                     cols={20}
                     rows={4}
                     onChange={onChange} // send value to hook form
@@ -117,8 +122,8 @@ export const FormShippingAddress = (props: FormShippingAddressProps) => {
             />
           </div>
         </div>
-        <div className="space-x-0 lg:flex lg:space-x-4">
-          <div className="w-full lg:w-1/2">
+        <div className="space-x-0 lg:flex lg:space-x-4 mt-4">
+          <div className="w-full lg:w-1/2 max-md:mt-4">
             <label
               htmlFor="city"
               className="block mb-3 text-sm font-semibold text-gray-600"
@@ -174,13 +179,16 @@ export const FormShippingAddress = (props: FormShippingAddressProps) => {
             control={control}
             name="note"
             register={register}
-            customInput={() => {
+            customInput={({ field: { onChange, onBlur, value, ref } }) => {
               return (
                 <textarea
+                  name="note"
                   className="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
                   rows={4}
                   placeholder="Notes for delivery"
                   defaultValue={""}
+                  value={value}
+                  onChange={onChange}
                 />
               );
             }}

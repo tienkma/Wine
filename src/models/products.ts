@@ -9,15 +9,19 @@ export interface ProductEntity {
   wine: string;
   rating: Rating;
   image: string;
-  price: string | number;
+  price: number;
   description: string;
-  _id: string | number;
+  _id: string;
   available: string | number;
 }
 
 export interface CommentEntity {
-  id: string | number;
-  name: string;
-  comment: string;
+  _id: string;
+  user: {
+    name: string;
+    userId: string;
+  };
+  content: string;
   createdAt: Date;
+  currentId?: string;
 }
