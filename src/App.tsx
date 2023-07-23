@@ -1,18 +1,16 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import "./App.css";
 import "./scss/tailwindBase.scss";
-import Button from "@mui/material/Button";
 import { ToastContainer } from "react-toastify";
 import { LayoutRouteProps, Route, Routes } from "react-router-dom";
-import { Footer } from "./components";
 import Header from "./components/common/Header";
 import { routerAdmin, routers, routersNoLayout } from "./routers";
-import { Grid } from "@mui/material";
 import { SideBarAdmin } from "./components/pages/admin/SideBarAdmin";
 import ScrollToTop from "./utils/model/scrollTop";
 import { Storage } from "./utils/local";
 import { useAppDispatch } from "./redux/root/hooks";
 import { setLogin } from "./redux/silces/authSlice";
+import SideBar from "./components/SideBar";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -33,6 +31,8 @@ function App() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              fontSize: "32px",
+              fontWeight: "bold",
             }}
           >
             Loading...
@@ -40,6 +40,7 @@ function App() {
         }
       >
         <ScrollToTop />
+        <SideBar />
         <Routes>
           {routers.map((router) => {
             return (

@@ -31,7 +31,7 @@ const ProductsPage = () => {
     dispatch(
       getListProduct({
         filter: { ...filterProduct, sortDirection: sort, sortBy },
-        params: { page, limit: 50 },
+        params: { page, limit: 24 },
       })
     );
   }, [filterProduct, page, sort, sortBy]);
@@ -44,7 +44,7 @@ const ProductsPage = () => {
     <>
       <main id="product_page">
         <PageHero title="Product" />
-        <section className="container py-6  mx-auto flex gap-5">
+        <section className="container py-6 max-md:flex-col mx-auto flex gap-5">
           <FilterProducts />
           <Loading loading={isLoading} className="flex-1 mt-5">
             <ListProducts data={listProduct} />

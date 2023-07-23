@@ -1,11 +1,3 @@
-import {
-  AiFillInstagram,
-  AiOutlineTwitter,
-  AiOutlineYoutube,
-} from "react-icons/ai";
-import { BsYoutube } from "react-icons/bs";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import logo from "../../assets/home/logo.png";
 
 const Footer = () => {

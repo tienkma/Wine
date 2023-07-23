@@ -23,18 +23,21 @@ const Sort = () => {
       id="sortContent "
       className="flex justify-between relative items-center"
     >
-      <p className="text-background capitalize">
+      <p className="text-background capitalize text-sm sm:text-base">
         {listProduct?.length || 0} Products Found
       </p>
       <hr className="flex-1 border-x-none border-b-none border border-solid border-background mx-2" />
       <form>
-        <label htmlFor="sort" className="text-base text-black capitalize">
+        <label
+          htmlFor="sort"
+          className="text-sm sm:text-base text-black capitalize"
+        >
           Sort By
         </label>
         <select
           name="sort"
           id="sort"
-          className=" text-base capitalize py-0.5 pl-0.5 pr-7 border-0 focus:outline-none focus:ring-0 font-normal"
+          className=" sm:text-base text-sm capitalize py-0.5 pl-0.5 pr-7 border-0 focus:outline-none focus:ring-0 font-normal"
           onChange={(e) => onchangeSort(e.target.value)}
           value={`${sortBy}|${sort}`}
         >

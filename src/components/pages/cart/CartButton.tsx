@@ -1,41 +1,21 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillTelephoneFill } from "react-icons/bs";
 import { FiUserPlus, FiUserMinus } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-import { Notifications } from "../../common/Notifications";
-import { Storage } from "../../../utils/local";
 import { RouterName } from "../../../routers/RouterName";
 import { logout, selectIsLogin } from "../../../redux/silces/authSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/root/hooks";
-import { FaUser } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
 import { selectcartList } from "../../../redux/silces/cartSlide";
+import { Menu, Transition } from "@headlessui/react";
 
 const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
-  const navigation = useNavigate();
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const listCart = useAppSelector(selectcartList);
 
   const dispatch = useAppDispatch();
@@ -56,98 +36,72 @@ const CartButton: React.FC<{ closeSidebar?: () => void }> = (props) => {
 
       {isLogin ? (
         <>
-          <Tooltip title="Account settings">
-            <IconButton
-              onClick={handleClick}
-              size="small"
-              sx={{ ml: 2 }}
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-            >
-              <Avatar sx={{ width: 34, height: 34, background: "#f5f5f5" }}>
-                <BiUser className="text-background" size={26} />
-              </Avatar>
-            </IconButton>
-          </Tooltip>
-          <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                "& .MuiAvatar-root": {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                },
-                "&:before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
-              },
-            }}
-            transformOrigin={{ horizontal: "right", vertical: "top" }}
-            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            <MenuItem
-              sx={{ paddingLeft: 2, paddingRight: 5 }}
-              onClick={handleClose}
-            >
-              <Link
-                className="text-background flex items-center"
-                to={RouterName.ORDERS}
+          <div className="relative inline-block">
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md text-sm font-semibold text-gray-900 shadow-sm ml-2">
+                  <Tooltip title="Account settings">
+                    <>
+                      <Avatar
+                        sx={{ width: 34, height: 34, background: "#f5f5f5" }}
+                      >
+                        <BiUser className="text-background" size={26} />
+                      </Avatar>
+                    </>
+                  </Tooltip>
+                </Menu.Button>
+              </div>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
               >
-                <ListItemIcon>
-                  <FaUser size={22} className="text-background" />
-                </ListItemIcon>
-                My account
-              </Link>
-            </MenuItem>
-            <MenuItem
-              sx={{ paddingLeft: 2, paddingRight: 5 }}
-              onClick={handleClose}
-            >
-              <Link
-                className="text-background flex items-center"
-                to={RouterName.ORDERS}
-              >
-                <ListItemIcon>
-                  <BsFillCartCheckFill size={22} className="text-background" />
-                </ListItemIcon>
-                Your orders
-              </Link>
-            </MenuItem>
-            <MenuItem
-              sx={{ paddingLeft: 2, paddingRight: 5 }}
-              onClick={() => {
-                handleClose();
-                console.log("vfhdvdhjvgj");
-                dispatch(logout());
-                navigation(RouterName.LOGIN);
-              }}
-            >
-              <ListItemIcon>
-                <MdLogout size={22} className="text-background" />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </Menu>
+                <Menu.Items className="absolute right-0 z-10 min-w-[180px] mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to={RouterName.ORDERS}
+                          className={`${
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700"
+                          } flex px-4 py-2 text-sm w-full gap-2`}
+                        >
+                          <BsFillCartCheckFill
+                            size={22}
+                            className="text-background"
+                          />
+                          <p>Your orders</p>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to={RouterName.LOGIN}
+                          onClick={() => dispatch(logout())}
+                          className={`${
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700"
+                          } flex px-4 py-2 text-sm w-full gap-2`}
+                        >
+                          <MdLogout size={22} className="text-background" />
+                          <p>Logout</p>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </div>
         </>
       ) : (
         <Tooltip title="Login">

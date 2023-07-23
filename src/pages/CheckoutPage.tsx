@@ -16,6 +16,11 @@ const CheckoutPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const subTotal = checkoutCart.reduce((number, pre) => {
+    const total = number + +pre.subtotal;
+    return total;
+  }, 0);
+
   return (
     <main className="minHeight">
       <PageHero title="Checkout" />
@@ -26,7 +31,10 @@ const CheckoutPage = () => {
               <h2 className="mb-4 font-bold md:text-xl text-heading ">
                 Shipping Address
               </h2>
-              <FormShippingAddress checkoutCart={checkoutCart} />
+              <FormShippingAddress
+                total={subTotal + 10}
+                checkoutCart={checkoutCart}
+              />
             </div>
             <div className="flex flex-col w-full ml-0 lg:w-2/5">
               <div className="pt-12 md:pt-0 2xl:ps-4">
@@ -97,13 +105,13 @@ const CheckoutPage = () => {
                   </h2>
                 </div>
                 <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                  Subtotal<span className="ml-2">$40.00</span>
+                  Subtotal<span className="ml-2">${subTotal}</span>
                 </div>
                 <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                   Shipping Tax<span className="ml-2">$10</span>
                 </div>
                 <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-                  Total<span className="ml-2">$50.00</span>
+                  Total<span className="ml-2">${subTotal + 10}</span>
                 </div>
               </div>
             </div>

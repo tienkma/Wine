@@ -53,7 +53,10 @@ const OrderPage = () => {
                                       <p className="kn un go">Date</p>
                                       <p className="kn vn fo od">
                                         {format(
-                                          new Date(order.createAt),
+                                          new Date(
+                                            order.createdAt ||
+                                              (order as any).createAt
+                                          ),
                                           "d LLLL, yyyy"
                                         )}
                                       </p>

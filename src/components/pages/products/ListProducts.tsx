@@ -18,7 +18,7 @@ const ListProducts = (props: ListProductsProps) => {
   const { data } = props;
   const dispatch = useAppDispatch();
 
-  let newFilterList = arrayFormList(data || []);
+  let newFilterList = data || [];
   const page = useAppSelector(selectProductPage);
   const totalPage = useAppSelector(selectProductTotalPage);
 
@@ -31,20 +31,16 @@ const ListProducts = (props: ListProductsProps) => {
         <h2 style={{ marginTop: "20px" }}>No products</h2>
       ) : (
         <>
-          {!newFilterList[index] ? (
-            setIndex(0)
-          ) : (
-            <div
-              className="listProduct grid gap-3 mt-7"
-              style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              }}
-            >
-              {newFilterList[index].map((item: any, idx: number) => (
-                <ProductItem key={idx} {...item} />
-              ))}
-            </div>
-          )}
+          <div
+            className="listProduct grid gap-3 mt-7"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            }}
+          >
+            {newFilterList.map((item: any, idx: number) => (
+              <ProductItem key={idx} {...item} />
+            ))}
+          </div>
           <div className="flex mb-3 mt-5 justify-end">
             <Pagination
               count={totalPage}

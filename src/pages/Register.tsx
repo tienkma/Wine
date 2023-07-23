@@ -107,6 +107,10 @@ const Register = (props: any) => {
         // navigate(RouterName.LOGIN);
         setIsSuccess(true);
       }
+
+      if (result?.error) {
+        setRegisterError(result.error?.msg || "");
+      }
     } catch (error: any) {
       setRegisterError(error.response?.data.message || error.message);
     } finally {

@@ -27,9 +27,11 @@ const AboutPage = () => {
                   alt="image"
                 />
               </div>
-              <div className="aboutInfo w-full md:w-1/2 md:p-6 py-6 flex flex-col justify-center">
-                <h2 className="text-4xl max-sm:text-3xl mb-8">{item.title}</h2>
-                <p className="text-lg !leading-loose max-sm:text-base">
+              <div className="aboutInfo w-full md:w-1/2 md:p-6 py-6 flex flex-col justify-center max-sm:pb-0">
+                <h2 className="text-4xl max-sm:text-2xl sm:mb-8 mb-4">
+                  {item.title}
+                </h2>
+                <p className="text-sm !leading-loose sm:text-base ">
                   {item.text}
                 </p>
               </div>

@@ -47,7 +47,7 @@ const ContactPage = () => {
                 <div className="form-group form-check text-center mb-6">
                   <input
                     type="checkbox"
-                    className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
+                    className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-background checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
                     id="exampleCheck87"
                   />
                   <label
@@ -59,7 +59,7 @@ const ContactPage = () => {
                 </div>
                 <button
                   type="submit"
-                  className="  w-full px-6 py-2.5  bg-blue-600  text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:bg-blue-700 hover:shadow-lg  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  className="  w-full px-6 py-2.5  bg-background  text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:bg-color hover:shadow-lg  focus:bg-color focus:shadow-lg focus:outline-none focus:ring-0  active:bg-bg-color active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Send
                 </button>
@@ -70,7 +70,7 @@ const ContactPage = () => {
                 <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
                   <div className="flex items-start">
                     <div className="shrink-0">
-                      <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                      <div className="p-4 bg-background rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                         <svg
                           aria-hidden="true"
                           focusable="false"
@@ -98,7 +98,7 @@ const ContactPage = () => {
                 <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
                   <div className="flex items-start">
                     <div className="shrink-0">
-                      <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                      <div className="p-4 bg-background rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                         <svg
                           aria-hidden="true"
                           focusable="false"
@@ -126,7 +126,7 @@ const ContactPage = () => {
                 <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
                   <div className="flex align-start">
                     <div className="shrink-0">
-                      <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                      <div className="p-4 bg-background rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                         <svg
                           aria-hidden="true"
                           focusable="false"
@@ -154,7 +154,7 @@ const ContactPage = () => {
                 <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
                   <div className="flex align-start">
                     <div className="shrink-0">
-                      <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                      <div className="p-4 bg-background rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                         <svg
                           aria-hidden="true"
                           focusable="false"

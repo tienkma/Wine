@@ -6,12 +6,14 @@ export interface homeState {
   isLoading: boolean;
   featuredProducts: ProductEntity[] | null;
   isError: boolean;
+  activeNav: boolean;
 }
 
 const initialState: homeState = {
   isLoading: false,
   featuredProducts: null,
   isError: false,
+  activeNav: false,
 };
 
 export const homeSlice = createSlice({
@@ -30,15 +32,19 @@ export const homeSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     },
+    changeActiveNav: (state, action) => {
+      state.activeNav = action.payload;
+    },
   },
 });
 
-export const { getListProduct, getListSuccess, getListFalse } =
+export const { getListProduct, getListSuccess, getListFalse, changeActiveNav } =
   homeSlice.actions;
 
 // Selectors
 export const selectHomeList = (state: RootState) => state.home.featuredProducts;
 export const selectHomeLoading = (state: RootState) => state.home.isLoading;
 export const selectHomeError = (state: RootState) => state.home.isError;
+export const selectHomeActiveNav = (state: RootState) => state.home.activeNav;
 
 export default homeSlice.reducer;

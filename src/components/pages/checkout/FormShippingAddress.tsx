@@ -14,6 +14,7 @@ import { clearCart, removeItem } from "../../../redux/silces/cartSlide";
 
 interface FormShippingAddressProps {
   checkoutCart: CartEntity[];
+  total: number;
 }
 
 export const FormShippingAddress = (props: FormShippingAddressProps) => {
@@ -36,13 +37,15 @@ export const FormShippingAddress = (props: FormShippingAddressProps) => {
       const data: any = await orderApi.createOrder({
         ...values,
         products: props.checkoutCart,
-        total: 500,
+        total: props.total,
       });
       if (data?._id) {
         Toasts.success("Success");
         dispatch(removeItem(props.checkoutCart.map((item) => item._id)));
         navigate(RouterName.ORDERS);
       }
+    } else {
+      Toasts.error("The product cannot be empty");
     }
   };
 

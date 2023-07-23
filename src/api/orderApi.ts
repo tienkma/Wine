@@ -8,7 +8,10 @@ const orderApi = {
     params,
   }: RequestPayload): Promise<ListResponse<OrderEntity>> {
     const url = "/orders/query?limit=100&page=1";
-    return axiosClient.post(url, filter || {}, { params });
+    return axiosClient.post(url, filter || {}, {
+      params,
+      headers: { Authorization: `Bearer ${Storage.getLocal("token")}` },
+    });
   },
   getWine(id: string) {
     const url = "/orders/:id";

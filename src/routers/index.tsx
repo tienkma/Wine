@@ -1,9 +1,3 @@
-import CreateUserPage from "../pages/CreateUser";
-import CreateProductPage from "../pages/CreateProduct";
-import { AdminInboxPage } from "../pages/AdminInboxPage";
-import AdminProductPage from "../pages/AdminProduct";
-import AdminPage from "../pages/AdminPage";
-// import ReactQueryUserProvider from "../pages/AdminUserPage";
 import { RouterName } from "./RouterName";
 import { lazy } from "react";
 const HomePage = lazy(() => import("../pages/HomePage"));
@@ -18,6 +12,7 @@ const ContactPage = lazy(() => import("../pages/ContactPage"));
 const Register = lazy(() => import("../pages/Register"));
 const OrderPage = lazy(() => import("../pages/OrderPage"));
 const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
+const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 
 export const routers = [
   { path: RouterName.HOME, component: <HomePage /> },
@@ -29,6 +24,7 @@ export const routers = [
   { path: RouterName.CONTACT, component: <ContactPage /> },
   { path: RouterName.ORDERS, component: <OrderPage /> },
   { path: RouterName.CHECKOUT, component: <CheckoutPage /> },
+  { path: RouterName.PROFILE, component: <ProfilePage /> },
 ];
 
 export const routersNoLayout = [

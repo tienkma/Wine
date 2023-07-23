@@ -14,7 +14,7 @@ const ActionButton = (props: HTMLAttributes<HTMLButtonElement>) => {
   };
 
   return (
-    <button onClick={customOnclick} {...rest}>
+    <button onClick={customOnclick} disabled={actionLoading} {...rest}>
       {!actionLoading ? children : "Please wait..."}
     </button>
   );

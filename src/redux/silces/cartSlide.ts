@@ -33,17 +33,18 @@ export const cartSlice = createSlice({
         state.carts =
           state.carts?.map((item) => {
             if (item._id === cart._id) {
-              const newQuantity = newCart.quantity + item.quantity;
+              const payloadQuantity = newCart.quantity + item.quantity;
+              const newQuantity =
+                payloadQuantity > +cart.available
+                  ? cart.available
+                  : payloadQuantity < 1
+                  ? item.quantity
+                  : payloadQuantity;
 
               return {
                 ...item,
-                subtotal: action.payload.quantity * +action.payload.price,
-                quantity:
-                  newQuantity > +cart.available
-                    ? item.quantity
-                    : newQuantity < 1
-                    ? item.quantity
-                    : newQuantity,
+                subtotal: newQuantity * +action.payload.price,
+                quantity: newQuantity,
               };
             }
             return item;
@@ -56,15 +57,18 @@ export const cartSlice = createSlice({
       state.carts = [];
     },
     removeItem: (state, action) => {
+      let newCarts = [...(state.carts || [])];
       if (isArray(action.payload)) {
         const listIdItemRemove: string[] = action.payload;
-        state.carts =
+        newCarts =
           state.carts.filter((cart) => !listIdItemRemove.includes(cart._id)) ||
           [];
       } else {
-        state.carts =
+        newCarts =
           state.carts.filter((cart) => cart._id != action.payload) || [];
       }
+      Storage.setLocal("carts", newCarts);
+      state.carts = newCarts;
     },
     changeQuantityCart: (state, action) => {
       const { id, count } = action.payload;

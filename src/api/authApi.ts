@@ -6,7 +6,9 @@ const authApi = {
     username: string;
     email: string;
     password: string;
-  }): Promise<{ token: string; user: UserEntity }> => {
+  }): Promise<
+    { token: string; user: UserEntity } & { error: { msg: string } }
+  > => {
     const url = "/auth/register";
     return axiosClient.post(url, payload);
   },

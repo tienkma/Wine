@@ -7,7 +7,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../redux/root/hooks";
-import { addComment, selectListComment } from "../../../redux/silces/wineSlide";
+import {
+  addComment,
+  selectListComment,
+  selectLoadCommentLoad,
+} from "../../../redux/silces/wineSlide";
 import { CommentEntity } from "../../../models";
 import { HookForm } from "../../form/HookForm";
 import { InputField } from "../../form/HookFormInput";
@@ -17,6 +21,7 @@ import { Link, useParams } from "react-router-dom";
 import noAvata from "../../../assets/home/no-avt.png";
 import { selectIsLogin } from "../../../redux/silces/authSlice";
 import { RouterName } from "../../../routers/RouterName";
+import LoadingPage from "../../common/LoadingPage";
 
 export const classNameInput =
   "block w-full p-2 text-gray-900 border-gray-300 bg-gray-20 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-0 !border rounded-lg";
@@ -38,6 +43,7 @@ interface CommentsProps {}
 
 export const Comments = (props: CommentsProps) => {
   const listComment = useAppSelector(selectListComment);
+  const loadComment = useAppSelector(selectLoadCommentLoad);
 
   return (
     <>
@@ -50,26 +56,30 @@ export const Comments = (props: CommentsProps) => {
           </div>
           <FormCommentCreate />
 
-          {listComment?.length ? (
-            listComment
-              .filter((item) => !item.currentId)
-              .map((comment) => {
-                const commentChild = listComment.filter(
-                  (child) => child.currentId === comment._id
-                );
-                return (
-                  <Comment
-                    key={comment._id}
-                    comment={comment}
-                    commentChild={commentChild}
-                  />
-                );
-              })
-          ) : (
-            <p className="font-bold">
-              There are currently no comments. Be the first to comment.
-            </p>
-          )}
+          <LoadingPage loading={loadComment}>
+            <>
+              {listComment?.length ? (
+                listComment
+                  .filter((item) => !item.currentId)
+                  .map((comment) => {
+                    const commentChild = listComment.filter(
+                      (child) => child.currentId === comment._id
+                    );
+                    return (
+                      <Comment
+                        key={comment._id}
+                        comment={comment}
+                        commentChild={commentChild}
+                      />
+                    );
+                  })
+              ) : (
+                <p className="font-bold">
+                  There are currently no comments. Be the first to comment.
+                </p>
+              )}
+            </>
+          </LoadingPage>
         </div>
       </section>
     </>
@@ -82,7 +92,9 @@ const FormCommentCreate = () => {
   const { formState, control, register, handleSubmit, setValue } = useForm({
     resolver: yupResolver(
       Yup.object({
-        content: Yup.string().required("Please enter the value comment"),
+        content: Yup.string()
+          .min(20, "Please enter a minimum of 20 characters")
+          .required("Please enter the value comment"),
       })
     ),
   });
@@ -135,8 +147,9 @@ const FormCommentCreate = () => {
       <div className="flex justify-end">
         <ActionButton
           onClick={handleSubmit(onSubmit)}
-          className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-background rounded-[4px] focus:ring-4  hover:bg-color"
+          className="right-4 text-white items-center text-sm !left-auto flex cursor-pointer bg-background hover:bg-color transition-colors px-6 py-2 rounded-3xl"
         >
+          <AiOutlineSend className="text-sm mr-1" size={16} />
           Post comment
         </ActionButton>
         <Modal
@@ -299,20 +312,29 @@ const FormComment = (props: FormCommentProps) => {
     });
 
   const { id } = useParams();
+  const isLogin = useAppSelector(selectIsLogin);
+
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
 
   const onSubmit = async (values: any) => {
-    try {
-      const newComment = await productApi.createComment({
-        ...values,
-        productId: id,
-        currentId: comment._id,
-      });
-      if (newComment._id) {
-        setValue("content", "");
-        dispatch(addComment(newComment));
+    if (isLogin) {
+      try {
+        const newComment = await productApi.createComment({
+          ...values,
+          productId: id,
+          currentId: comment._id,
+        });
+        if (newComment._id) {
+          setValue("content", "");
+          dispatch(addComment(newComment));
+        }
+      } catch (error) {
+        console.log("error");
       }
-    } catch (error) {
-      console.log("error");
+    } else {
+      handleOpen();
     }
   };
 
@@ -341,12 +363,47 @@ const FormComment = (props: FormCommentProps) => {
       <div className="mt-4 flex justify-end items-center">
         <ActionButton
           onClick={handleSubmit(onSubmit)}
-          className="right-4 text-white items-center text-sm !left-auto flex cursor-pointer bg-background hover:bg-color transition-colors px-10 py-2 rounded-3xl"
+          className="right-4 text-white items-center text-sm !left-auto flex cursor-pointer bg-background hover:bg-color transition-colors px-6 py-2 rounded-3xl"
         >
           <AiOutlineSend className="text-sm mr-1" size={16} />
           Post Comment
         </ActionButton>
       </div>
+      <Modal
+        open={openModal}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography
+            id="modal-modal-title"
+            sx={{ fontSize: "16px" }}
+            variant="h6"
+            component="h2"
+          >
+            Please login your smember account to comment
+          </Typography>
+          <div className="flex gap-3">
+            <div className="flex-1">
+              <Link
+                className="mt-5 flex py-1.5 rounded-sm capitalize  text-sm justify-center items-center transition-colors hover:bg-color bg-background font-medium"
+                to={RouterName.LOGIN}
+              >
+                Login
+              </Link>
+            </div>
+            <div className="flex-1">
+              <Link
+                className="mt-5 flex py-1.5 rounded-sm capitalize  text-sm justify-center items-center transition-colors hover:bg-color bg-transparent hover:border-color border-background text-background hover:text-white border font-medium"
+                to={RouterName.REGISTER}
+              >
+                Register
+              </Link>
+            </div>
+          </div>
+        </Box>
+      </Modal>
     </form>
   );
 };

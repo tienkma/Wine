@@ -8,5 +8,5 @@ export interface CartEntity {
   available: string | number;
   quantity: number;
   subtotal: number;
-  createAt: string | Date;
+  createdAt: string | Date;
 }
